@@ -1,0 +1,85 @@
+generator client {
+  provider = "dart run orm"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:root@localhost:3306/controle_bovino_leiteiro"
+}
+
+model animal {
+  codAnimal      Int          @id
+  codProdLeite   Int
+  codCategoria   Int
+  nome           String       @db.VarChar(45)
+  dataNascimento DateTime     @db.Date
+  sexo           String       @db.VarChar(45)
+  raca           String       @db.VarChar(45)
+  idade          Int
+  formaManejo    String       @db.VarChar(45)
+  mediaLeite     Float?
+  categoria      categoria    @relation(fields: [codCategoria], references: [codCategoria], onDelete: NoAction, onUpdate: NoAction, map: "fk_Animal_Categoria1")
+  prodleite      prodleite    @relation(fields: [codProdLeite], references: [codProdLeite], onDelete: NoAction, onUpdate: NoAction, map: "fk_Animal_ProdLeite1")
+  itensvenda     itensvenda[]
+
+  @@index([codCategoria], map: "fk_Animal_Categoria1_idx")
+  @@index([codProdLeite], map: "fk_Animal_ProdLeite1_idx")
+}
+
+model categoria {
+  codCategoria Int      @id
+  tipo         String   @db.VarChar(45)
+  animal       animal[]
+}
+
+model comprador {
+  codComprador Int           @id
+  nome         String        @db.VarChar(45)
+  telefone     String        @db.VarChar(45)
+  endereco     String        @db.VarChar(200)
+  vendaanimal  vendaanimal[]
+  vendaleite   vendaleite[]
+}
+
+model itensvenda {
+  codItensVenda  Int
+  codVendaAnimal Int
+  codAnimal      Int
+  quantidade     Int
+  valorUnitario  Float
+  animal         animal      @relation(fields: [codAnimal], references: [codAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_Animal1")
+  vendaanimal    vendaanimal @relation(fields: [codVendaAnimal], references: [codVendaAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_VendaAnimal1")
+
+  @@id([codItensVenda, codVendaAnimal, codAnimal])
+  @@index([codAnimal], map: "fk_VendaAnimal_has_Animal_Animal1_idx")
+  @@index([codVendaAnimal], map: "fk_VendaAnimal_has_Animal_VendaAnimal1_idx")
+}
+
+model prodleite {
+  codProdLeite    Int      @id
+  data            DateTime @db.Date
+  quantidadeLeite Float
+  animal          animal[]
+}
+
+model vendaanimal {
+  codVendaAnimal   Int          @id
+  codComprador     Int
+  dataVendaAnimal  DateTime     @db.Date
+  valorTotalAnimal Float
+  itensvenda       itensvenda[]
+  comprador        comprador    @relation(fields: [codComprador], references: [codComprador], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_Comprador")
+
+  @@index([codComprador], map: "fk_VendaAnimal_Comprador_idx")
+}
+
+model vendaleite {
+  codVendaLeite   Int       @id
+  codComprador    Int
+  dataVendaLeite  DateTime  @db.Date
+  quantidadeLeite Float
+  valorTotalLeite Float
+  comprador       comprador @relation(fields: [codComprador], references: [codComprador], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_Comprador1")
+
+  @@index([codComprador], map: "fk_VendaLeite_Comprador1_idx")
+}
