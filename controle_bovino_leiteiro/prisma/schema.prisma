@@ -42,13 +42,14 @@ model comprador {
 }
 
 model itensvenda {
-  codItensVenda  Int
-  codVendaAnimal Int
-  codAnimal      Int
-  quantidade     Int
-  valorUnitario  Float
-  animal         animal      @relation(fields: [codAnimal], references: [codAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_Animal1")
-  vendaanimal    vendaanimal @relation(fields: [codVendaAnimal], references: [codVendaAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_VendaAnimal1")
+  codItensVenda        Int
+  codVendaAnimal       Int
+  codAnimal            Int
+  quantidade           Int
+  valorUnitario        Float
+  valorTotalItemAnimal Float
+  animal               animal      @relation(fields: [codAnimal], references: [codAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_Animal1")
+  vendaanimal          vendaanimal @relation(fields: [codVendaAnimal], references: [codVendaAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_VendaAnimal1")
 
   @@id([codItensVenda, codVendaAnimal, codAnimal])
   @@index([codAnimal], map: "fk_VendaAnimal_has_Animal_Animal1_idx")
@@ -56,10 +57,11 @@ model itensvenda {
 }
 
 model prodleite {
-  codProdLeite    Int      @id
-  data            DateTime @db.Date
-  quantidadeLeite Float
-  animal          animal[]
+  codProdLeite   Int              @id
+  dataProdLeite  DateTime         @db.Date
+  qtdProdLeite   Float
+  animal         animal[]
+  vendaprodleite vendaprodleite[]
 }
 
 model vendaanimal {
@@ -74,12 +76,27 @@ model vendaanimal {
 }
 
 model vendaleite {
-  codVendaLeite   Int       @id
+  codVendaLeite   Int              @id
   codComprador    Int
-  dataVendaLeite  DateTime  @db.Date
-  quantidadeLeite Float
+  dataVendaLeite  DateTime         @db.Date
   valorTotalLeite Float
-  comprador       comprador @relation(fields: [codComprador], references: [codComprador], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_Comprador1")
+  comprador       comprador        @relation(fields: [codComprador], references: [codComprador], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_Comprador1")
+  vendaprodleite  vendaprodleite[]
 
   @@index([codComprador], map: "fk_VendaLeite_Comprador1_idx")
+}
+
+model vendaprodleite {
+  codVendaProdLeite   Int
+  codVendaLeite       Int
+  codProdLeite        Int
+  qtdLeite            Float
+  valorLitro          Float
+  valorTotalItemLeite Float
+  prodleite           prodleite  @relation(fields: [codProdLeite], references: [codProdLeite], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_has_ProdLeite_ProdLeite1")
+  vendaleite          vendaleite @relation(fields: [codVendaLeite], references: [codVendaLeite], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_has_ProdLeite_VendaLeite1")
+
+  @@id([codVendaProdLeite, codVendaLeite, codProdLeite])
+  @@index([codProdLeite], map: "fk_VendaLeite_has_ProdLeite_ProdLeite1_idx")
+  @@index([codVendaLeite], map: "fk_VendaLeite_has_ProdLeite_VendaLeite1_idx")
 }

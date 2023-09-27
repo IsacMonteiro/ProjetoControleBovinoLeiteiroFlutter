@@ -1,0 +1,10 @@
+^C:\USERS\MICRO\ONEDRIVE\IMAGENS\PROJETOCONTROLEBOVINOLEITEIRO\CONTROLE_BOVINO_LEITEIRO\BUILD\WINDOWS\CMAKEFILES\8D78BC524A15E9616349922E9CA88AC2\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/windows -BC:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/controle_bovino_leiteiro.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

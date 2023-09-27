@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\build\windows\CMakeFiles\9205f5d2795127b8332e5e871e12f9dc\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\build\windows\CMakeFiles\82c724e5a7f75c3cddbef534490a47fc\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{1C8837C7-93EC-3100-9F4D-B18AC2B6328C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -48,7 +48,8 @@ enum ItensvendaScalarFieldEnum implements _i1.PrismaEnum {
   codVendaAnimal,
   codAnimal,
   quantidade,
-  valorUnitario;
+  valorUnitario,
+  valorTotalItemAnimal;
 
   @override
   String? get originalName => null;
@@ -56,16 +57,8 @@ enum ItensvendaScalarFieldEnum implements _i1.PrismaEnum {
 
 enum ProdleiteScalarFieldEnum implements _i1.PrismaEnum {
   codProdLeite,
-  data,
-  quantidadeLeite;
-
-  @override
-  String? get originalName => null;
-}
-
-enum SortOrder implements _i1.PrismaEnum {
-  asc,
-  desc;
+  dataProdLeite,
+  qtdProdLeite;
 
   @override
   String? get originalName => null;
@@ -85,8 +78,35 @@ enum VendaleiteScalarFieldEnum implements _i1.PrismaEnum {
   codVendaLeite,
   codComprador,
   dataVendaLeite,
-  quantidadeLeite,
   valorTotalLeite;
+
+  @override
+  String? get originalName => null;
+}
+
+enum VendaprodleiteScalarFieldEnum implements _i1.PrismaEnum {
+  codVendaProdLeite,
+  codVendaLeite,
+  codProdLeite,
+  qtdLeite,
+  valorLitro,
+  valorTotalItemLeite;
+
+  @override
+  String? get originalName => null;
+}
+
+enum SortOrder implements _i1.PrismaEnum {
+  asc,
+  desc;
+
+  @override
+  String? get originalName => null;
+}
+
+enum NullsOrder implements _i1.PrismaEnum {
+  first,
+  last;
 
   @override
   String? get originalName => null;
@@ -644,6 +664,7 @@ class ItensvendaWhereInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
     this.animal,
     this.vendaanimal,
   });
@@ -667,6 +688,8 @@ class ItensvendaWhereInput implements _i1.JsonSerializable {
 
   final FloatFilter? valorUnitario;
 
+  final FloatFilter? valorTotalItemAnimal;
+
   final AnimalRelationFilter? animal;
 
   final VendaanimalRelationFilter? vendaanimal;
@@ -683,6 +706,7 @@ class ItensvendaOrderByWithRelationInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
     this.animal,
     this.vendaanimal,
   });
@@ -700,6 +724,8 @@ class ItensvendaOrderByWithRelationInput implements _i1.JsonSerializable {
   final SortOrder? quantidade;
 
   final SortOrder? valorUnitario;
+
+  final SortOrder? valorTotalItemAnimal;
 
   final AnimalOrderByWithRelationInput? animal;
 
@@ -733,6 +759,7 @@ class ItensvendaOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
     this.$count,
     this.$avg,
     this.$max,
@@ -753,6 +780,8 @@ class ItensvendaOrderByWithAggregationInput implements _i1.JsonSerializable {
   final SortOrder? quantidade;
 
   final SortOrder? valorUnitario;
+
+  final SortOrder? valorTotalItemAnimal;
 
   @JsonKey(name: r'_count')
   final ItensvendaCountOrderByAggregateInput? $count;
@@ -785,6 +814,7 @@ class ItensvendaScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaScalarWhereWithAggregatesInput.fromJson(
@@ -807,6 +837,8 @@ class ItensvendaScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final FloatWithAggregatesFilter? valorUnitario;
 
+  final FloatWithAggregatesFilter? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaScalarWhereWithAggregatesInputToJson(this);
@@ -819,9 +851,10 @@ class ProdleiteWhereInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
     this.animal,
+    this.vendaprodleite,
   });
 
   factory ProdleiteWhereInput.fromJson(Map<String, dynamic> json) =>
@@ -835,11 +868,13 @@ class ProdleiteWhereInput implements _i1.JsonSerializable {
 
   final IntFilter? codProdLeite;
 
-  final DateTimeFilter? data;
+  final DateTimeFilter? dataProdLeite;
 
-  final FloatFilter? quantidadeLeite;
+  final FloatFilter? qtdProdLeite;
 
   final AnimalListRelationFilter? animal;
+
+  final VendaprodleiteListRelationFilter? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteWhereInputToJson(this);
@@ -849,9 +884,10 @@ class ProdleiteWhereInput implements _i1.JsonSerializable {
 class ProdleiteOrderByWithRelationInput implements _i1.JsonSerializable {
   const ProdleiteOrderByWithRelationInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
     this.animal,
+    this.vendaprodleite,
   });
 
   factory ProdleiteOrderByWithRelationInput.fromJson(
@@ -860,11 +896,13 @@ class ProdleiteOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? data;
+  final SortOrder? dataProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   final AnimalOrderByRelationAggregateInput? animal;
+
+  final VendaprodleiteOrderByRelationAggregateInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -888,8 +926,8 @@ class ProdleiteWhereUniqueInput implements _i1.JsonSerializable {
 class ProdleiteOrderByWithAggregationInput implements _i1.JsonSerializable {
   const ProdleiteOrderByWithAggregationInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
     this.$count,
     this.$avg,
     this.$max,
@@ -903,9 +941,9 @@ class ProdleiteOrderByWithAggregationInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? data;
+  final SortOrder? dataProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   @JsonKey(name: r'_count')
   final ProdleiteCountOrderByAggregateInput? $count;
@@ -934,8 +972,8 @@ class ProdleiteScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteScalarWhereWithAggregatesInput.fromJson(
@@ -950,9 +988,9 @@ class ProdleiteScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final IntWithAggregatesFilter? codProdLeite;
 
-  final DateTimeWithAggregatesFilter? data;
+  final DateTimeWithAggregatesFilter? dataProdLeite;
 
-  final FloatWithAggregatesFilter? quantidadeLeite;
+  final FloatWithAggregatesFilter? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -1134,9 +1172,9 @@ class VendaleiteWhereInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
     this.comprador,
+    this.vendaprodleite,
   });
 
   factory VendaleiteWhereInput.fromJson(Map<String, dynamic> json) =>
@@ -1154,11 +1192,11 @@ class VendaleiteWhereInput implements _i1.JsonSerializable {
 
   final DateTimeFilter? dataVendaLeite;
 
-  final FloatFilter? quantidadeLeite;
-
   final FloatFilter? valorTotalLeite;
 
   final CompradorRelationFilter? comprador;
+
+  final VendaprodleiteListRelationFilter? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteWhereInputToJson(this);
@@ -1170,9 +1208,9 @@ class VendaleiteOrderByWithRelationInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
     this.comprador,
+    this.vendaprodleite,
   });
 
   factory VendaleiteOrderByWithRelationInput.fromJson(
@@ -1185,11 +1223,11 @@ class VendaleiteOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final SortOrder? dataVendaLeite;
 
-  final SortOrder? quantidadeLeite;
-
   final SortOrder? valorTotalLeite;
 
   final CompradorOrderByWithRelationInput? comprador;
+
+  final VendaprodleiteOrderByRelationAggregateInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -1215,7 +1253,6 @@ class VendaleiteOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
     this.$count,
     this.$avg,
@@ -1233,8 +1270,6 @@ class VendaleiteOrderByWithAggregationInput implements _i1.JsonSerializable {
   final SortOrder? codComprador;
 
   final SortOrder? dataVendaLeite;
-
-  final SortOrder? quantidadeLeite;
 
   final SortOrder? valorTotalLeite;
 
@@ -1267,7 +1302,6 @@ class VendaleiteScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -1287,13 +1321,205 @@ class VendaleiteScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final DateTimeWithAggregatesFilter? dataVendaLeite;
 
-  final FloatWithAggregatesFilter? quantidadeLeite;
-
   final FloatWithAggregatesFilter? valorTotalLeite;
 
   @override
   Map<String, dynamic> toJson() =>
       _$VendaleiteScalarWhereWithAggregatesInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteWhereInput implements _i1.JsonSerializable {
+  const VendaprodleiteWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+    this.prodleite,
+    this.vendaleite,
+  });
+
+  factory VendaprodleiteWhereInput.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteWhereInputFromJson(json);
+
+  final Iterable<VendaprodleiteWhereInput>? AND;
+
+  final Iterable<VendaprodleiteWhereInput>? OR;
+
+  final Iterable<VendaprodleiteWhereInput>? NOT;
+
+  final IntFilter? codVendaProdLeite;
+
+  final IntFilter? codVendaLeite;
+
+  final IntFilter? codProdLeite;
+
+  final FloatFilter? qtdLeite;
+
+  final FloatFilter? valorLitro;
+
+  final FloatFilter? valorTotalItemLeite;
+
+  final ProdleiteRelationFilter? prodleite;
+
+  final VendaleiteRelationFilter? vendaleite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteWhereInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteOrderByWithRelationInput implements _i1.JsonSerializable {
+  const VendaprodleiteOrderByWithRelationInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+    this.prodleite,
+    this.vendaleite,
+  });
+
+  factory VendaprodleiteOrderByWithRelationInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteOrderByWithRelationInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  final ProdleiteOrderByWithRelationInput? prodleite;
+
+  final VendaleiteOrderByWithRelationInput? vendaleite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteOrderByWithRelationInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteWhereUniqueInput implements _i1.JsonSerializable {
+  const VendaprodleiteWhereUniqueInput(
+      {this.codVendaProdLeiteCodVendaLeiteCodProdLeite});
+
+  factory VendaprodleiteWhereUniqueInput.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteWhereUniqueInputFromJson(json);
+
+  @JsonKey(name: r'codVendaProdLeite_codVendaLeite_codProdLeite')
+  final VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput?
+      codVendaProdLeiteCodVendaLeiteCodProdLeite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteWhereUniqueInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteOrderByWithAggregationInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteOrderByWithAggregationInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+    this.$count,
+    this.$avg,
+    this.$max,
+    this.$min,
+    this.$sum,
+  });
+
+  factory VendaprodleiteOrderByWithAggregationInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteOrderByWithAggregationInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  @JsonKey(name: r'_count')
+  final VendaprodleiteCountOrderByAggregateInput? $count;
+
+  @JsonKey(name: r'_avg')
+  final VendaprodleiteAvgOrderByAggregateInput? $avg;
+
+  @JsonKey(name: r'_max')
+  final VendaprodleiteMaxOrderByAggregateInput? $max;
+
+  @JsonKey(name: r'_min')
+  final VendaprodleiteMinOrderByAggregateInput? $min;
+
+  @JsonKey(name: r'_sum')
+  final VendaprodleiteSumOrderByAggregateInput? $sum;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteOrderByWithAggregationInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteScalarWhereWithAggregatesInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteScalarWhereWithAggregatesInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteScalarWhereWithAggregatesInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteScalarWhereWithAggregatesInputFromJson(json);
+
+  final Iterable<VendaprodleiteScalarWhereWithAggregatesInput>? AND;
+
+  final Iterable<VendaprodleiteScalarWhereWithAggregatesInput>? OR;
+
+  final Iterable<VendaprodleiteScalarWhereWithAggregatesInput>? NOT;
+
+  final IntWithAggregatesFilter? codVendaProdLeite;
+
+  final IntWithAggregatesFilter? codVendaLeite;
+
+  final IntWithAggregatesFilter? codProdLeite;
+
+  final FloatWithAggregatesFilter? qtdLeite;
+
+  final FloatWithAggregatesFilter? valorLitro;
+
+  final FloatWithAggregatesFilter? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteScalarWhereWithAggregatesInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -1940,6 +2166,7 @@ class ItensvendaCreateInput implements _i1.JsonSerializable {
     required this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
     required this.animal,
     required this.vendaanimal,
   });
@@ -1952,6 +2179,8 @@ class ItensvendaCreateInput implements _i1.JsonSerializable {
   final int quantidade;
 
   final double valorUnitario;
+
+  final double valorTotalItemAnimal;
 
   final AnimalCreateNestedOneWithoutItensvendaInput animal;
 
@@ -1969,6 +2198,7 @@ class ItensvendaUncheckedCreateInput implements _i1.JsonSerializable {
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
@@ -1984,6 +2214,8 @@ class ItensvendaUncheckedCreateInput implements _i1.JsonSerializable {
 
   final double valorUnitario;
 
+  final double valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() => _$ItensvendaUncheckedCreateInputToJson(this);
 }
@@ -1994,6 +2226,7 @@ class ItensvendaUpdateInput implements _i1.JsonSerializable {
     this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
     this.animal,
     this.vendaanimal,
   });
@@ -2006,6 +2239,8 @@ class ItensvendaUpdateInput implements _i1.JsonSerializable {
   final IntFieldUpdateOperationsInput? quantidade;
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
 
   final AnimalUpdateOneRequiredWithoutItensvendaNestedInput? animal;
 
@@ -2023,6 +2258,7 @@ class ItensvendaUncheckedUpdateInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedUpdateInput.fromJson(Map<String, dynamic> json) =>
@@ -2038,6 +2274,8 @@ class ItensvendaUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
 
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() => _$ItensvendaUncheckedUpdateInputToJson(this);
 }
@@ -2050,6 +2288,7 @@ class ItensvendaCreateManyInput implements _i1.JsonSerializable {
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory ItensvendaCreateManyInput.fromJson(Map<String, dynamic> json) =>
@@ -2065,6 +2304,8 @@ class ItensvendaCreateManyInput implements _i1.JsonSerializable {
 
   final double valorUnitario;
 
+  final double valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() => _$ItensvendaCreateManyInputToJson(this);
 }
@@ -2075,6 +2316,7 @@ class ItensvendaUpdateManyMutationInput implements _i1.JsonSerializable {
     this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUpdateManyMutationInput.fromJson(
@@ -2086,6 +2328,8 @@ class ItensvendaUpdateManyMutationInput implements _i1.JsonSerializable {
   final IntFieldUpdateOperationsInput? quantidade;
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -2100,6 +2344,7 @@ class ItensvendaUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedUpdateManyInput.fromJson(
@@ -2116,6 +2361,8 @@ class ItensvendaUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
 
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaUncheckedUpdateManyInputToJson(this);
@@ -2125,9 +2372,10 @@ class ItensvendaUncheckedUpdateManyInput implements _i1.JsonSerializable {
 class ProdleiteCreateInput implements _i1.JsonSerializable {
   const ProdleiteCreateInput({
     required this.codProdLeite,
-    required this.data,
-    required this.quantidadeLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
     this.animal,
+    this.vendaprodleite,
   });
 
   factory ProdleiteCreateInput.fromJson(Map<String, dynamic> json) =>
@@ -2135,11 +2383,13 @@ class ProdleiteCreateInput implements _i1.JsonSerializable {
 
   final int codProdLeite;
 
-  final DateTime data;
+  final DateTime dataProdLeite;
 
-  final double quantidadeLeite;
+  final double qtdProdLeite;
 
   final AnimalCreateNestedManyWithoutProdleiteInput? animal;
+
+  final VendaprodleiteCreateNestedManyWithoutProdleiteInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteCreateInputToJson(this);
@@ -2149,9 +2399,10 @@ class ProdleiteCreateInput implements _i1.JsonSerializable {
 class ProdleiteUncheckedCreateInput implements _i1.JsonSerializable {
   const ProdleiteUncheckedCreateInput({
     required this.codProdLeite,
-    required this.data,
-    required this.quantidadeLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
     this.animal,
+    this.vendaprodleite,
   });
 
   factory ProdleiteUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
@@ -2159,11 +2410,14 @@ class ProdleiteUncheckedCreateInput implements _i1.JsonSerializable {
 
   final int codProdLeite;
 
-  final DateTime data;
+  final DateTime dataProdLeite;
 
-  final double quantidadeLeite;
+  final double qtdProdLeite;
 
   final AnimalUncheckedCreateNestedManyWithoutProdleiteInput? animal;
+
+  final VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteUncheckedCreateInputToJson(this);
@@ -2173,9 +2427,10 @@ class ProdleiteUncheckedCreateInput implements _i1.JsonSerializable {
 class ProdleiteUpdateInput implements _i1.JsonSerializable {
   const ProdleiteUpdateInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
     this.animal,
+    this.vendaprodleite,
   });
 
   factory ProdleiteUpdateInput.fromJson(Map<String, dynamic> json) =>
@@ -2183,11 +2438,13 @@ class ProdleiteUpdateInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? codProdLeite;
 
-  final DateTimeFieldUpdateOperationsInput? data;
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
 
   final AnimalUpdateManyWithoutProdleiteNestedInput? animal;
+
+  final VendaprodleiteUpdateManyWithoutProdleiteNestedInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteUpdateInputToJson(this);
@@ -2197,9 +2454,10 @@ class ProdleiteUpdateInput implements _i1.JsonSerializable {
 class ProdleiteUncheckedUpdateInput implements _i1.JsonSerializable {
   const ProdleiteUncheckedUpdateInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
     this.animal,
+    this.vendaprodleite,
   });
 
   factory ProdleiteUncheckedUpdateInput.fromJson(Map<String, dynamic> json) =>
@@ -2207,11 +2465,14 @@ class ProdleiteUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? codProdLeite;
 
-  final DateTimeFieldUpdateOperationsInput? data;
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
 
   final AnimalUncheckedUpdateManyWithoutProdleiteNestedInput? animal;
+
+  final VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteUncheckedUpdateInputToJson(this);
@@ -2221,8 +2482,8 @@ class ProdleiteUncheckedUpdateInput implements _i1.JsonSerializable {
 class ProdleiteCreateManyInput implements _i1.JsonSerializable {
   const ProdleiteCreateManyInput({
     required this.codProdLeite,
-    required this.data,
-    required this.quantidadeLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
   });
 
   factory ProdleiteCreateManyInput.fromJson(Map<String, dynamic> json) =>
@@ -2230,9 +2491,9 @@ class ProdleiteCreateManyInput implements _i1.JsonSerializable {
 
   final int codProdLeite;
 
-  final DateTime data;
+  final DateTime dataProdLeite;
 
-  final double quantidadeLeite;
+  final double qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteCreateManyInputToJson(this);
@@ -2242,8 +2503,8 @@ class ProdleiteCreateManyInput implements _i1.JsonSerializable {
 class ProdleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   const ProdleiteUpdateManyMutationInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteUpdateManyMutationInput.fromJson(
@@ -2252,9 +2513,9 @@ class ProdleiteUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? codProdLeite;
 
-  final DateTimeFieldUpdateOperationsInput? data;
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -2265,8 +2526,8 @@ class ProdleiteUpdateManyMutationInput implements _i1.JsonSerializable {
 class ProdleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
   const ProdleiteUncheckedUpdateManyInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteUncheckedUpdateManyInput.fromJson(
@@ -2275,9 +2536,9 @@ class ProdleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? codProdLeite;
 
-  final DateTimeFieldUpdateOperationsInput? data;
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -2472,9 +2733,9 @@ class VendaleiteCreateInput implements _i1.JsonSerializable {
   const VendaleiteCreateInput({
     required this.codVendaLeite,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
     required this.comprador,
+    this.vendaprodleite,
   });
 
   factory VendaleiteCreateInput.fromJson(Map<String, dynamic> json) =>
@@ -2484,11 +2745,11 @@ class VendaleiteCreateInput implements _i1.JsonSerializable {
 
   final DateTime dataVendaLeite;
 
-  final double quantidadeLeite;
-
   final double valorTotalLeite;
 
   final CompradorCreateNestedOneWithoutVendaleiteInput comprador;
+
+  final VendaprodleiteCreateNestedManyWithoutVendaleiteInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteCreateInputToJson(this);
@@ -2500,8 +2761,8 @@ class VendaleiteUncheckedCreateInput implements _i1.JsonSerializable {
     required this.codVendaLeite,
     required this.codComprador,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
+    this.vendaprodleite,
   });
 
   factory VendaleiteUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
@@ -2513,9 +2774,10 @@ class VendaleiteUncheckedCreateInput implements _i1.JsonSerializable {
 
   final DateTime dataVendaLeite;
 
-  final double quantidadeLeite;
-
   final double valorTotalLeite;
+
+  final VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteUncheckedCreateInputToJson(this);
@@ -2526,9 +2788,9 @@ class VendaleiteUpdateInput implements _i1.JsonSerializable {
   const VendaleiteUpdateInput({
     this.codVendaLeite,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
     this.comprador,
+    this.vendaprodleite,
   });
 
   factory VendaleiteUpdateInput.fromJson(Map<String, dynamic> json) =>
@@ -2538,11 +2800,11 @@ class VendaleiteUpdateInput implements _i1.JsonSerializable {
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
-
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
 
   final CompradorUpdateOneRequiredWithoutVendaleiteNestedInput? comprador;
+
+  final VendaprodleiteUpdateManyWithoutVendaleiteNestedInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteUpdateInputToJson(this);
@@ -2554,8 +2816,8 @@ class VendaleiteUncheckedUpdateInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
+    this.vendaprodleite,
   });
 
   factory VendaleiteUncheckedUpdateInput.fromJson(Map<String, dynamic> json) =>
@@ -2567,9 +2829,10 @@ class VendaleiteUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
-
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
+
+  final VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteUncheckedUpdateInputToJson(this);
@@ -2581,7 +2844,6 @@ class VendaleiteCreateManyInput implements _i1.JsonSerializable {
     required this.codVendaLeite,
     required this.codComprador,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
   });
 
@@ -2594,8 +2856,6 @@ class VendaleiteCreateManyInput implements _i1.JsonSerializable {
 
   final DateTime dataVendaLeite;
 
-  final double quantidadeLeite;
-
   final double valorTotalLeite;
 
   @override
@@ -2607,7 +2867,6 @@ class VendaleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   const VendaleiteUpdateManyMutationInput({
     this.codVendaLeite,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -2618,8 +2877,6 @@ class VendaleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   final IntFieldUpdateOperationsInput? codVendaLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
-
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
 
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
 
@@ -2634,7 +2891,6 @@ class VendaleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -2648,13 +2904,223 @@ class VendaleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
-
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
 
   @override
   Map<String, dynamic> toJson() =>
       _$VendaleiteUncheckedUpdateManyInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateInput implements _i1.JsonSerializable {
+  const VendaprodleiteCreateInput({
+    required this.codVendaProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+    required this.prodleite,
+    required this.vendaleite,
+  });
+
+  factory VendaprodleiteCreateInput.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  final ProdleiteCreateNestedOneWithoutVendaprodleiteInput prodleite;
+
+  final VendaleiteCreateNestedOneWithoutVendaprodleiteInput vendaleite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteCreateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedCreateInput implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedCreateInput({
+    required this.codVendaProdLeite,
+    required this.codVendaLeite,
+    required this.codProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedCreateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedCreateInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codVendaLeite;
+
+  final int codProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedCreateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateInput implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateInput({
+    this.codVendaProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+    this.prodleite,
+    this.vendaleite,
+  });
+
+  factory VendaprodleiteUpdateInput.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  final ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput? prodleite;
+
+  final VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput? vendaleite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteUpdateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateInput implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedUpdateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final IntFieldUpdateOperationsInput? codVendaLeite;
+
+  final IntFieldUpdateOperationsInput? codProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateManyInput implements _i1.JsonSerializable {
+  const VendaprodleiteCreateManyInput({
+    required this.codVendaProdLeite,
+    required this.codVendaLeite,
+    required this.codProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteCreateManyInput.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateManyInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codVendaLeite;
+
+  final int codProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteCreateManyInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateManyMutationInput implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateManyMutationInput({
+    this.codVendaProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUpdateManyMutationInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateManyMutationInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateManyMutationInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateManyInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedUpdateManyInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateManyInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final IntFieldUpdateOperationsInput? codVendaLeite;
+
+  final IntFieldUpdateOperationsInput? codProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateManyInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -2871,6 +3337,24 @@ class ItensvendaListRelationFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$ItensvendaListRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class SortOrderInput implements _i1.JsonSerializable {
+  const SortOrderInput({
+    required this.sort,
+    this.nulls,
+  });
+
+  factory SortOrderInput.fromJson(Map<String, dynamic> json) =>
+      _$SortOrderInputFromJson(json);
+
+  final SortOrder sort;
+
+  final NullsOrder? nulls;
+
+  @override
+  Map<String, dynamic> toJson() => _$SortOrderInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3712,6 +4196,7 @@ class ItensvendaCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaCountOrderByAggregateInput.fromJson(
@@ -3728,6 +4213,8 @@ class ItensvendaCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? valorUnitario;
 
+  final SortOrder? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaCountOrderByAggregateInputToJson(this);
@@ -3741,6 +4228,7 @@ class ItensvendaAvgOrderByAggregateInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaAvgOrderByAggregateInput.fromJson(
@@ -3757,6 +4245,8 @@ class ItensvendaAvgOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? valorUnitario;
 
+  final SortOrder? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaAvgOrderByAggregateInputToJson(this);
@@ -3770,6 +4260,7 @@ class ItensvendaMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaMaxOrderByAggregateInput.fromJson(
@@ -3786,6 +4277,8 @@ class ItensvendaMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? valorUnitario;
 
+  final SortOrder? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaMaxOrderByAggregateInputToJson(this);
@@ -3799,6 +4292,7 @@ class ItensvendaMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaMinOrderByAggregateInput.fromJson(
@@ -3815,6 +4309,8 @@ class ItensvendaMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? valorUnitario;
 
+  final SortOrder? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaMinOrderByAggregateInputToJson(this);
@@ -3828,6 +4324,7 @@ class ItensvendaSumOrderByAggregateInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaSumOrderByAggregateInput.fromJson(
@@ -3843,6 +4340,8 @@ class ItensvendaSumOrderByAggregateInput implements _i1.JsonSerializable {
   final SortOrder? quantidade;
 
   final SortOrder? valorUnitario;
+
+  final SortOrder? valorTotalItemAnimal;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -3907,11 +4406,51 @@ class FloatWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteListRelationFilter implements _i1.JsonSerializable {
+  const VendaprodleiteListRelationFilter({
+    this.every,
+    this.some,
+    this.none,
+  });
+
+  factory VendaprodleiteListRelationFilter.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteListRelationFilterFromJson(json);
+
+  final VendaprodleiteWhereInput? every;
+
+  final VendaprodleiteWhereInput? some;
+
+  final VendaprodleiteWhereInput? none;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteListRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteOrderByRelationAggregateInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteOrderByRelationAggregateInput({this.$count});
+
+  factory VendaprodleiteOrderByRelationAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteOrderByRelationAggregateInputFromJson(json);
+
+  @JsonKey(name: r'_count')
+  final SortOrder? $count;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteOrderByRelationAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class ProdleiteCountOrderByAggregateInput implements _i1.JsonSerializable {
   const ProdleiteCountOrderByAggregateInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteCountOrderByAggregateInput.fromJson(
@@ -3920,9 +4459,9 @@ class ProdleiteCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? data;
+  final SortOrder? dataProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -3933,7 +4472,7 @@ class ProdleiteCountOrderByAggregateInput implements _i1.JsonSerializable {
 class ProdleiteAvgOrderByAggregateInput implements _i1.JsonSerializable {
   const ProdleiteAvgOrderByAggregateInput({
     this.codProdLeite,
-    this.quantidadeLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteAvgOrderByAggregateInput.fromJson(
@@ -3942,7 +4481,7 @@ class ProdleiteAvgOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -3953,8 +4492,8 @@ class ProdleiteAvgOrderByAggregateInput implements _i1.JsonSerializable {
 class ProdleiteMaxOrderByAggregateInput implements _i1.JsonSerializable {
   const ProdleiteMaxOrderByAggregateInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteMaxOrderByAggregateInput.fromJson(
@@ -3963,9 +4502,9 @@ class ProdleiteMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? data;
+  final SortOrder? dataProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -3976,8 +4515,8 @@ class ProdleiteMaxOrderByAggregateInput implements _i1.JsonSerializable {
 class ProdleiteMinOrderByAggregateInput implements _i1.JsonSerializable {
   const ProdleiteMinOrderByAggregateInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteMinOrderByAggregateInput.fromJson(
@@ -3986,9 +4525,9 @@ class ProdleiteMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? data;
+  final SortOrder? dataProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -3999,7 +4538,7 @@ class ProdleiteMinOrderByAggregateInput implements _i1.JsonSerializable {
 class ProdleiteSumOrderByAggregateInput implements _i1.JsonSerializable {
   const ProdleiteSumOrderByAggregateInput({
     this.codProdLeite,
-    this.quantidadeLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteSumOrderByAggregateInput.fromJson(
@@ -4008,7 +4547,7 @@ class ProdleiteSumOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? codProdLeite;
 
-  final SortOrder? quantidadeLeite;
+  final SortOrder? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -4164,7 +4703,6 @@ class VendaleiteCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -4178,8 +4716,6 @@ class VendaleiteCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? dataVendaLeite;
 
-  final SortOrder? quantidadeLeite;
-
   final SortOrder? valorTotalLeite;
 
   @override
@@ -4192,7 +4728,6 @@ class VendaleiteAvgOrderByAggregateInput implements _i1.JsonSerializable {
   const VendaleiteAvgOrderByAggregateInput({
     this.codVendaLeite,
     this.codComprador,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -4203,8 +4738,6 @@ class VendaleiteAvgOrderByAggregateInput implements _i1.JsonSerializable {
   final SortOrder? codVendaLeite;
 
   final SortOrder? codComprador;
-
-  final SortOrder? quantidadeLeite;
 
   final SortOrder? valorTotalLeite;
 
@@ -4219,7 +4752,6 @@ class VendaleiteMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -4232,8 +4764,6 @@ class VendaleiteMaxOrderByAggregateInput implements _i1.JsonSerializable {
   final SortOrder? codComprador;
 
   final SortOrder? dataVendaLeite;
-
-  final SortOrder? quantidadeLeite;
 
   final SortOrder? valorTotalLeite;
 
@@ -4248,7 +4778,6 @@ class VendaleiteMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -4262,8 +4791,6 @@ class VendaleiteMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? dataVendaLeite;
 
-  final SortOrder? quantidadeLeite;
-
   final SortOrder? valorTotalLeite;
 
   @override
@@ -4276,7 +4803,6 @@ class VendaleiteSumOrderByAggregateInput implements _i1.JsonSerializable {
   const VendaleiteSumOrderByAggregateInput({
     this.codVendaLeite,
     this.codComprador,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -4288,13 +4814,216 @@ class VendaleiteSumOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? codComprador;
 
-  final SortOrder? quantidadeLeite;
-
   final SortOrder? valorTotalLeite;
 
   @override
   Map<String, dynamic> toJson() =>
       _$VendaleiteSumOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteRelationFilter implements _i1.JsonSerializable {
+  const VendaleiteRelationFilter({
+    this.$is,
+    this.isNot,
+  });
+
+  factory VendaleiteRelationFilter.fromJson(Map<String, dynamic> json) =>
+      _$VendaleiteRelationFilterFromJson(json);
+
+  @JsonKey(name: r'is')
+  final VendaleiteWhereInput? $is;
+
+  final VendaleiteWhereInput? isNot;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaleiteRelationFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput({
+    required this.codVendaProdLeite,
+    required this.codVendaLeite,
+    required this.codProdLeite,
+  });
+
+  factory VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInputFromJson(
+          json);
+
+  final int codVendaProdLeite;
+
+  final int codVendaLeite;
+
+  final int codProdLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInputToJson(
+          this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCountOrderByAggregateInput implements _i1.JsonSerializable {
+  const VendaprodleiteCountOrderByAggregateInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteCountOrderByAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCountOrderByAggregateInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCountOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteAvgOrderByAggregateInput implements _i1.JsonSerializable {
+  const VendaprodleiteAvgOrderByAggregateInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteAvgOrderByAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteAvgOrderByAggregateInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteAvgOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteMaxOrderByAggregateInput implements _i1.JsonSerializable {
+  const VendaprodleiteMaxOrderByAggregateInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteMaxOrderByAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteMaxOrderByAggregateInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteMaxOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteMinOrderByAggregateInput implements _i1.JsonSerializable {
+  const VendaprodleiteMinOrderByAggregateInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteMinOrderByAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteMinOrderByAggregateInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteMinOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteSumOrderByAggregateInput implements _i1.JsonSerializable {
+  const VendaprodleiteSumOrderByAggregateInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteSumOrderByAggregateInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteSumOrderByAggregateInputFromJson(json);
+
+  final SortOrder? codVendaProdLeite;
+
+  final SortOrder? codVendaLeite;
+
+  final SortOrder? codProdLeite;
+
+  final SortOrder? qtdLeite;
+
+  final SortOrder? valorLitro;
+
+  final SortOrder? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteSumOrderByAggregateInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -5267,6 +5996,34 @@ class AnimalCreateNestedManyWithoutProdleiteInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteCreateNestedManyWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateNestedManyWithoutProdleiteInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory VendaprodleiteCreateNestedManyWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateNestedManyWithoutProdleiteInputFromJson(json);
+
+  final Iterable<VendaprodleiteCreateWithoutProdleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutProdleiteInput>?
+      connectOrCreate;
+
+  final VendaprodleiteCreateManyProdleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateNestedManyWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class AnimalUncheckedCreateNestedManyWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const AnimalUncheckedCreateNestedManyWithoutProdleiteInput({
@@ -5291,6 +6048,36 @@ class AnimalUncheckedCreateNestedManyWithoutProdleiteInput
   @override
   Map<String, dynamic> toJson() =>
       _$AnimalUncheckedCreateNestedManyWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInputFromJson(
+          json);
+
+  final Iterable<VendaprodleiteCreateWithoutProdleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutProdleiteInput>?
+      connectOrCreate;
+
+  final VendaprodleiteCreateManyProdleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInputToJson(
+          this);
 }
 
 @_i1.jsonSerializable
@@ -5342,6 +6129,58 @@ class AnimalUpdateManyWithoutProdleiteNestedInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteUpdateManyWithoutProdleiteNestedInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateManyWithoutProdleiteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory VendaprodleiteUpdateManyWithoutProdleiteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateManyWithoutProdleiteNestedInputFromJson(json);
+
+  final Iterable<VendaprodleiteCreateWithoutProdleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutProdleiteInput>?
+      connectOrCreate;
+
+  final Iterable<VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInput>?
+      upsert;
+
+  final VendaprodleiteCreateManyProdleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? set;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? disconnect;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? delete;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  final Iterable<VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInput>?
+      update;
+
+  final Iterable<VendaprodleiteUpdateManyWithWhereWithoutProdleiteInput>?
+      updateMany;
+
+  final Iterable<VendaprodleiteScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateManyWithoutProdleiteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class AnimalUncheckedUpdateManyWithoutProdleiteNestedInput
     implements _i1.JsonSerializable {
   const AnimalUncheckedUpdateManyWithoutProdleiteNestedInput({
@@ -5387,6 +6226,60 @@ class AnimalUncheckedUpdateManyWithoutProdleiteNestedInput
   @override
   Map<String, dynamic> toJson() =>
       _$AnimalUncheckedUpdateManyWithoutProdleiteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInputFromJson(
+          json);
+
+  final Iterable<VendaprodleiteCreateWithoutProdleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutProdleiteInput>?
+      connectOrCreate;
+
+  final Iterable<VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInput>?
+      upsert;
+
+  final VendaprodleiteCreateManyProdleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? set;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? disconnect;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? delete;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  final Iterable<VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInput>?
+      update;
+
+  final Iterable<VendaprodleiteUpdateManyWithWhereWithoutProdleiteInput>?
+      updateMany;
+
+  final Iterable<VendaprodleiteScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInputToJson(
+          this);
 }
 
 @_i1.jsonSerializable
@@ -5630,6 +6523,64 @@ class CompradorCreateNestedOneWithoutVendaleiteInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteCreateNestedManyWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateNestedManyWithoutVendaleiteInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory VendaprodleiteCreateNestedManyWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateNestedManyWithoutVendaleiteInputFromJson(json);
+
+  final Iterable<VendaprodleiteCreateWithoutVendaleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutVendaleiteInput>?
+      connectOrCreate;
+
+  final VendaprodleiteCreateManyVendaleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateNestedManyWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInput({
+    this.create,
+    this.connectOrCreate,
+    this.createMany,
+    this.connect,
+  });
+
+  factory VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInputFromJson(
+          json);
+
+  final Iterable<VendaprodleiteCreateWithoutVendaleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutVendaleiteInput>?
+      connectOrCreate;
+
+  final VendaprodleiteCreateManyVendaleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInputToJson(
+          this);
+}
+
+@_i1.jsonSerializable
 class CompradorUpdateOneRequiredWithoutVendaleiteNestedInput
     implements _i1.JsonSerializable {
   const CompradorUpdateOneRequiredWithoutVendaleiteNestedInput({
@@ -5657,6 +6608,222 @@ class CompradorUpdateOneRequiredWithoutVendaleiteNestedInput
   @override
   Map<String, dynamic> toJson() =>
       _$CompradorUpdateOneRequiredWithoutVendaleiteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateManyWithoutVendaleiteNestedInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateManyWithoutVendaleiteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory VendaprodleiteUpdateManyWithoutVendaleiteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateManyWithoutVendaleiteNestedInputFromJson(json);
+
+  final Iterable<VendaprodleiteCreateWithoutVendaleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutVendaleiteInput>?
+      connectOrCreate;
+
+  final Iterable<VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInput>?
+      upsert;
+
+  final VendaprodleiteCreateManyVendaleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? set;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? disconnect;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? delete;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  final Iterable<VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInput>?
+      update;
+
+  final Iterable<VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInput>?
+      updateMany;
+
+  final Iterable<VendaprodleiteScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateManyWithoutVendaleiteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.createMany,
+    this.set,
+    this.disconnect,
+    this.delete,
+    this.connect,
+    this.update,
+    this.updateMany,
+    this.deleteMany,
+  });
+
+  factory VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInputFromJson(
+          json);
+
+  final Iterable<VendaprodleiteCreateWithoutVendaleiteInput>? create;
+
+  final Iterable<VendaprodleiteCreateOrConnectWithoutVendaleiteInput>?
+      connectOrCreate;
+
+  final Iterable<VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInput>?
+      upsert;
+
+  final VendaprodleiteCreateManyVendaleiteInputEnvelope? createMany;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? set;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? disconnect;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? delete;
+
+  final Iterable<VendaprodleiteWhereUniqueInput>? connect;
+
+  final Iterable<VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInput>?
+      update;
+
+  final Iterable<VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInput>?
+      updateMany;
+
+  final Iterable<VendaprodleiteScalarWhereInput>? deleteMany;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInputToJson(
+          this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteCreateNestedOneWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteCreateNestedOneWithoutVendaprodleiteInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  factory ProdleiteCreateNestedOneWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteCreateNestedOneWithoutVendaprodleiteInputFromJson(json);
+
+  final ProdleiteCreateWithoutVendaprodleiteInput? create;
+
+  final ProdleiteCreateOrConnectWithoutVendaprodleiteInput? connectOrCreate;
+
+  final ProdleiteWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteCreateNestedOneWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteCreateNestedOneWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteCreateNestedOneWithoutVendaprodleiteInput({
+    this.create,
+    this.connectOrCreate,
+    this.connect,
+  });
+
+  factory VendaleiteCreateNestedOneWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteCreateNestedOneWithoutVendaprodleiteInputFromJson(json);
+
+  final VendaleiteCreateWithoutVendaprodleiteInput? create;
+
+  final VendaleiteCreateOrConnectWithoutVendaprodleiteInput? connectOrCreate;
+
+  final VendaleiteWhereUniqueInput? connect;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteCreateNestedOneWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput
+    implements _i1.JsonSerializable {
+  const ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.connect,
+    this.update,
+  });
+
+  factory ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInputFromJson(
+          json);
+
+  final ProdleiteCreateWithoutVendaprodleiteInput? create;
+
+  final ProdleiteCreateOrConnectWithoutVendaprodleiteInput? connectOrCreate;
+
+  final ProdleiteUpsertWithoutVendaprodleiteInput? upsert;
+
+  final ProdleiteWhereUniqueInput? connect;
+
+  final ProdleiteUpdateWithoutVendaprodleiteInput? update;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput
+    implements _i1.JsonSerializable {
+  const VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput({
+    this.create,
+    this.connectOrCreate,
+    this.upsert,
+    this.connect,
+    this.update,
+  });
+
+  factory VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInputFromJson(
+          json);
+
+  final VendaleiteCreateWithoutVendaprodleiteInput? create;
+
+  final VendaleiteCreateOrConnectWithoutVendaprodleiteInput? connectOrCreate;
+
+  final VendaleiteUpsertWithoutVendaprodleiteInput? upsert;
+
+  final VendaleiteWhereUniqueInput? connect;
+
+  final VendaleiteUpdateWithoutVendaprodleiteInput? update;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -6241,8 +7408,9 @@ class CategoriaCreateOrConnectWithoutAnimalInput
 class ProdleiteCreateWithoutAnimalInput implements _i1.JsonSerializable {
   const ProdleiteCreateWithoutAnimalInput({
     required this.codProdLeite,
-    required this.data,
-    required this.quantidadeLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
+    this.vendaprodleite,
   });
 
   factory ProdleiteCreateWithoutAnimalInput.fromJson(
@@ -6251,9 +7419,11 @@ class ProdleiteCreateWithoutAnimalInput implements _i1.JsonSerializable {
 
   final int codProdLeite;
 
-  final DateTime data;
+  final DateTime dataProdLeite;
 
-  final double quantidadeLeite;
+  final double qtdProdLeite;
+
+  final VendaprodleiteCreateNestedManyWithoutProdleiteInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6265,8 +7435,9 @@ class ProdleiteUncheckedCreateWithoutAnimalInput
     implements _i1.JsonSerializable {
   const ProdleiteUncheckedCreateWithoutAnimalInput({
     required this.codProdLeite,
-    required this.data,
-    required this.quantidadeLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
+    this.vendaprodleite,
   });
 
   factory ProdleiteUncheckedCreateWithoutAnimalInput.fromJson(
@@ -6275,9 +7446,12 @@ class ProdleiteUncheckedCreateWithoutAnimalInput
 
   final int codProdLeite;
 
-  final DateTime data;
+  final DateTime dataProdLeite;
 
-  final double quantidadeLeite;
+  final double qtdProdLeite;
+
+  final VendaprodleiteUncheckedCreateNestedManyWithoutProdleiteInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6311,6 +7485,7 @@ class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
     required this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
     required this.vendaanimal,
   });
 
@@ -6323,6 +7498,8 @@ class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
   final int quantidade;
 
   final double valorUnitario;
+
+  final double valorTotalItemAnimal;
 
   final VendaanimalCreateNestedOneWithoutItensvendaInput vendaanimal;
 
@@ -6339,6 +7516,7 @@ class ItensvendaUncheckedCreateWithoutAnimalInput
     required this.codVendaAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedCreateWithoutAnimalInput.fromJson(
@@ -6352,6 +7530,8 @@ class ItensvendaUncheckedCreateWithoutAnimalInput
   final int quantidade;
 
   final double valorUnitario;
+
+  final double valorTotalItemAnimal;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6484,8 +7664,9 @@ class ProdleiteUpsertWithoutAnimalInput implements _i1.JsonSerializable {
 class ProdleiteUpdateWithoutAnimalInput implements _i1.JsonSerializable {
   const ProdleiteUpdateWithoutAnimalInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
+    this.vendaprodleite,
   });
 
   factory ProdleiteUpdateWithoutAnimalInput.fromJson(
@@ -6494,9 +7675,11 @@ class ProdleiteUpdateWithoutAnimalInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? codProdLeite;
 
-  final DateTimeFieldUpdateOperationsInput? data;
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
+
+  final VendaprodleiteUpdateManyWithoutProdleiteNestedInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6508,8 +7691,9 @@ class ProdleiteUncheckedUpdateWithoutAnimalInput
     implements _i1.JsonSerializable {
   const ProdleiteUncheckedUpdateWithoutAnimalInput({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
+    this.vendaprodleite,
   });
 
   factory ProdleiteUncheckedUpdateWithoutAnimalInput.fromJson(
@@ -6518,9 +7702,12 @@ class ProdleiteUncheckedUpdateWithoutAnimalInput
 
   final IntFieldUpdateOperationsInput? codProdLeite;
 
-  final DateTimeFieldUpdateOperationsInput? data;
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
+
+  final VendaprodleiteUncheckedUpdateManyWithoutProdleiteNestedInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -6604,6 +7791,7 @@ class ItensvendaScalarWhereInput implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaScalarWhereInput.fromJson(Map<String, dynamic> json) =>
@@ -6624,6 +7812,8 @@ class ItensvendaScalarWhereInput implements _i1.JsonSerializable {
   final IntFilter? quantidade;
 
   final FloatFilter? valorUnitario;
+
+  final FloatFilter? valorTotalItemAnimal;
 
   @override
   Map<String, dynamic> toJson() => _$ItensvendaScalarWhereInputToJson(this);
@@ -6976,8 +8166,8 @@ class VendaleiteCreateWithoutCompradorInput implements _i1.JsonSerializable {
   const VendaleiteCreateWithoutCompradorInput({
     required this.codVendaLeite,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
+    this.vendaprodleite,
   });
 
   factory VendaleiteCreateWithoutCompradorInput.fromJson(
@@ -6988,9 +8178,9 @@ class VendaleiteCreateWithoutCompradorInput implements _i1.JsonSerializable {
 
   final DateTime dataVendaLeite;
 
-  final double quantidadeLeite;
-
   final double valorTotalLeite;
+
+  final VendaprodleiteCreateNestedManyWithoutVendaleiteInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -7003,8 +8193,8 @@ class VendaleiteUncheckedCreateWithoutCompradorInput
   const VendaleiteUncheckedCreateWithoutCompradorInput({
     required this.codVendaLeite,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
+    this.vendaprodleite,
   });
 
   factory VendaleiteUncheckedCreateWithoutCompradorInput.fromJson(
@@ -7015,9 +8205,10 @@ class VendaleiteUncheckedCreateWithoutCompradorInput
 
   final DateTime dataVendaLeite;
 
-  final double quantidadeLeite;
-
   final double valorTotalLeite;
+
+  final VendaprodleiteUncheckedCreateNestedManyWithoutVendaleiteInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -7240,7 +8431,6 @@ class VendaleiteScalarWhereInput implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -7258,8 +8448,6 @@ class VendaleiteScalarWhereInput implements _i1.JsonSerializable {
   final IntFilter? codComprador;
 
   final DateTimeFilter? dataVendaLeite;
-
-  final FloatFilter? quantidadeLeite;
 
   final FloatFilter? valorTotalLeite;
 
@@ -7764,6 +8952,108 @@ class AnimalCreateManyProdleiteInputEnvelope implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteCreateWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateWithoutProdleiteInput({
+    required this.codVendaProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+    required this.vendaleite,
+  });
+
+  factory VendaprodleiteCreateWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateWithoutProdleiteInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  final VendaleiteCreateNestedOneWithoutVendaprodleiteInput vendaleite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedCreateWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedCreateWithoutProdleiteInput({
+    required this.codVendaProdLeite,
+    required this.codVendaLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedCreateWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedCreateWithoutProdleiteInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codVendaLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedCreateWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateOrConnectWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateOrConnectWithoutProdleiteInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory VendaprodleiteCreateOrConnectWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateOrConnectWithoutProdleiteInputFromJson(json);
+
+  final VendaprodleiteWhereUniqueInput where;
+
+  final VendaprodleiteCreateWithoutProdleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateOrConnectWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateManyProdleiteInputEnvelope
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateManyProdleiteInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  factory VendaprodleiteCreateManyProdleiteInputEnvelope.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateManyProdleiteInputEnvelopeFromJson(json);
+
+  final Iterable<VendaprodleiteCreateManyProdleiteInput> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateManyProdleiteInputEnvelopeToJson(this);
+}
+
+@_i1.jsonSerializable
 class AnimalUpsertWithWhereUniqueWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const AnimalUpsertWithWhereUniqueWithoutProdleiteInput({
@@ -7830,11 +9120,117 @@ class AnimalUpdateManyWithWhereWithoutProdleiteInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  factory VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInputFromJson(json);
+
+  final VendaprodleiteWhereUniqueInput where;
+
+  final VendaprodleiteUpdateWithoutProdleiteInput update;
+
+  final VendaprodleiteCreateWithoutProdleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpsertWithWhereUniqueWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInputFromJson(json);
+
+  final VendaprodleiteWhereUniqueInput where;
+
+  final VendaprodleiteUpdateWithoutProdleiteInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateWithWhereUniqueWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateManyWithWhereWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateManyWithWhereWithoutProdleiteInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory VendaprodleiteUpdateManyWithWhereWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateManyWithWhereWithoutProdleiteInputFromJson(json);
+
+  final VendaprodleiteScalarWhereInput where;
+
+  final VendaprodleiteUpdateManyMutationInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateManyWithWhereWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteScalarWhereInput implements _i1.JsonSerializable {
+  const VendaprodleiteScalarWhereInput({
+    this.AND,
+    this.OR,
+    this.NOT,
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteScalarWhereInput.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteScalarWhereInputFromJson(json);
+
+  final Iterable<VendaprodleiteScalarWhereInput>? AND;
+
+  final Iterable<VendaprodleiteScalarWhereInput>? OR;
+
+  final Iterable<VendaprodleiteScalarWhereInput>? NOT;
+
+  final IntFilter? codVendaProdLeite;
+
+  final IntFilter? codVendaLeite;
+
+  final IntFilter? codProdLeite;
+
+  final FloatFilter? qtdLeite;
+
+  final FloatFilter? valorLitro;
+
+  final FloatFilter? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteScalarWhereInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateWithoutVendaanimalInput({
     required this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
     required this.animal,
   });
 
@@ -7847,6 +9243,8 @@ class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   final int quantidade;
 
   final double valorUnitario;
+
+  final double valorTotalItemAnimal;
 
   final AnimalCreateNestedOneWithoutItensvendaInput animal;
 
@@ -7863,6 +9261,7 @@ class ItensvendaUncheckedCreateWithoutVendaanimalInput
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedCreateWithoutVendaanimalInput.fromJson(
@@ -7876,6 +9275,8 @@ class ItensvendaUncheckedCreateWithoutVendaanimalInput
   final int quantidade;
 
   final double valorUnitario;
+
+  final double valorTotalItemAnimal;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -8230,6 +9631,108 @@ class CompradorCreateOrConnectWithoutVendaleiteInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteCreateWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateWithoutVendaleiteInput({
+    required this.codVendaProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+    required this.prodleite,
+  });
+
+  factory VendaprodleiteCreateWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateWithoutVendaleiteInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  final ProdleiteCreateNestedOneWithoutVendaprodleiteInput prodleite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedCreateWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedCreateWithoutVendaleiteInput({
+    required this.codVendaProdLeite,
+    required this.codProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedCreateWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedCreateWithoutVendaleiteInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedCreateWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateOrConnectWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateOrConnectWithoutVendaleiteInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory VendaprodleiteCreateOrConnectWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateOrConnectWithoutVendaleiteInputFromJson(json);
+
+  final VendaprodleiteWhereUniqueInput where;
+
+  final VendaprodleiteCreateWithoutVendaleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateOrConnectWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateManyVendaleiteInputEnvelope
+    implements _i1.JsonSerializable {
+  const VendaprodleiteCreateManyVendaleiteInputEnvelope({
+    required this.data,
+    this.skipDuplicates,
+  });
+
+  factory VendaprodleiteCreateManyVendaleiteInputEnvelope.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateManyVendaleiteInputEnvelopeFromJson(json);
+
+  final Iterable<VendaprodleiteCreateManyVendaleiteInput> data;
+
+  final bool? skipDuplicates;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateManyVendaleiteInputEnvelopeToJson(this);
+}
+
+@_i1.jsonSerializable
 class CompradorUpsertWithoutVendaleiteInput implements _i1.JsonSerializable {
   const CompradorUpsertWithoutVendaleiteInput({
     required this.update,
@@ -8309,12 +9812,379 @@ class CompradorUncheckedUpdateWithoutVendaleiteInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInput({
+    required this.where,
+    required this.update,
+    required this.create,
+  });
+
+  factory VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInputFromJson(json);
+
+  final VendaprodleiteWhereUniqueInput where;
+
+  final VendaprodleiteUpdateWithoutVendaleiteInput update;
+
+  final VendaprodleiteCreateWithoutVendaleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpsertWithWhereUniqueWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInputFromJson(json);
+
+  final VendaprodleiteWhereUniqueInput where;
+
+  final VendaprodleiteUpdateWithoutVendaleiteInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateWithWhereUniqueWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInput({
+    required this.where,
+    required this.data,
+  });
+
+  factory VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInputFromJson(json);
+
+  final VendaprodleiteScalarWhereInput where;
+
+  final VendaprodleiteUpdateManyMutationInput data;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteCreateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteCreateWithoutVendaprodleiteInput({
+    required this.codProdLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
+    this.animal,
+  });
+
+  factory ProdleiteCreateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteCreateWithoutVendaprodleiteInputFromJson(json);
+
+  final int codProdLeite;
+
+  final DateTime dataProdLeite;
+
+  final double qtdProdLeite;
+
+  final AnimalCreateNestedManyWithoutProdleiteInput? animal;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteCreateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteUncheckedCreateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteUncheckedCreateWithoutVendaprodleiteInput({
+    required this.codProdLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
+    this.animal,
+  });
+
+  factory ProdleiteUncheckedCreateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteUncheckedCreateWithoutVendaprodleiteInputFromJson(json);
+
+  final int codProdLeite;
+
+  final DateTime dataProdLeite;
+
+  final double qtdProdLeite;
+
+  final AnimalUncheckedCreateNestedManyWithoutProdleiteInput? animal;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteUncheckedCreateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteCreateOrConnectWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteCreateOrConnectWithoutVendaprodleiteInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory ProdleiteCreateOrConnectWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteCreateOrConnectWithoutVendaprodleiteInputFromJson(json);
+
+  final ProdleiteWhereUniqueInput where;
+
+  final ProdleiteCreateWithoutVendaprodleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteCreateOrConnectWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteCreateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteCreateWithoutVendaprodleiteInput({
+    required this.codVendaLeite,
+    required this.dataVendaLeite,
+    required this.valorTotalLeite,
+    required this.comprador,
+  });
+
+  factory VendaleiteCreateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteCreateWithoutVendaprodleiteInputFromJson(json);
+
+  final int codVendaLeite;
+
+  final DateTime dataVendaLeite;
+
+  final double valorTotalLeite;
+
+  final CompradorCreateNestedOneWithoutVendaleiteInput comprador;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteCreateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteUncheckedCreateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteUncheckedCreateWithoutVendaprodleiteInput({
+    required this.codVendaLeite,
+    required this.codComprador,
+    required this.dataVendaLeite,
+    required this.valorTotalLeite,
+  });
+
+  factory VendaleiteUncheckedCreateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteUncheckedCreateWithoutVendaprodleiteInputFromJson(json);
+
+  final int codVendaLeite;
+
+  final int codComprador;
+
+  final DateTime dataVendaLeite;
+
+  final double valorTotalLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteUncheckedCreateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteCreateOrConnectWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteCreateOrConnectWithoutVendaprodleiteInput({
+    required this.where,
+    required this.create,
+  });
+
+  factory VendaleiteCreateOrConnectWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteCreateOrConnectWithoutVendaprodleiteInputFromJson(json);
+
+  final VendaleiteWhereUniqueInput where;
+
+  final VendaleiteCreateWithoutVendaprodleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteCreateOrConnectWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteUpsertWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteUpsertWithoutVendaprodleiteInput({
+    required this.update,
+    required this.create,
+  });
+
+  factory ProdleiteUpsertWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteUpsertWithoutVendaprodleiteInputFromJson(json);
+
+  final ProdleiteUpdateWithoutVendaprodleiteInput update;
+
+  final ProdleiteCreateWithoutVendaprodleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteUpsertWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteUpdateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteUpdateWithoutVendaprodleiteInput({
+    this.codProdLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
+    this.animal,
+  });
+
+  factory ProdleiteUpdateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteUpdateWithoutVendaprodleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codProdLeite;
+
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
+
+  final AnimalUpdateManyWithoutProdleiteNestedInput? animal;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteUpdateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class ProdleiteUncheckedUpdateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const ProdleiteUncheckedUpdateWithoutVendaprodleiteInput({
+    this.codProdLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
+    this.animal,
+  });
+
+  factory ProdleiteUncheckedUpdateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$ProdleiteUncheckedUpdateWithoutVendaprodleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codProdLeite;
+
+  final DateTimeFieldUpdateOperationsInput? dataProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdProdLeite;
+
+  final AnimalUncheckedUpdateManyWithoutProdleiteNestedInput? animal;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ProdleiteUncheckedUpdateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteUpsertWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteUpsertWithoutVendaprodleiteInput({
+    required this.update,
+    required this.create,
+  });
+
+  factory VendaleiteUpsertWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteUpsertWithoutVendaprodleiteInputFromJson(json);
+
+  final VendaleiteUpdateWithoutVendaprodleiteInput update;
+
+  final VendaleiteCreateWithoutVendaprodleiteInput create;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteUpsertWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteUpdateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteUpdateWithoutVendaprodleiteInput({
+    this.codVendaLeite,
+    this.dataVendaLeite,
+    this.valorTotalLeite,
+    this.comprador,
+  });
+
+  factory VendaleiteUpdateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteUpdateWithoutVendaprodleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaLeite;
+
+  final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
+
+  final FloatFieldUpdateOperationsInput? valorTotalLeite;
+
+  final CompradorUpdateOneRequiredWithoutVendaleiteNestedInput? comprador;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteUpdateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaleiteUncheckedUpdateWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaleiteUncheckedUpdateWithoutVendaprodleiteInput({
+    this.codVendaLeite,
+    this.codComprador,
+    this.dataVendaLeite,
+    this.valorTotalLeite,
+  });
+
+  factory VendaleiteUncheckedUpdateWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaleiteUncheckedUpdateWithoutVendaprodleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaLeite;
+
+  final IntFieldUpdateOperationsInput? codComprador;
+
+  final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
+
+  final FloatFieldUpdateOperationsInput? valorTotalLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaleiteUncheckedUpdateWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class ItensvendaCreateManyAnimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateManyAnimalInput({
     required this.codItensVenda,
     required this.codVendaAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory ItensvendaCreateManyAnimalInput.fromJson(Map<String, dynamic> json) =>
@@ -8328,6 +10198,8 @@ class ItensvendaCreateManyAnimalInput implements _i1.JsonSerializable {
 
   final double valorUnitario;
 
+  final double valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaCreateManyAnimalInputToJson(this);
@@ -8339,6 +10211,7 @@ class ItensvendaUpdateWithoutAnimalInput implements _i1.JsonSerializable {
     this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
     this.vendaanimal,
   });
 
@@ -8351,6 +10224,8 @@ class ItensvendaUpdateWithoutAnimalInput implements _i1.JsonSerializable {
   final IntFieldUpdateOperationsInput? quantidade;
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
 
   final VendaanimalUpdateOneRequiredWithoutItensvendaNestedInput? vendaanimal;
 
@@ -8367,6 +10242,7 @@ class ItensvendaUncheckedUpdateWithoutAnimalInput
     this.codVendaAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedUpdateWithoutAnimalInput.fromJson(
@@ -8381,6 +10257,8 @@ class ItensvendaUncheckedUpdateWithoutAnimalInput
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
 
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaUncheckedUpdateWithoutAnimalInputToJson(this);
@@ -8394,6 +10272,7 @@ class ItensvendaUncheckedUpdateManyWithoutItensvendaInput
     this.codVendaAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedUpdateManyWithoutItensvendaInput.fromJson(
@@ -8407,6 +10286,8 @@ class ItensvendaUncheckedUpdateManyWithoutItensvendaInput
   final IntFieldUpdateOperationsInput? quantidade;
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -8611,7 +10492,6 @@ class VendaleiteCreateManyCompradorInput implements _i1.JsonSerializable {
   const VendaleiteCreateManyCompradorInput({
     required this.codVendaLeite,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
   });
 
@@ -8622,8 +10502,6 @@ class VendaleiteCreateManyCompradorInput implements _i1.JsonSerializable {
   final int codVendaLeite;
 
   final DateTime dataVendaLeite;
-
-  final double quantidadeLeite;
 
   final double valorTotalLeite;
 
@@ -8714,8 +10592,8 @@ class VendaleiteUpdateWithoutCompradorInput implements _i1.JsonSerializable {
   const VendaleiteUpdateWithoutCompradorInput({
     this.codVendaLeite,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
+    this.vendaprodleite,
   });
 
   factory VendaleiteUpdateWithoutCompradorInput.fromJson(
@@ -8726,9 +10604,9 @@ class VendaleiteUpdateWithoutCompradorInput implements _i1.JsonSerializable {
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
-
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
+
+  final VendaprodleiteUpdateManyWithoutVendaleiteNestedInput? vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -8741,8 +10619,8 @@ class VendaleiteUncheckedUpdateWithoutCompradorInput
   const VendaleiteUncheckedUpdateWithoutCompradorInput({
     this.codVendaLeite,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
+    this.vendaprodleite,
   });
 
   factory VendaleiteUncheckedUpdateWithoutCompradorInput.fromJson(
@@ -8753,9 +10631,10 @@ class VendaleiteUncheckedUpdateWithoutCompradorInput
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
-
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
+
+  final VendaprodleiteUncheckedUpdateManyWithoutVendaleiteNestedInput?
+      vendaprodleite;
 
   @override
   Map<String, dynamic> toJson() =>
@@ -8768,7 +10647,6 @@ class VendaleiteUncheckedUpdateManyWithoutVendaleiteInput
   const VendaleiteUncheckedUpdateManyWithoutVendaleiteInput({
     this.codVendaLeite,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -8779,8 +10657,6 @@ class VendaleiteUncheckedUpdateManyWithoutVendaleiteInput
   final IntFieldUpdateOperationsInput? codVendaLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
-
-  final FloatFieldUpdateOperationsInput? quantidadeLeite;
 
   final FloatFieldUpdateOperationsInput? valorTotalLeite;
 
@@ -8826,6 +10702,35 @@ class AnimalCreateManyProdleiteInput implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$AnimalCreateManyProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateManyProdleiteInput implements _i1.JsonSerializable {
+  const VendaprodleiteCreateManyProdleiteInput({
+    required this.codVendaProdLeite,
+    required this.codVendaLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteCreateManyProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateManyProdleiteInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codVendaLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateManyProdleiteInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -8918,12 +10823,104 @@ class AnimalUncheckedUpdateWithoutProdleiteInput
 }
 
 @_i1.jsonSerializable
+class VendaprodleiteUpdateWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateWithoutProdleiteInput({
+    this.codVendaProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+    this.vendaleite,
+  });
+
+  factory VendaprodleiteUpdateWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateWithoutProdleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  final VendaleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput? vendaleite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateWithoutProdleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateWithoutProdleiteInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedUpdateWithoutProdleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateWithoutProdleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final IntFieldUpdateOperationsInput? codVendaLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateWithoutProdleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateManyWithoutVendaprodleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateManyWithoutVendaprodleiteInput({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedUpdateManyWithoutVendaprodleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateManyWithoutVendaprodleiteInputFromJson(
+          json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final IntFieldUpdateOperationsInput? codVendaLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateManyWithoutVendaprodleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
 class ItensvendaCreateManyVendaanimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateManyVendaanimalInput({
     required this.codItensVenda,
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory ItensvendaCreateManyVendaanimalInput.fromJson(
@@ -8938,6 +10935,8 @@ class ItensvendaCreateManyVendaanimalInput implements _i1.JsonSerializable {
 
   final double valorUnitario;
 
+  final double valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaCreateManyVendaanimalInputToJson(this);
@@ -8949,6 +10948,7 @@ class ItensvendaUpdateWithoutVendaanimalInput implements _i1.JsonSerializable {
     this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
     this.animal,
   });
 
@@ -8961,6 +10961,8 @@ class ItensvendaUpdateWithoutVendaanimalInput implements _i1.JsonSerializable {
   final IntFieldUpdateOperationsInput? quantidade;
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
 
   final AnimalUpdateOneRequiredWithoutItensvendaNestedInput? animal;
 
@@ -8977,6 +10979,7 @@ class ItensvendaUncheckedUpdateWithoutVendaanimalInput
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaUncheckedUpdateWithoutVendaanimalInput.fromJson(
@@ -8991,9 +10994,100 @@ class ItensvendaUncheckedUpdateWithoutVendaanimalInput
 
   final FloatFieldUpdateOperationsInput? valorUnitario;
 
+  final FloatFieldUpdateOperationsInput? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() =>
       _$ItensvendaUncheckedUpdateWithoutVendaanimalInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteCreateManyVendaleiteInput implements _i1.JsonSerializable {
+  const VendaprodleiteCreateManyVendaleiteInput({
+    required this.codVendaProdLeite,
+    required this.codProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteCreateManyVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteCreateManyVendaleiteInputFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteCreateManyVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUpdateWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUpdateWithoutVendaleiteInput({
+    this.codVendaProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+    this.prodleite,
+  });
+
+  factory VendaprodleiteUpdateWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUpdateWithoutVendaleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  final ProdleiteUpdateOneRequiredWithoutVendaprodleiteNestedInput? prodleite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUpdateWithoutVendaleiteInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteUncheckedUpdateWithoutVendaleiteInput
+    implements _i1.JsonSerializable {
+  const VendaprodleiteUncheckedUpdateWithoutVendaleiteInput({
+    this.codVendaProdLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteUncheckedUpdateWithoutVendaleiteInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$VendaprodleiteUncheckedUpdateWithoutVendaleiteInputFromJson(json);
+
+  final IntFieldUpdateOperationsInput? codVendaProdLeite;
+
+  final IntFieldUpdateOperationsInput? codProdLeite;
+
+  final FloatFieldUpdateOperationsInput? qtdLeite;
+
+  final FloatFieldUpdateOperationsInput? valorLitro;
+
+  final FloatFieldUpdateOperationsInput? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteUncheckedUpdateWithoutVendaleiteInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -9087,6 +11181,7 @@ class Itensvenda implements _i1.JsonSerializable {
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
+    required this.valorTotalItemAnimal,
   });
 
   factory Itensvenda.fromJson(Map<String, dynamic> json) =>
@@ -9102,6 +11197,8 @@ class Itensvenda implements _i1.JsonSerializable {
 
   final double valorUnitario;
 
+  final double valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() => _$ItensvendaToJson(this);
 }
@@ -9110,8 +11207,8 @@ class Itensvenda implements _i1.JsonSerializable {
 class Prodleite implements _i1.JsonSerializable {
   const Prodleite({
     required this.codProdLeite,
-    required this.data,
-    required this.quantidadeLeite,
+    required this.dataProdLeite,
+    required this.qtdProdLeite,
   });
 
   factory Prodleite.fromJson(Map<String, dynamic> json) =>
@@ -9119,9 +11216,9 @@ class Prodleite implements _i1.JsonSerializable {
 
   final int codProdLeite;
 
-  final DateTime data;
+  final DateTime dataProdLeite;
 
-  final double quantidadeLeite;
+  final double qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteToJson(this);
@@ -9157,7 +11254,6 @@ class Vendaleite implements _i1.JsonSerializable {
     required this.codVendaLeite,
     required this.codComprador,
     required this.dataVendaLeite,
-    required this.quantidadeLeite,
     required this.valorTotalLeite,
   });
 
@@ -9170,12 +11266,40 @@ class Vendaleite implements _i1.JsonSerializable {
 
   final DateTime dataVendaLeite;
 
-  final double quantidadeLeite;
-
   final double valorTotalLeite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteToJson(this);
+}
+
+@_i1.jsonSerializable
+class Vendaprodleite implements _i1.JsonSerializable {
+  const Vendaprodleite({
+    required this.codVendaProdLeite,
+    required this.codVendaLeite,
+    required this.codProdLeite,
+    required this.qtdLeite,
+    required this.valorLitro,
+    required this.valorTotalItemLeite,
+  });
+
+  factory Vendaprodleite.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteFromJson(json);
+
+  final int codVendaProdLeite;
+
+  final int codVendaLeite;
+
+  final int codProdLeite;
+
+  final double qtdLeite;
+
+  final double valorLitro;
+
+  final double valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() => _$VendaprodleiteToJson(this);
 }
 
 class AnimalFluent<T> extends _i1.PrismaFluent<T> {
@@ -9590,6 +11714,57 @@ class ProdleiteFluent<T> extends _i1.PrismaFluent<T> {
         .then((json) => json is Iterable ? compiler(json.cast()) : null);
   }
 
+  Future<Iterable<Vendaprodleite>?> vendaprodleite({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithRelationInput>? orderBy,
+    VendaprodleiteWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<VendaprodleiteScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'vendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'vendaprodleite',
+    );
+    final fields = VendaprodleiteScalarFieldEnum.values.toGraphQLFields();
+    compiler(Iterable<Map> vendaprodleite) => vendaprodleite.map(
+        (Map vendaprodleite) => Vendaprodleite.fromJson(vendaprodleite.cast()));
+    return query(fields)
+        .then((json) => json is Iterable ? compiler(json.cast()) : null);
+  }
+
   ProdleiteCountOutputType $count() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -9718,6 +11893,119 @@ class VendaleiteFluent<T> extends _i1.PrismaFluent<T> {
             : throw Exception(
                 'Not found OutputTypeRefType.string(value: comprador)'));
     return CompradorFluent<Comprador>(
+      future,
+      query,
+    );
+  }
+
+  Future<Iterable<Vendaprodleite>?> vendaprodleite({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithRelationInput>? orderBy,
+    VendaprodleiteWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<VendaprodleiteScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'vendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'vendaprodleite',
+    );
+    final fields = VendaprodleiteScalarFieldEnum.values.toGraphQLFields();
+    compiler(Iterable<Map> vendaprodleite) => vendaprodleite.map(
+        (Map vendaprodleite) => Vendaprodleite.fromJson(vendaprodleite.cast()));
+    return query(fields)
+        .then((json) => json is Iterable ? compiler(json.cast()) : null);
+  }
+
+  VendaleiteCountOutputType $count() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_count',
+          fields: fields,
+        )
+      ]),
+      key: r'_count',
+    );
+    return VendaleiteCountOutputType(query);
+  }
+}
+
+class VendaprodleiteFluent<T> extends _i1.PrismaFluent<T> {
+  const VendaprodleiteFluent(
+    super.original,
+    super.$query,
+  );
+
+  ProdleiteFluent<Prodleite> prodleite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'prodleite',
+          fields: fields,
+        )
+      ]),
+      key: r'prodleite',
+    );
+    final future = query(ProdleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Prodleite.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: prodleite)'));
+    return ProdleiteFluent<Prodleite>(
+      future,
+      query,
+    );
+  }
+
+  VendaleiteFluent<Vendaleite> vendaleite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'vendaleite',
+          fields: fields,
+        )
+      ]),
+      key: r'vendaleite',
+    );
+    final future = query(VendaleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaleite.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: vendaleite)'));
+    return VendaleiteFluent<Vendaleite>(
       future,
       query,
     );
@@ -13463,6 +15751,543 @@ extension VendaleiteModelDelegateExtension on _i1.ModelDelegate<Vendaleite> {
   }
 }
 
+extension VendaprodleiteModelDelegateExtension
+    on _i1.ModelDelegate<Vendaprodleite> {
+  VendaprodleiteFluent<Vendaprodleite?> findUnique(
+      {required VendaprodleiteWhereUniqueInput where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findUniquevendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findUniquevendaprodleite',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : null);
+    return VendaprodleiteFluent<Vendaprodleite?>(
+      future,
+      query,
+    );
+  }
+
+  VendaprodleiteFluent<Vendaprodleite> findUniqueOrThrow(
+      {required VendaprodleiteWhereUniqueInput where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findUniquevendaprodleiteOrThrow',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findUniquevendaprodleiteOrThrow',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: vendaprodleite)'));
+    return VendaprodleiteFluent<Vendaprodleite>(
+      future,
+      query,
+    );
+  }
+
+  VendaprodleiteFluent<Vendaprodleite?> findFirst({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithRelationInput>? orderBy,
+    VendaprodleiteWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<VendaprodleiteScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findFirstvendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findFirstvendaprodleite',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : null);
+    return VendaprodleiteFluent<Vendaprodleite?>(
+      future,
+      query,
+    );
+  }
+
+  VendaprodleiteFluent<Vendaprodleite> findFirstOrThrow({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithRelationInput>? orderBy,
+    VendaprodleiteWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<VendaprodleiteScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findFirstvendaprodleiteOrThrow',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findFirstvendaprodleiteOrThrow',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: vendaprodleite)'));
+    return VendaprodleiteFluent<Vendaprodleite>(
+      future,
+      query,
+    );
+  }
+
+  Future<Iterable<Vendaprodleite>> findMany({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithRelationInput>? orderBy,
+    VendaprodleiteWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    Iterable<VendaprodleiteScalarFieldEnum>? distinct,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+      _i2.GraphQLArg(
+        r'distinct',
+        distinct,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'findManyvendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'findManyvendaprodleite',
+    );
+    final fields = VendaprodleiteScalarFieldEnum.values.toGraphQLFields();
+    compiler(Iterable<Map> findManyvendaprodleite) =>
+        findManyvendaprodleite.map((Map findManyvendaprodleite) =>
+            Vendaprodleite.fromJson(findManyvendaprodleite.cast()));
+    return query(fields).then((json) => json is Iterable
+        ? compiler(json.cast())
+        : throw Exception('Unable to parse response'));
+  }
+
+  VendaprodleiteFluent<Vendaprodleite> create(
+      {required VendaprodleiteCreateInput data}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'createOnevendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'createOnevendaprodleite',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: vendaprodleite)'));
+    return VendaprodleiteFluent<Vendaprodleite>(
+      future,
+      query,
+    );
+  }
+
+  Future<AffectedRowsOutput> createMany({
+    required Iterable<VendaprodleiteCreateManyInput> data,
+    bool? skipDuplicates,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      ),
+      _i2.GraphQLArg(
+        r'skipDuplicates',
+        skipDuplicates,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'createManyvendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'createManyvendaprodleite',
+    );
+    final fields = const ['count'].map((e) => _i2.GraphQLField(e));
+    compiler(Map createManyvendaprodleite) =>
+        AffectedRowsOutput.fromJson(createManyvendaprodleite.cast());
+    return query(fields).then((json) => json is Map
+        ? compiler(json)
+        : throw Exception('Unable to parse response'));
+  }
+
+  VendaprodleiteFluent<Vendaprodleite?> update({
+    required VendaprodleiteUpdateInput data,
+    required VendaprodleiteWhereUniqueInput where,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      ),
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'updateOnevendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'updateOnevendaprodleite',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : null);
+    return VendaprodleiteFluent<Vendaprodleite?>(
+      future,
+      query,
+    );
+  }
+
+  Future<AffectedRowsOutput> updateMany({
+    required VendaprodleiteUpdateManyMutationInput data,
+    VendaprodleiteWhereInput? where,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'data',
+        data,
+      ),
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'updateManyvendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'updateManyvendaprodleite',
+    );
+    final fields = const ['count'].map((e) => _i2.GraphQLField(e));
+    compiler(Map updateManyvendaprodleite) =>
+        AffectedRowsOutput.fromJson(updateManyvendaprodleite.cast());
+    return query(fields).then((json) => json is Map
+        ? compiler(json)
+        : throw Exception('Unable to parse response'));
+  }
+
+  VendaprodleiteFluent<Vendaprodleite> upsert({
+    required VendaprodleiteWhereUniqueInput where,
+    required VendaprodleiteCreateInput create,
+    required VendaprodleiteUpdateInput update,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'create',
+        create,
+      ),
+      _i2.GraphQLArg(
+        r'update',
+        update,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'upsertOnevendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'upsertOnevendaprodleite',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : throw Exception(
+                'Not found OutputTypeRefType.string(value: vendaprodleite)'));
+    return VendaprodleiteFluent<Vendaprodleite>(
+      future,
+      query,
+    );
+  }
+
+  VendaprodleiteFluent<Vendaprodleite?> delete(
+      {required VendaprodleiteWhereUniqueInput where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'deleteOnevendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'deleteOnevendaprodleite',
+    );
+    final future = query(VendaprodleiteScalarFieldEnum.values.toGraphQLFields())
+        .then((json) => json is Map
+            ? Vendaprodleite.fromJson(json.cast<String, dynamic>())
+            : null);
+    return VendaprodleiteFluent<Vendaprodleite?>(
+      future,
+      query,
+    );
+  }
+
+  Future<AffectedRowsOutput> deleteMany({VendaprodleiteWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $mutation([
+        _i2.GraphQLField(
+          r'deleteManyvendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'deleteManyvendaprodleite',
+    );
+    final fields = const ['count'].map((e) => _i2.GraphQLField(e));
+    compiler(Map deleteManyvendaprodleite) =>
+        AffectedRowsOutput.fromJson(deleteManyvendaprodleite.cast());
+    return query(fields).then((json) => json is Map
+        ? compiler(json)
+        : throw Exception('Unable to parse response'));
+  }
+
+  AggregateVendaprodleite aggregate({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithRelationInput>? orderBy,
+    VendaprodleiteWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'cursor',
+        cursor,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'aggregatevendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'aggregatevendaprodleite',
+    );
+    return AggregateVendaprodleite(query);
+  }
+
+  Future<Iterable<VendaprodleiteGroupByOutputType>> groupBy({
+    VendaprodleiteWhereInput? where,
+    Iterable<VendaprodleiteOrderByWithAggregationInput>? orderBy,
+    required Iterable<VendaprodleiteScalarFieldEnum> by,
+    VendaprodleiteScalarWhereWithAggregatesInput? having,
+    int? take,
+    int? skip,
+  }) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      ),
+      _i2.GraphQLArg(
+        r'orderBy',
+        orderBy,
+      ),
+      _i2.GraphQLArg(
+        r'by',
+        by,
+      ),
+      _i2.GraphQLArg(
+        r'having',
+        having,
+      ),
+      _i2.GraphQLArg(
+        r'take',
+        take,
+      ),
+      _i2.GraphQLArg(
+        r'skip',
+        skip,
+      ),
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'groupByvendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'groupByvendaprodleite',
+    );
+    final fields = by.map((e) => _i2.GraphQLField(e.originalName ?? e.name));
+    compiler(Iterable<Map> groupByvendaprodleite) => groupByvendaprodleite.map(
+        (Map groupByvendaprodleite) => VendaprodleiteGroupByOutputType.fromJson(
+            groupByvendaprodleite.cast()));
+    return query(fields).then((json) => json is Iterable
+        ? compiler(json.cast())
+        : throw Exception('Unable to parse response'));
+  }
+}
+
 @_i1.jsonSerializable
 class AnimalGroupByOutputType implements _i1.JsonSerializable {
   const AnimalGroupByOutputType({
@@ -13555,6 +16380,7 @@ class ItensvendaGroupByOutputType implements _i1.JsonSerializable {
     this.codAnimal,
     this.quantidade,
     this.valorUnitario,
+    this.valorTotalItemAnimal,
   });
 
   factory ItensvendaGroupByOutputType.fromJson(Map<String, dynamic> json) =>
@@ -13570,6 +16396,8 @@ class ItensvendaGroupByOutputType implements _i1.JsonSerializable {
 
   final double? valorUnitario;
 
+  final double? valorTotalItemAnimal;
+
   @override
   Map<String, dynamic> toJson() => _$ItensvendaGroupByOutputTypeToJson(this);
 }
@@ -13578,8 +16406,8 @@ class ItensvendaGroupByOutputType implements _i1.JsonSerializable {
 class ProdleiteGroupByOutputType implements _i1.JsonSerializable {
   const ProdleiteGroupByOutputType({
     this.codProdLeite,
-    this.data,
-    this.quantidadeLeite,
+    this.dataProdLeite,
+    this.qtdProdLeite,
   });
 
   factory ProdleiteGroupByOutputType.fromJson(Map<String, dynamic> json) =>
@@ -13587,9 +16415,9 @@ class ProdleiteGroupByOutputType implements _i1.JsonSerializable {
 
   final int? codProdLeite;
 
-  final DateTime? data;
+  final DateTime? dataProdLeite;
 
-  final double? quantidadeLeite;
+  final double? qtdProdLeite;
 
   @override
   Map<String, dynamic> toJson() => _$ProdleiteGroupByOutputTypeToJson(this);
@@ -13625,7 +16453,6 @@ class VendaleiteGroupByOutputType implements _i1.JsonSerializable {
     this.codVendaLeite,
     this.codComprador,
     this.dataVendaLeite,
-    this.quantidadeLeite,
     this.valorTotalLeite,
   });
 
@@ -13638,12 +16465,41 @@ class VendaleiteGroupByOutputType implements _i1.JsonSerializable {
 
   final DateTime? dataVendaLeite;
 
-  final double? quantidadeLeite;
-
   final double? valorTotalLeite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteGroupByOutputTypeToJson(this);
+}
+
+@_i1.jsonSerializable
+class VendaprodleiteGroupByOutputType implements _i1.JsonSerializable {
+  const VendaprodleiteGroupByOutputType({
+    this.codVendaProdLeite,
+    this.codVendaLeite,
+    this.codProdLeite,
+    this.qtdLeite,
+    this.valorLitro,
+    this.valorTotalItemLeite,
+  });
+
+  factory VendaprodleiteGroupByOutputType.fromJson(Map<String, dynamic> json) =>
+      _$VendaprodleiteGroupByOutputTypeFromJson(json);
+
+  final int? codVendaProdLeite;
+
+  final int? codVendaLeite;
+
+  final int? codProdLeite;
+
+  final double? qtdLeite;
+
+  final double? valorLitro;
+
+  final double? valorTotalItemLeite;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$VendaprodleiteGroupByOutputTypeToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -14156,17 +17012,95 @@ class AggregateVendaleite {
   }
 }
 
+class AggregateVendaprodleite {
+  const AggregateVendaprodleite(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  VendaprodleiteCountAggregateOutputType $count() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_count',
+          fields: fields,
+        )
+      ]),
+      key: r'_count',
+    );
+    return VendaprodleiteCountAggregateOutputType(query);
+  }
+
+  VendaprodleiteAvgAggregateOutputType $avg() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_avg',
+          fields: fields,
+        )
+      ]),
+      key: r'_avg',
+    );
+    return VendaprodleiteAvgAggregateOutputType(query);
+  }
+
+  VendaprodleiteSumAggregateOutputType $sum() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_sum',
+          fields: fields,
+        )
+      ]),
+      key: r'_sum',
+    );
+    return VendaprodleiteSumAggregateOutputType(query);
+  }
+
+  VendaprodleiteMinAggregateOutputType $min() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_min',
+          fields: fields,
+        )
+      ]),
+      key: r'_min',
+    );
+    return VendaprodleiteMinAggregateOutputType(query);
+  }
+
+  VendaprodleiteMaxAggregateOutputType $max() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_max',
+          fields: fields,
+        )
+      ]),
+      key: r'_max',
+    );
+    return VendaprodleiteMaxAggregateOutputType(query);
+  }
+}
+
 class AnimalCountOutputType {
   const AnimalCountOutputType(this.$query);
 
   final _i1.PrismaFluentQuery $query;
 
-  Future<int> itensvenda() {
+  Future<int> itensvenda({ItensvendaWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
           r'itensvenda',
           fields: fields,
+          args: args,
         )
       ]),
       key: r'itensvenda',
@@ -14745,12 +17679,19 @@ class CategoriaCountOutputType {
 
   final _i1.PrismaFluentQuery $query;
 
-  Future<int> animal() {
+  Future<int> animal({AnimalWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
           r'animal',
           fields: fields,
+          args: args,
         )
       ]),
       key: r'animal',
@@ -14911,12 +17852,19 @@ class CompradorCountOutputType {
 
   final _i1.PrismaFluentQuery $query;
 
-  Future<int> vendaanimal() {
+  Future<int> vendaanimal({VendaanimalWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
           r'vendaanimal',
           fields: fields,
+          args: args,
         )
       ]),
       key: r'vendaanimal',
@@ -14924,12 +17872,19 @@ class CompradorCountOutputType {
     return query(const []).then((value) => (value as int));
   }
 
-  Future<int> vendaleite() {
+  Future<int> vendaleite({VendaleiteWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
           r'vendaleite',
           fields: fields,
+          args: args,
         )
       ]),
       key: r'vendaleite',
@@ -15233,6 +18188,19 @@ class ItensvendaCountAggregateOutputType {
     return query(const []).then((value) => (value as int));
   }
 
+  Future<int> valorTotalItemAnimal() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemAnimal',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemAnimal',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
   Future<int> $all() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -15316,6 +18284,19 @@ class ItensvendaAvgAggregateOutputType {
     );
     return query(const []).then((value) => (value as double?));
   }
+
+  Future<double?> valorTotalItemAnimal() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemAnimal',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemAnimal',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
 }
 
 class ItensvendaSumAggregateOutputType {
@@ -15384,6 +18365,19 @@ class ItensvendaSumAggregateOutputType {
         )
       ]),
       key: r'valorUnitario',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorTotalItemAnimal() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemAnimal',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemAnimal',
     );
     return query(const []).then((value) => (value as double?));
   }
@@ -15458,6 +18452,19 @@ class ItensvendaMinAggregateOutputType {
     );
     return query(const []).then((value) => (value as double?));
   }
+
+  Future<double?> valorTotalItemAnimal() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemAnimal',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemAnimal',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
 }
 
 class ItensvendaMaxAggregateOutputType {
@@ -15529,6 +18536,19 @@ class ItensvendaMaxAggregateOutputType {
     );
     return query(const []).then((value) => (value as double?));
   }
+
+  Future<double?> valorTotalItemAnimal() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemAnimal',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemAnimal',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
 }
 
 class ProdleiteCountOutputType {
@@ -15536,15 +18556,42 @@ class ProdleiteCountOutputType {
 
   final _i1.PrismaFluentQuery $query;
 
-  Future<int> animal() {
+  Future<int> animal({AnimalWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
           r'animal',
           fields: fields,
+          args: args,
         )
       ]),
       key: r'animal',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> vendaprodleite({VendaprodleiteWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'vendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'vendaprodleite',
     );
     return query(const []).then((value) => (value as int));
   }
@@ -15568,28 +18615,28 @@ class ProdleiteCountAggregateOutputType {
     return query(const []).then((value) => (value as int));
   }
 
-  Future<int> data() {
+  Future<int> dataProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'data',
+          r'dataProdLeite',
           fields: fields,
         )
       ]),
-      key: r'data',
+      key: r'dataProdLeite',
     );
     return query(const []).then((value) => (value as int));
   }
 
-  Future<int> quantidadeLeite() {
+  Future<int> qtdProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'quantidadeLeite',
+          r'qtdProdLeite',
           fields: fields,
         )
       ]),
-      key: r'quantidadeLeite',
+      key: r'qtdProdLeite',
     );
     return query(const []).then((value) => (value as int));
   }
@@ -15626,15 +18673,15 @@ class ProdleiteAvgAggregateOutputType {
     return query(const []).then((value) => (value as double?));
   }
 
-  Future<double?> quantidadeLeite() {
+  Future<double?> qtdProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'quantidadeLeite',
+          r'qtdProdLeite',
           fields: fields,
         )
       ]),
-      key: r'quantidadeLeite',
+      key: r'qtdProdLeite',
     );
     return query(const []).then((value) => (value as double?));
   }
@@ -15658,15 +18705,15 @@ class ProdleiteSumAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
-  Future<double?> quantidadeLeite() {
+  Future<double?> qtdProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'quantidadeLeite',
+          r'qtdProdLeite',
           fields: fields,
         )
       ]),
-      key: r'quantidadeLeite',
+      key: r'qtdProdLeite',
     );
     return query(const []).then((value) => (value as double?));
   }
@@ -15690,29 +18737,29 @@ class ProdleiteMinAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
-  Future<DateTime?> data() {
+  Future<DateTime?> dataProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'data',
+          r'dataProdLeite',
           fields: fields,
         )
       ]),
-      key: r'data',
+      key: r'dataProdLeite',
     );
     return query(const [])
         .then((value) => value is String ? DateTime.parse(value) : null);
   }
 
-  Future<double?> quantidadeLeite() {
+  Future<double?> qtdProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'quantidadeLeite',
+          r'qtdProdLeite',
           fields: fields,
         )
       ]),
-      key: r'quantidadeLeite',
+      key: r'qtdProdLeite',
     );
     return query(const []).then((value) => (value as double?));
   }
@@ -15736,29 +18783,29 @@ class ProdleiteMaxAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
-  Future<DateTime?> data() {
+  Future<DateTime?> dataProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'data',
+          r'dataProdLeite',
           fields: fields,
         )
       ]),
-      key: r'data',
+      key: r'dataProdLeite',
     );
     return query(const [])
         .then((value) => value is String ? DateTime.parse(value) : null);
   }
 
-  Future<double?> quantidadeLeite() {
+  Future<double?> qtdProdLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'quantidadeLeite',
+          r'qtdProdLeite',
           fields: fields,
         )
       ]),
-      key: r'quantidadeLeite',
+      key: r'qtdProdLeite',
     );
     return query(const []).then((value) => (value as double?));
   }
@@ -15769,12 +18816,19 @@ class VendaanimalCountOutputType {
 
   final _i1.PrismaFluentQuery $query;
 
-  Future<int> itensvenda() {
+  Future<int> itensvenda({ItensvendaWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
           r'itensvenda',
           fields: fields,
+          args: args,
         )
       ]),
       key: r'itensvenda',
@@ -16062,6 +19116,32 @@ class VendaanimalMaxAggregateOutputType {
   }
 }
 
+class VendaleiteCountOutputType {
+  const VendaleiteCountOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<int> vendaprodleite({VendaprodleiteWhereInput? where}) {
+    final args = [
+      _i2.GraphQLArg(
+        r'where',
+        where,
+      )
+    ];
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'vendaprodleite',
+          fields: fields,
+          args: args,
+        )
+      ]),
+      key: r'vendaprodleite',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+}
+
 class VendaleiteCountAggregateOutputType {
   const VendaleiteCountAggregateOutputType(this.$query);
 
@@ -16102,19 +19182,6 @@ class VendaleiteCountAggregateOutputType {
         )
       ]),
       key: r'dataVendaLeite',
-    );
-    return query(const []).then((value) => (value as int));
-  }
-
-  Future<int> quantidadeLeite() {
-    final query = _i1.PrismaFluent.queryBuilder(
-      query: (fields) => $query([
-        _i2.GraphQLField(
-          r'quantidadeLeite',
-          fields: fields,
-        )
-      ]),
-      key: r'quantidadeLeite',
     );
     return query(const []).then((value) => (value as int));
   }
@@ -16177,19 +19244,6 @@ class VendaleiteAvgAggregateOutputType {
     return query(const []).then((value) => (value as double?));
   }
 
-  Future<double?> quantidadeLeite() {
-    final query = _i1.PrismaFluent.queryBuilder(
-      query: (fields) => $query([
-        _i2.GraphQLField(
-          r'quantidadeLeite',
-          fields: fields,
-        )
-      ]),
-      key: r'quantidadeLeite',
-    );
-    return query(const []).then((value) => (value as double?));
-  }
-
   Future<double?> valorTotalLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -16233,19 +19287,6 @@ class VendaleiteSumAggregateOutputType {
       key: r'codComprador',
     );
     return query(const []).then((value) => (value as int?));
-  }
-
-  Future<double?> quantidadeLeite() {
-    final query = _i1.PrismaFluent.queryBuilder(
-      query: (fields) => $query([
-        _i2.GraphQLField(
-          r'quantidadeLeite',
-          fields: fields,
-        )
-      ]),
-      key: r'quantidadeLeite',
-    );
-    return query(const []).then((value) => (value as double?));
   }
 
   Future<double?> valorTotalLeite() {
@@ -16307,19 +19348,6 @@ class VendaleiteMinAggregateOutputType {
         .then((value) => value is String ? DateTime.parse(value) : null);
   }
 
-  Future<double?> quantidadeLeite() {
-    final query = _i1.PrismaFluent.queryBuilder(
-      query: (fields) => $query([
-        _i2.GraphQLField(
-          r'quantidadeLeite',
-          fields: fields,
-        )
-      ]),
-      key: r'quantidadeLeite',
-    );
-    return query(const []).then((value) => (value as double?));
-  }
-
   Future<double?> valorTotalLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -16379,19 +19407,6 @@ class VendaleiteMaxAggregateOutputType {
         .then((value) => value is String ? DateTime.parse(value) : null);
   }
 
-  Future<double?> quantidadeLeite() {
-    final query = _i1.PrismaFluent.queryBuilder(
-      query: (fields) => $query([
-        _i2.GraphQLField(
-          r'quantidadeLeite',
-          fields: fields,
-        )
-      ]),
-      key: r'quantidadeLeite',
-    );
-    return query(const []).then((value) => (value as double?));
-  }
-
   Future<double?> valorTotalLeite() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -16401,6 +19416,439 @@ class VendaleiteMaxAggregateOutputType {
         )
       ]),
       key: r'valorTotalLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+}
+
+class VendaprodleiteCountAggregateOutputType {
+  const VendaprodleiteCountAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<int> codVendaProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaProdLeite',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> codVendaLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaLeite',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> codProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codProdLeite',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> qtdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'qtdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'qtdLeite',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> valorLitro() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorLitro',
+          fields: fields,
+        )
+      ]),
+      key: r'valorLitro',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> valorTotalItemLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemLeite',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> $all() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'_all',
+          fields: fields,
+        )
+      ]),
+      key: r'_all',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+}
+
+class VendaprodleiteAvgAggregateOutputType {
+  const VendaprodleiteAvgAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<double?> codVendaProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaProdLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> codVendaLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> codProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codProdLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> qtdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'qtdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'qtdLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorLitro() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorLitro',
+          fields: fields,
+        )
+      ]),
+      key: r'valorLitro',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorTotalItemLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+}
+
+class VendaprodleiteSumAggregateOutputType {
+  const VendaprodleiteSumAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<int?> codVendaProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaProdLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codVendaLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codProdLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<double?> qtdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'qtdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'qtdLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorLitro() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorLitro',
+          fields: fields,
+        )
+      ]),
+      key: r'valorLitro',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorTotalItemLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+}
+
+class VendaprodleiteMinAggregateOutputType {
+  const VendaprodleiteMinAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<int?> codVendaProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaProdLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codVendaLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codProdLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<double?> qtdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'qtdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'qtdLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorLitro() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorLitro',
+          fields: fields,
+        )
+      ]),
+      key: r'valorLitro',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorTotalItemLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+}
+
+class VendaprodleiteMaxAggregateOutputType {
+  const VendaprodleiteMaxAggregateOutputType(this.$query);
+
+  final _i1.PrismaFluentQuery $query;
+
+  Future<int?> codVendaProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaProdLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codVendaLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codVendaLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codVendaLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<int?> codProdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'codProdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'codProdLeite',
+    );
+    return query(const []).then((value) => (value as int?));
+  }
+
+  Future<double?> qtdLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'qtdLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'qtdLeite',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorLitro() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorLitro',
+          fields: fields,
+        )
+      ]),
+      key: r'valorLitro',
+    );
+    return query(const []).then((value) => (value as double?));
+  }
+
+  Future<double?> valorTotalItemLeite() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'valorTotalItemLeite',
+          fields: fields,
+        )
+      ]),
+      key: r'valorTotalItemLeite',
     );
     return query(const []).then((value) => (value as double?));
   }
@@ -16447,10 +19895,10 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250cm9sZV9ib3Zpbm9fbGVpdGVpcm8iCn0KCm1vZGVsIGFuaW1hbCB7CiAgY29kQW5pbWFsICAgICAgSW50ICAgICAgICAgIEBpZAogIGNvZFByb2RMZWl0ZSAgIEludAogIGNvZENhdGVnb3JpYSAgIEludAogIG5vbWUgICAgICAgICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICBkYXRhTmFzY2ltZW50byBEYXRlVGltZSAgICAgQGRiLkRhdGUKICBzZXhvICAgICAgICAgICBTdHJpbmcgICAgICAgQGRiLlZhckNoYXIoNDUpCiAgcmFjYSAgICAgICAgICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGlkYWRlICAgICAgICAgIEludAogIGZvcm1hTWFuZWpvICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICBtZWRpYUxlaXRlICAgICBGbG9hdD8KICBjYXRlZ29yaWEgICAgICBjYXRlZ29yaWEgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENhdGVnb3JpYV0sIHJlZmVyZW5jZXM6IFtjb2RDYXRlZ29yaWFdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfQW5pbWFsX0NhdGVnb3JpYTEiKQogIHByb2RsZWl0ZSAgICAgIHByb2RsZWl0ZSAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kUHJvZExlaXRlXSwgcmVmZXJlbmNlczogW2NvZFByb2RMZWl0ZV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19BbmltYWxfUHJvZExlaXRlMSIpCiAgaXRlbnN2ZW5kYSAgICAgaXRlbnN2ZW5kYVtdCgogIEBAaW5kZXgoW2NvZENhdGVnb3JpYV0sIG1hcDogImZrX0FuaW1hbF9DYXRlZ29yaWExX2lkeCIpCiAgQEBpbmRleChbY29kUHJvZExlaXRlXSwgbWFwOiAiZmtfQW5pbWFsX1Byb2RMZWl0ZTFfaWR4IikKfQoKbW9kZWwgY2F0ZWdvcmlhIHsKICBjb2RDYXRlZ29yaWEgSW50ICAgICAgQGlkCiAgdGlwbyAgICAgICAgIFN0cmluZyAgIEBkYi5WYXJDaGFyKDQ1KQogIGFuaW1hbCAgICAgICBhbmltYWxbXQp9Cgptb2RlbCBjb21wcmFkb3IgewogIGNvZENvbXByYWRvciBJbnQgICAgICAgICAgIEBpZAogIG5vbWUgICAgICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIHRlbGVmb25lICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGVuZGVyZWNvICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDIwMCkKICB2ZW5kYWFuaW1hbCAgdmVuZGFhbmltYWxbXQogIHZlbmRhbGVpdGUgICB2ZW5kYWxlaXRlW10KfQoKbW9kZWwgaXRlbnN2ZW5kYSB7CiAgY29kSXRlbnNWZW5kYSAgSW50CiAgY29kVmVuZGFBbmltYWwgSW50CiAgY29kQW5pbWFsICAgICAgSW50CiAgcXVhbnRpZGFkZSAgICAgSW50CiAgdmFsb3JVbml0YXJpbyAgRmxvYXQKICBhbmltYWwgICAgICAgICBhbmltYWwgICAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQW5pbWFsXSwgcmVmZXJlbmNlczogW2NvZEFuaW1hbF0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX0FuaW1hbDEiKQogIHZlbmRhYW5pbWFsICAgIHZlbmRhYW5pbWFsIEByZWxhdGlvbihmaWVsZHM6IFtjb2RWZW5kYUFuaW1hbF0sIHJlZmVyZW5jZXM6IFtjb2RWZW5kYUFuaW1hbF0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX1ZlbmRhQW5pbWFsMSIpCgogIEBAaWQoW2NvZEl0ZW5zVmVuZGEsIGNvZFZlbmRhQW5pbWFsLCBjb2RBbmltYWxdKQogIEBAaW5kZXgoW2NvZEFuaW1hbF0sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfQW5pbWFsMV9pZHgiKQogIEBAaW5kZXgoW2NvZFZlbmRhQW5pbWFsXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9WZW5kYUFuaW1hbDFfaWR4IikKfQoKbW9kZWwgcHJvZGxlaXRlIHsKICBjb2RQcm9kTGVpdGUgICAgSW50ICAgICAgQGlkCiAgZGF0YSAgICAgICAgICAgIERhdGVUaW1lIEBkYi5EYXRlCiAgcXVhbnRpZGFkZUxlaXRlIEZsb2F0CiAgYW5pbWFsICAgICAgICAgIGFuaW1hbFtdCn0KCm1vZGVsIHZlbmRhYW5pbWFsIHsKICBjb2RWZW5kYUFuaW1hbCAgIEludCAgICAgICAgICBAaWQKICBjb2RDb21wcmFkb3IgICAgIEludAogIGRhdGFWZW5kYUFuaW1hbCAgRGF0ZVRpbWUgICAgIEBkYi5EYXRlCiAgdmFsb3JUb3RhbEFuaW1hbCBGbG9hdAogIGl0ZW5zdmVuZGEgICAgICAgaXRlbnN2ZW5kYVtdCiAgY29tcHJhZG9yICAgICAgICBjb21wcmFkb3IgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENvbXByYWRvcl0sIHJlZmVyZW5jZXM6IFtjb2RDb21wcmFkb3JdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yIikKCiAgQEBpbmRleChbY29kQ29tcHJhZG9yXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yX2lkeCIpCn0KCm1vZGVsIHZlbmRhbGVpdGUgewogIGNvZFZlbmRhTGVpdGUgICBJbnQgICAgICAgQGlkCiAgY29kQ29tcHJhZG9yICAgIEludAogIGRhdGFWZW5kYUxlaXRlICBEYXRlVGltZSAgQGRiLkRhdGUKICBxdWFudGlkYWRlTGVpdGUgRmxvYXQKICB2YWxvclRvdGFsTGVpdGUgRmxvYXQKICBjb21wcmFkb3IgICAgICAgY29tcHJhZG9yIEByZWxhdGlvbihmaWVsZHM6IFtjb2RDb21wcmFkb3JdLCByZWZlcmVuY2VzOiBbY29kQ29tcHJhZG9yXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfQ29tcHJhZG9yMSIpCgogIEBAaW5kZXgoW2NvZENvbXByYWRvcl0sIG1hcDogImZrX1ZlbmRhTGVpdGVfQ29tcHJhZG9yMV9pZHgiKQp9Cg==',
+          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250cm9sZV9ib3Zpbm9fbGVpdGVpcm8iCn0KCm1vZGVsIGFuaW1hbCB7CiAgY29kQW5pbWFsICAgICAgSW50ICAgICAgICAgIEBpZAogIGNvZFByb2RMZWl0ZSAgIEludAogIGNvZENhdGVnb3JpYSAgIEludAogIG5vbWUgICAgICAgICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICBkYXRhTmFzY2ltZW50byBEYXRlVGltZSAgICAgQGRiLkRhdGUKICBzZXhvICAgICAgICAgICBTdHJpbmcgICAgICAgQGRiLlZhckNoYXIoNDUpCiAgcmFjYSAgICAgICAgICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGlkYWRlICAgICAgICAgIEludAogIGZvcm1hTWFuZWpvICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICBtZWRpYUxlaXRlICAgICBGbG9hdD8KICBjYXRlZ29yaWEgICAgICBjYXRlZ29yaWEgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENhdGVnb3JpYV0sIHJlZmVyZW5jZXM6IFtjb2RDYXRlZ29yaWFdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfQW5pbWFsX0NhdGVnb3JpYTEiKQogIHByb2RsZWl0ZSAgICAgIHByb2RsZWl0ZSAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kUHJvZExlaXRlXSwgcmVmZXJlbmNlczogW2NvZFByb2RMZWl0ZV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19BbmltYWxfUHJvZExlaXRlMSIpCiAgaXRlbnN2ZW5kYSAgICAgaXRlbnN2ZW5kYVtdCgogIEBAaW5kZXgoW2NvZENhdGVnb3JpYV0sIG1hcDogImZrX0FuaW1hbF9DYXRlZ29yaWExX2lkeCIpCiAgQEBpbmRleChbY29kUHJvZExlaXRlXSwgbWFwOiAiZmtfQW5pbWFsX1Byb2RMZWl0ZTFfaWR4IikKfQoKbW9kZWwgY2F0ZWdvcmlhIHsKICBjb2RDYXRlZ29yaWEgSW50ICAgICAgQGlkCiAgdGlwbyAgICAgICAgIFN0cmluZyAgIEBkYi5WYXJDaGFyKDQ1KQogIGFuaW1hbCAgICAgICBhbmltYWxbXQp9Cgptb2RlbCBjb21wcmFkb3IgewogIGNvZENvbXByYWRvciBJbnQgICAgICAgICAgIEBpZAogIG5vbWUgICAgICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIHRlbGVmb25lICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGVuZGVyZWNvICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDIwMCkKICB2ZW5kYWFuaW1hbCAgdmVuZGFhbmltYWxbXQogIHZlbmRhbGVpdGUgICB2ZW5kYWxlaXRlW10KfQoKbW9kZWwgaXRlbnN2ZW5kYSB7CiAgY29kSXRlbnNWZW5kYSAgICAgICAgSW50CiAgY29kVmVuZGFBbmltYWwgICAgICAgSW50CiAgY29kQW5pbWFsICAgICAgICAgICAgSW50CiAgcXVhbnRpZGFkZSAgICAgICAgICAgSW50CiAgdmFsb3JVbml0YXJpbyAgICAgICAgRmxvYXQKICB2YWxvclRvdGFsSXRlbUFuaW1hbCBGbG9hdAogIGFuaW1hbCAgICAgICAgICAgICAgIGFuaW1hbCAgICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RBbmltYWxdLCByZWZlcmVuY2VzOiBbY29kQW5pbWFsXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfQW5pbWFsMSIpCiAgdmVuZGFhbmltYWwgICAgICAgICAgdmVuZGFhbmltYWwgQHJlbGF0aW9uKGZpZWxkczogW2NvZFZlbmRhQW5pbWFsXSwgcmVmZXJlbmNlczogW2NvZFZlbmRhQW5pbWFsXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfVmVuZGFBbmltYWwxIikKCiAgQEBpZChbY29kSXRlbnNWZW5kYSwgY29kVmVuZGFBbmltYWwsIGNvZEFuaW1hbF0pCiAgQEBpbmRleChbY29kQW5pbWFsXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9BbmltYWwxX2lkeCIpCiAgQEBpbmRleChbY29kVmVuZGFBbmltYWxdLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX1ZlbmRhQW5pbWFsMV9pZHgiKQp9Cgptb2RlbCBwcm9kbGVpdGUgewogIGNvZFByb2RMZWl0ZSAgIEludCAgICAgICAgICAgICAgQGlkCiAgZGF0YVByb2RMZWl0ZSAgRGF0ZVRpbWUgICAgICAgICBAZGIuRGF0ZQogIHF0ZFByb2RMZWl0ZSAgIEZsb2F0CiAgYW5pbWFsICAgICAgICAgYW5pbWFsW10KICB2ZW5kYXByb2RsZWl0ZSB2ZW5kYXByb2RsZWl0ZVtdCn0KCm1vZGVsIHZlbmRhYW5pbWFsIHsKICBjb2RWZW5kYUFuaW1hbCAgIEludCAgICAgICAgICBAaWQKICBjb2RDb21wcmFkb3IgICAgIEludAogIGRhdGFWZW5kYUFuaW1hbCAgRGF0ZVRpbWUgICAgIEBkYi5EYXRlCiAgdmFsb3JUb3RhbEFuaW1hbCBGbG9hdAogIGl0ZW5zdmVuZGEgICAgICAgaXRlbnN2ZW5kYVtdCiAgY29tcHJhZG9yICAgICAgICBjb21wcmFkb3IgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENvbXByYWRvcl0sIHJlZmVyZW5jZXM6IFtjb2RDb21wcmFkb3JdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yIikKCiAgQEBpbmRleChbY29kQ29tcHJhZG9yXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yX2lkeCIpCn0KCm1vZGVsIHZlbmRhbGVpdGUgewogIGNvZFZlbmRhTGVpdGUgICBJbnQgICAgICAgICAgICAgIEBpZAogIGNvZENvbXByYWRvciAgICBJbnQKICBkYXRhVmVuZGFMZWl0ZSAgRGF0ZVRpbWUgICAgICAgICBAZGIuRGF0ZQogIHZhbG9yVG90YWxMZWl0ZSBGbG9hdAogIGNvbXByYWRvciAgICAgICBjb21wcmFkb3IgICAgICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RDb21wcmFkb3JdLCByZWZlcmVuY2VzOiBbY29kQ29tcHJhZG9yXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfQ29tcHJhZG9yMSIpCiAgdmVuZGFwcm9kbGVpdGUgIHZlbmRhcHJvZGxlaXRlW10KCiAgQEBpbmRleChbY29kQ29tcHJhZG9yXSwgbWFwOiAiZmtfVmVuZGFMZWl0ZV9Db21wcmFkb3IxX2lkeCIpCn0KCm1vZGVsIHZlbmRhcHJvZGxlaXRlIHsKICBjb2RWZW5kYVByb2RMZWl0ZSAgIEludAogIGNvZFZlbmRhTGVpdGUgICAgICAgSW50CiAgY29kUHJvZExlaXRlICAgICAgICBJbnQKICBxdGRMZWl0ZSAgICAgICAgICAgIEZsb2F0CiAgdmFsb3JMaXRybyAgICAgICAgICBGbG9hdAogIHZhbG9yVG90YWxJdGVtTGVpdGUgRmxvYXQKICBwcm9kbGVpdGUgICAgICAgICAgIHByb2RsZWl0ZSAgQHJlbGF0aW9uKGZpZWxkczogW2NvZFByb2RMZWl0ZV0sIHJlZmVyZW5jZXM6IFtjb2RQcm9kTGVpdGVdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFMZWl0ZV9oYXNfUHJvZExlaXRlX1Byb2RMZWl0ZTEiKQogIHZlbmRhbGVpdGUgICAgICAgICAgdmVuZGFsZWl0ZSBAcmVsYXRpb24oZmllbGRzOiBbY29kVmVuZGFMZWl0ZV0sIHJlZmVyZW5jZXM6IFtjb2RWZW5kYUxlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9WZW5kYUxlaXRlMSIpCgogIEBAaWQoW2NvZFZlbmRhUHJvZExlaXRlLCBjb2RWZW5kYUxlaXRlLCBjb2RQcm9kTGVpdGVdKQogIEBAaW5kZXgoW2NvZFByb2RMZWl0ZV0sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9Qcm9kTGVpdGUxX2lkeCIpCiAgQEBpbmRleChbY29kVmVuZGFMZWl0ZV0sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9WZW5kYUxlaXRlMV9pZHgiKQp9Cg==',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
-          r'C:\Users\Micro\OneDrive\Imagens\controle_bovino_leiteiro\node_modules\prisma\query-engine-windows.exe',
+          r'C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\node_modules\prisma\query-engine-windows.exe',
     );
     return PrismaClient._internal(engine);
   }
@@ -16471,38 +19919,52 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         headers: headers ?? _headers,
         transaction: transaction ?? _transaction,
       );
+
   _i1.ModelDelegate<Animal> get animal => _i1.ModelDelegate<Animal>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Categoria> get categoria => _i1.ModelDelegate<Categoria>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Comprador> get comprador => _i1.ModelDelegate<Comprador>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Itensvenda> get itensvenda => _i1.ModelDelegate<Itensvenda>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Prodleite> get prodleite => _i1.ModelDelegate<Prodleite>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Vendaanimal> get vendaanimal =>
       _i1.ModelDelegate<Vendaanimal>(
         _engine,
         headers: _headers,
         transaction: _transaction,
       );
+
   _i1.ModelDelegate<Vendaleite> get vendaleite => _i1.ModelDelegate<Vendaleite>(
+        _engine,
+        headers: _headers,
+        transaction: _transaction,
+      );
+
+  _i1.ModelDelegate<Vendaprodleite> get vendaprodleite =>
+      _i1.ModelDelegate<Vendaprodleite>(
         _engine,
         headers: _headers,
         transaction: _transaction,
