@@ -1880,10 +1880,10 @@ AnimalCreateInput _$AnimalCreateInputFromJson(Map<String, dynamic> json) =>
       idade: json['idade'] as int,
       formaManejo: json['formaManejo'] as String,
       mediaLeite: (json['mediaLeite'] as num?)?.toDouble(),
-      categoria: CategoriaCreateNestedOneWithoutAnimalInput.fromJson(
-          json['categoria'] as Map<String, dynamic>),
-      prodleite: ProdleiteCreateNestedOneWithoutAnimalInput.fromJson(
-          json['prodleite'] as Map<String, dynamic>),
+      //categoria: CategoriaCreateNestedOneWithoutAnimalInput.fromJson(
+          //json['categoria'] as Map<String, dynamic>),
+      //prodleite: ProdleiteCreateNestedOneWithoutAnimalInput.fromJson(
+          //json['prodleite'] as Map<String, dynamic>),
       itensvenda: json['itensvenda'] == null
           ? null
           : ItensvendaCreateNestedManyWithoutAnimalInput.fromJson(
@@ -1909,8 +1909,8 @@ Map<String, dynamic> _$AnimalCreateInputToJson(AnimalCreateInput instance) {
   }
 
   writeNotNull('mediaLeite', instance.mediaLeite);
-  val['categoria'] = instance.categoria.toJson();
-  val['prodleite'] = instance.prodleite.toJson();
+  //val['categoria'] = instance.categoria.toJson();
+  //val['prodleite'] = instance.prodleite.toJson();
   writeNotNull('itensvenda', instance.itensvenda?.toJson());
   return val;
 }

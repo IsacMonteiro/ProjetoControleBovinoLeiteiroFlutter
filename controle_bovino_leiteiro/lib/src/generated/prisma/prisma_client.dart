@@ -1533,8 +1533,8 @@ class AnimalCreateInput implements _i1.JsonSerializable {
     required this.idade,
     required this.formaManejo,
     this.mediaLeite,
-    required this.categoria,
-    required this.prodleite,
+    //required this.categoria,
+    //required this.prodleite,
     this.itensvenda,
   });
 
@@ -1557,9 +1557,9 @@ class AnimalCreateInput implements _i1.JsonSerializable {
 
   final double? mediaLeite;
 
-  final CategoriaCreateNestedOneWithoutAnimalInput categoria;
+  //final CategoriaCreateNestedOneWithoutAnimalInput categoria;
 
-  final ProdleiteCreateNestedOneWithoutAnimalInput prodleite;
+  //final ProdleiteCreateNestedOneWithoutAnimalInput prodleite;
 
   final ItensvendaCreateNestedManyWithoutAnimalInput? itensvenda;
 

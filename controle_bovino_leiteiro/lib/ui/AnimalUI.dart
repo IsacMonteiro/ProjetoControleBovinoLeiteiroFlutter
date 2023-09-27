@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_contas_receber/dominio/repositorio/cliente_repositorio.dart';
-//import 'package:flutter_contas_receber/src/generated/prisma/prisma_client.dart';
-//import 'package:flutter_contas_receber/ui/HelperUI.dart';
-
-import 'HelperUI.dart';
+import 'package:controle_bovino_leiteiro/dominio/repositorio/animal_repositorio.dart';
+import 'package:controle_bovino_leiteiro/src/generated/prisma/prisma_client.dart';
+import 'package:controle_bovino_leiteiro/ui/HelperUI.dart';
 
 class AnimalUI extends StatefulWidget {
   static const String ROTA = "/animalListagem";
@@ -18,15 +16,18 @@ class _AnimalUIState extends State<AnimalUI> {
   /*Declarando os objetos controller para capturar os dados
   digitados pelos campos de caixa de texto*/
   TextEditingController _controllerNome = TextEditingController();
-  TextEditingController _controllerCPF = TextEditingController();
-  TextEditingController _controllerEndereco = TextEditingController();
-  TextEditingController _controllerTelefone = TextEditingController();
+  TextEditingController _controllerDataNascimento = TextEditingController();
+  TextEditingController _controllerSexo = TextEditingController();
+  TextEditingController _controllerRaca = TextEditingController();
+  TextEditingController _controllerIdade = TextEditingController();
+  TextEditingController _controllerFormaManejo = TextEditingController();
+  TextEditingController _controllerMediaLeite = TextEditingController();
 
-  //ClienteRepositorio _clienteRepositorio = ClienteRepositorio();
+  AnimalRepositorio _animalRepositorio = AnimalRepositorio();
 
   final _formKey = GlobalKey<FormState>();
 
-  //late Cliente _cliente;
+  late Animal _animal;
 
   @override
   Widget build(BuildContext context) {
@@ -35,24 +36,33 @@ class _AnimalUIState extends State<AnimalUI> {
     var args = ModalRoute.of(context)!.settings.arguments;
 
     if (args != null) {
-      //Convertendo a variável args para o tipo Cliente
-   //   _cliente = args as Cliente;
+      //Convertendo a variável args para o tipo Animal
+         _animal = args as Animal;
+
       //Atribuindo os dados do objeto aos controlles
       //da caixa de texto
       setState(() {
-    //    _controllerNome.text = _cliente.nome;
-     //   _controllerCPF.text = _cliente.cpfcnpj;
-       // _controllerEndereco.text = _cliente.endereco;
-      //  _controllerTelefone.text = _cliente.contato;
+          _controllerNome.text = _animal.nome;
+          //_controllerDataNascimento.text = _animal.dataNascimento;
+          _controllerSexo.text = _animal.sexo;
+          _controllerRaca.text = _animal.raca;
+          //_controllerIdade.text = _animal.idade;
+          _controllerFormaManejo.text = _animal.formaManejo;
+          //_controllerMediaLeite.text = _animal.mediaLeite;
       });
     } else {
-      /*_cliente = Cliente(
-          codcliente: 0,
-          contato: "",
+      _animal = Animal(
+          codAnimal: 0,
+          codProdLeite: 0,
+          codCategoria: 0,
           nome: "",
-          endereco: "",
-          cpfcnpj: "",
-          datacadastro: DateTime.now());*/
+          dataNascimento: DateTime.now(),
+          sexo: "",
+          raca: "",
+          idade: 0,
+          formaManejo: "",
+          mediaLeite: 0.0
+          );
     }
 
     return Scaffold(
@@ -83,30 +93,42 @@ class _AnimalUIState extends State<AnimalUI> {
    * no objeto e salvar ou atualizar os dados.
    */
   void _defineDados() {
-   /* if (_cliente.codcliente == 0) {
+     if (_animal.codAnimal == 0) {
       //Incluindo os dados
-      _cliente = Cliente(
-          codcliente: 0,
+      _animal = Animal(
+          codAnimal: 0,
+          codProdLeite: 0,
+          codCategoria: 0,
           nome: _controllerNome.text,
-          cpfcnpj: _controllerCPF.text,
-          endereco: _controllerEndereco.text,
-          contato: _controllerTelefone.text,
-          datacadastro: DateTime.now());
+          dataNascimento: DateTime.now(),
+          sexo: _controllerSexo.text,
+          raca: _controllerRaca.text,
+          idade: 0,
+          formaManejo: _controllerFormaManejo.text,
+          mediaLeite: 0
+          );
 
-      _clienteRepositorio.inserir(_cliente);
+      _animalRepositorio.inserir(_animal);
     } else {
       //Salvando os dados
-      int codigo = _cliente.codcliente;
-      DateTime data = _cliente.datacadastro;
-      _cliente = Cliente(
-          codcliente: codigo,
+      int codigoAnimal = _animal.codAnimal;
+      int codigoProdLeite = _animal.codProdLeite;
+      int codigoCategoria = _animal.codCategoria;
+      DateTime data = _animal.dataNascimento;
+      _animal = Animal(
+          codAnimal: codigoAnimal,
+          codProdLeite: codigoProdLeite,
+          codCategoria: codigoCategoria,
           nome: _controllerNome.text,
-          cpfcnpj: _controllerCPF.text,
-          endereco: _controllerEndereco.text,
-          contato: _controllerTelefone.text,
-          datacadastro: data);
-      _clienteRepositorio.alterar(_cliente);
-    }*/
+          dataNascimento: data,
+          sexo: _controllerSexo.text,
+          raca: _controllerRaca.text,
+          idade: 0,
+          formaManejo: _controllerFormaManejo.text,
+          mediaLeite: 0
+          );
+      _animalRepositorio.alterar(_animal);
+    }
   }
 
   void _confirmar(BuildContext context) {
@@ -121,7 +143,7 @@ class _AnimalUIState extends State<AnimalUI> {
         O retorno será utilizado para notificar a janela anterior
         que o formulário atual foi fechado.
         */
-        //Navigator.pop(context, _cliente);
+        Navigator.pop(context, _animal);
       }
     });
   }
@@ -140,12 +162,18 @@ class _AnimalUIState extends State<AnimalUI> {
                 child: const Text("Confirmar")),
             HelperUI.builderTextFormField(
                 _controllerNome, "Nome", (value) => _validar(value)),
+            HelperUI.builderTextFormField(_controllerDataNascimento,
+                "Data de Nascimento", (value) => _validar(value)),
             HelperUI.builderTextFormField(
-                _controllerCPF, "CPF", (value) => _validar(value)),
+                _controllerSexo, "Sexo", (value) => _validar(value)),
             HelperUI.builderTextFormField(
-                _controllerEndereco, "Endereço", (value) => _validar(value)),
+                _controllerRaca, "Raça", (value) => _validar(value)),
             HelperUI.builderTextFormField(
-                _controllerTelefone, "Telefone", (value) => _validar(value)),
+                _controllerIdade, "Idade", (value) => _validar(value)),
+            HelperUI.builderTextFormField(_controllerFormaManejo,
+                "Forma de Manejo", (value) => _validar(value)),
+            HelperUI.builderTextFormField(_controllerMediaLeite,
+                "Media de Leite", (value) => _validar(value)),
           ],
         ),
       ),
