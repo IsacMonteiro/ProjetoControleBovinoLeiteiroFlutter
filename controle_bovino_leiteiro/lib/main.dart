@@ -21,13 +21,13 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const ContasReceberApp(),
 
-        ClienteUI.ROTA: (context) => const ClienteUI(), //IMPORT ClienteUI
-        ClienteListagemUI.ROTA: (context) => const ClienteListagemUI(), //IMPORT ClienteUI ClienteListagemUI
+        ClienteUI.ROTA: (context) => const ClienteUI(),
+        ClienteListagemUI.ROTA: (context) => const ClienteListagemUI(),
         '/contasreceber': (context) => const ClienteUI(),
 
         AnimalUI.ROTA: (context) => const AnimalUI(),
         AnimalListagem.ROTA: (context) => const AnimalListagem(),
-        '/cadastro': (context) => const AnimalUI(), //cria o botão de adicionar
+        '/cadastroanimal': (context) => const AnimalUI(), //cria o botão de adicionar
 
         CategoriaUI.ROTA: (context) => const CategoriaUI(),
         CategoriaListagemUI.ROTA: (context) => const CategoriaListagemUI(),
@@ -50,7 +50,8 @@ class _ContasReceberApp extends State<ContasReceberApp> {
     return Scaffold(
       drawer: NavigationDrawerApp(),
       appBar: AppBar(
-        title: const Text('Contas a Receber'),
+        backgroundColor: Colors.green,
+        title: const Text('Controle Bovino e Leiteiro')
       ),
       body: Container(),
     );
@@ -102,11 +103,9 @@ class NavigationDrawerApp extends StatelessWidget {
             context,
             "/produtos"),
 
-        HelperUI.builderListTile(_selectIndex == 2, Icons.pets,
-            "Animal Cadastro", context, AnimalUI.ROTA),
 
         HelperUI.builderListTile(_selectIndex == 2, Icons.pets,
-            "Animal Consulta", context, AnimalListagem.ROTA),
+            "Animal", context, AnimalListagem.ROTA),
 
         HelperUI.builderListTile(_selectIndex == 3, Icons.category,
             "Categoria", context, CategoriaListagemUI.ROTA),

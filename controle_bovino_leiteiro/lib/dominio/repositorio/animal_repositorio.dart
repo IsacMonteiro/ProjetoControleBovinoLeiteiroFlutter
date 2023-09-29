@@ -15,7 +15,6 @@ class AnimalRepositorio {
     try {
       animal = await _prismaClient.animal.create(
           data: AnimalCreateInput(
-              codAnimal: animal.codAnimal,
               //categoria: animal.codCategoria,
               //prodleite:animal.codProdLeite,
               nome: animal.nome, 

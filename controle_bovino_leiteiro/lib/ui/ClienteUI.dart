@@ -57,7 +57,8 @@ class _ClienteUIState extends State<ClienteUI> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cliente'),
+        backgroundColor: Colors.green,
+        title: const Text('Comprador'),
         actions: [
           IconButton(
               onPressed: () => _confirmar(context),

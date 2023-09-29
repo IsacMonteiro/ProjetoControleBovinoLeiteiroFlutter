@@ -12,9 +12,9 @@ class CategoriaUI extends StatefulWidget {
   _CategoriaUIState createState() => _CategoriaUIState();
 }
 
+
+//Declarando os objetos controller para capturar os dados digitados pelos campos de caixa de texto.
 class _CategoriaUIState extends State<CategoriaUI> {
-  /*Declarando os objetos controller para capturar os dados
-  digitados pelos campos de caixa de texto*/
   TextEditingController _controllerTipo = TextEditingController();
 
   CategoriaRepositorio _categoriaRepositorio = CategoriaRepositorio();
@@ -25,15 +25,11 @@ class _CategoriaUIState extends State<CategoriaUI> {
 
   @override
   Widget build(BuildContext context) {
-    /*Recuperando os argumentos enviados pela janela anterior
-    utilizando rotas.*/
     var args = ModalRoute.of(context)!.settings.arguments;
 
     if (args != null) {
-      //Convertendo a variável args para o tipo Cliente
       _categoria = args as Categoria;
-      //Atribuindo os dados do objeto aos controlles
-      //da caixa de texto
+      //Atribuindo os dados do objeto aos controlles da caixa de texto.
       setState(() {
         _controllerTipo.text = _categoria.tipo;
       });
@@ -46,6 +42,7 @@ class _CategoriaUIState extends State<CategoriaUI> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: const Text('Categoria'),
         actions: [
           IconButton(
@@ -57,8 +54,8 @@ class _CategoriaUIState extends State<CategoriaUI> {
     );
   }
 
-  //Função utilizada para validar os campos do Formulário.
-  //Verificando se o campo foi preenchido.
+
+  //Função utilizada para validar os campos do Formulário, verificando se o campo foi preenchido.
   String? _validar(String? valor) {
     if ((valor == null) || (valor.isEmpty)) {
       return "Campo obrigatório!";
@@ -66,10 +63,8 @@ class _CategoriaUIState extends State<CategoriaUI> {
     return null;
   }
 
-  /*   
-   * Método utilizado para atribuir os dados do formulário
-   * no objeto e salvar ou atualizar os dados.
-   */
+    
+  //Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
   void _defineDados() {
     if (_categoria.codCategoria == 0) {
       //Incluindo os dados
@@ -89,18 +84,14 @@ class _CategoriaUIState extends State<CategoriaUI> {
     }
   }
 
+
   void _confirmar(BuildContext context) {
+    //Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
     setState(() {
       if (_formKey.currentState!.validate()) {
-        /*Efetiva o conteúdo da caixa de texto e 
-        armazena nos objetos controllers*/
         _formKey.currentState!.save();
         _defineDados();
-        /*Fecha a janela atual e retorna como parâmetro
-        para a janela anterior o objeto atualizado ou incluído.
-        O retorno será utilizado para notificar a janela anterior
-        que o formulário atual foi fechado.
-        */
+
         Navigator.pop(context, _categoria);
       }
     });

@@ -49,6 +49,7 @@ class _ClienteListagemUI extends State<ClienteListagemUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: const Text('Cliente'),
       ),
       body: _body(),

@@ -49,7 +49,8 @@ class _CategoriaListagemUI extends State<CategoriaListagemUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categoria'),
+        backgroundColor: Colors.green,
+        title: const Text('Categoria')
       ),
       body: _body(),
       floatingActionButton: FloatingActionButton(
