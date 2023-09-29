@@ -12,7 +12,6 @@ class CategoriaUI extends StatefulWidget {
   _CategoriaUIState createState() => _CategoriaUIState();
 }
 
-
 //Declarando os objetos controller para capturar os dados digitados pelos campos de caixa de texto.
 class _CategoriaUIState extends State<CategoriaUI> {
   TextEditingController _controllerTipo = TextEditingController();
@@ -35,8 +34,8 @@ class _CategoriaUIState extends State<CategoriaUI> {
       });
     } else {
       _categoria = const Categoria(
-          codCategoria: 0,
-          tipo: "",
+        codCategoria: 0,
+        tipo: "",
       );
     }
 
@@ -54,7 +53,6 @@ class _CategoriaUIState extends State<CategoriaUI> {
     );
   }
 
-
   //Função utilizada para validar os campos do Formulário, verificando se o campo foi preenchido.
   String? _validar(String? valor) {
     if ((valor == null) || (valor.isEmpty)) {
@@ -63,27 +61,22 @@ class _CategoriaUIState extends State<CategoriaUI> {
     return null;
   }
 
-    
   //Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
   void _defineDados() {
     if (_categoria.codCategoria == 0) {
       //Incluindo os dados
       _categoria = Categoria(
-          codCategoria: 0,
-          tipo: _controllerTipo.text,
-          );
+        codCategoria: 0,
+        tipo: _controllerTipo.text,
+      );
       _categoriaRepositorio.inserir(_categoria);
     } else {
       //Salvando os dados
       int codigo = _categoria.codCategoria;
-      _categoria = Categoria(
-          codCategoria: codigo,
-          tipo: _controllerTipo.text
-          );
+      _categoria = Categoria(codCategoria: codigo, tipo: _controllerTipo.text);
       _categoriaRepositorio.alterar(_categoria);
     }
   }
-
 
   void _confirmar(BuildContext context) {
     //Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
@@ -104,13 +97,12 @@ class _CategoriaUIState extends State<CategoriaUI> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+            HelperUI.builderTextFormField(_controllerTipo, "Tipo", (value) => _validar(value)),
             ElevatedButton(
-                onPressed: () {
-                  _confirmar(context);
-                },
-                child: const Text("Confirmar")),
-            HelperUI.builderTextFormField(
-                _controllerTipo, "Tipo", (value) => _validar(value))
+                onPressed: () {_confirmar(context);},
+                style: ElevatedButton.styleFrom(backgroundColor:Colors.green),
+                child: const Text("Cadastrar"),
+            )
           ],
         ),
       ),
