@@ -1,5 +1,7 @@
-import 'package:controle_bovino_leiteiro/ui/AnimalListagem.dart';
+import 'package:controle_bovino_leiteiro/ui/AnimalListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/AnimalUI.dart';
+import 'package:controle_bovino_leiteiro/ui/CategoriaListagemUI.dart';
+import 'package:controle_bovino_leiteiro/ui/CategoriaUI.dart';
 import 'package:controle_bovino_leiteiro/ui/ClienteListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/ClienteUI.dart';
 import 'package:controle_bovino_leiteiro/ui/HelperUI.dart';
@@ -18,15 +20,18 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const ContasReceberApp(),
+
         ClienteUI.ROTA: (context) => const ClienteUI(), //IMPORT ClienteUI
-        ClienteListagemUI.ROTA: (context) =>
-            const ClienteListagemUI(), //IMPORT ClienteUI ClienteListagemUI
+        ClienteListagemUI.ROTA: (context) => const ClienteListagemUI(), //IMPORT ClienteUI ClienteListagemUI
         '/contasreceber': (context) => const ClienteUI(),
-        '/produtos': (context) => const ClienteUI(),
 
         AnimalUI.ROTA: (context) => const AnimalUI(),
+        AnimalListagem.ROTA: (context) => const AnimalListagem(),
         '/cadastro': (context) => const AnimalUI(), //cria o botão de adicionar
-        AnimalListagem.ROTA: (context) => const AnimalListagem()
+
+        CategoriaUI.ROTA: (context) => const CategoriaUI(),
+        CategoriaListagemUI.ROTA: (context) => const CategoriaListagemUI(),
+        '/cadastrocategoria': (context) => const CategoriaUI(),
       },
     );
   }
@@ -102,6 +107,9 @@ class NavigationDrawerApp extends StatelessWidget {
 
         HelperUI.builderListTile(_selectIndex == 2, Icons.pets,
             "Animal Consulta", context, AnimalListagem.ROTA),
+
+        HelperUI.builderListTile(_selectIndex == 3, Icons.category,
+            "Categoria", context, CategoriaListagemUI.ROTA),
       ],
     );
   }

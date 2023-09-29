@@ -8,7 +8,7 @@ datasource db {
 }
 
 model animal {
-  codAnimal      Int          @id
+  codAnimal      Int          @id @default(autoincrement())
   codProdLeite   Int
   codCategoria   Int
   nome           String       @db.VarChar(45)
@@ -27,13 +27,13 @@ model animal {
 }
 
 model categoria {
-  codCategoria Int      @id
+  codCategoria Int      @id @default(autoincrement())
   tipo         String   @db.VarChar(45)
   animal       animal[]
 }
 
 model comprador {
-  codComprador Int           @id
+  codComprador Int           @id @default(autoincrement())
   nome         String        @db.VarChar(45)
   telefone     String        @db.VarChar(45)
   endereco     String        @db.VarChar(200)
@@ -42,7 +42,7 @@ model comprador {
 }
 
 model itensvenda {
-  codItensVenda        Int
+  codItensVenda        Int         @default(autoincrement())
   codVendaAnimal       Int
   codAnimal            Int
   quantidade           Int
@@ -57,7 +57,7 @@ model itensvenda {
 }
 
 model prodleite {
-  codProdLeite   Int              @id
+  codProdLeite   Int              @id @default(autoincrement())
   dataProdLeite  DateTime         @db.Date
   qtdProdLeite   Float
   animal         animal[]
@@ -65,7 +65,7 @@ model prodleite {
 }
 
 model vendaanimal {
-  codVendaAnimal   Int          @id
+  codVendaAnimal   Int          @id @default(autoincrement())
   codComprador     Int
   dataVendaAnimal  DateTime     @db.Date
   valorTotalAnimal Float
@@ -76,7 +76,7 @@ model vendaanimal {
 }
 
 model vendaleite {
-  codVendaLeite   Int              @id
+  codVendaLeite   Int              @id @default(autoincrement())
   codComprador    Int
   dataVendaLeite  DateTime         @db.Date
   valorTotalLeite Float
@@ -87,7 +87,7 @@ model vendaleite {
 }
 
 model vendaprodleite {
-  codVendaProdLeite   Int
+  codVendaProdLeite   Int        @default(autoincrement())
   codVendaLeite       Int
   codProdLeite        Int
   qtdLeite            Float

@@ -1525,7 +1525,6 @@ class VendaprodleiteScalarWhereWithAggregatesInput
 @_i1.jsonSerializable
 class AnimalCreateInput implements _i1.JsonSerializable {
   const AnimalCreateInput({
-    required this.codAnimal,
     required this.nome,
     required this.dataNascimento,
     required this.sexo,
@@ -1533,15 +1532,13 @@ class AnimalCreateInput implements _i1.JsonSerializable {
     required this.idade,
     required this.formaManejo,
     this.mediaLeite,
-    //required this.categoria,
-    //required this.prodleite,
+    required this.categoria,
+    required this.prodleite,
     this.itensvenda,
   });
 
   factory AnimalCreateInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalCreateInputFromJson(json);
-
-  final int codAnimal;
 
   final String nome;
 
@@ -1557,9 +1554,9 @@ class AnimalCreateInput implements _i1.JsonSerializable {
 
   final double? mediaLeite;
 
-  //final CategoriaCreateNestedOneWithoutAnimalInput categoria;
+  final CategoriaCreateNestedOneWithoutAnimalInput categoria;
 
-  //final ProdleiteCreateNestedOneWithoutAnimalInput prodleite;
+  final ProdleiteCreateNestedOneWithoutAnimalInput prodleite;
 
   final ItensvendaCreateNestedManyWithoutAnimalInput? itensvenda;
 
@@ -1570,7 +1567,7 @@ class AnimalCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalUncheckedCreateInput implements _i1.JsonSerializable {
   const AnimalUncheckedCreateInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codProdLeite,
     required this.codCategoria,
     required this.nome,
@@ -1586,7 +1583,7 @@ class AnimalUncheckedCreateInput implements _i1.JsonSerializable {
   factory AnimalUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalUncheckedCreateInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codProdLeite;
 
@@ -1615,7 +1612,6 @@ class AnimalUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalUpdateInput implements _i1.JsonSerializable {
   const AnimalUpdateInput({
-    this.codAnimal,
     this.nome,
     this.dataNascimento,
     this.sexo,
@@ -1630,8 +1626,6 @@ class AnimalUpdateInput implements _i1.JsonSerializable {
 
   factory AnimalUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codAnimal;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -1705,7 +1699,7 @@ class AnimalUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalCreateManyInput implements _i1.JsonSerializable {
   const AnimalCreateManyInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codProdLeite,
     required this.codCategoria,
     required this.nome,
@@ -1720,7 +1714,7 @@ class AnimalCreateManyInput implements _i1.JsonSerializable {
   factory AnimalCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalCreateManyInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codProdLeite;
 
@@ -1747,7 +1741,6 @@ class AnimalCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalUpdateManyMutationInput implements _i1.JsonSerializable {
   const AnimalUpdateManyMutationInput({
-    this.codAnimal,
     this.nome,
     this.dataNascimento,
     this.sexo,
@@ -1759,8 +1752,6 @@ class AnimalUpdateManyMutationInput implements _i1.JsonSerializable {
 
   factory AnimalUpdateManyMutationInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codAnimal;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -1825,15 +1816,12 @@ class AnimalUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CategoriaCreateInput implements _i1.JsonSerializable {
   const CategoriaCreateInput({
-    required this.codCategoria,
     required this.tipo,
     this.animal,
   });
 
   factory CategoriaCreateInput.fromJson(Map<String, dynamic> json) =>
       _$CategoriaCreateInputFromJson(json);
-
-  final int codCategoria;
 
   final String tipo;
 
@@ -1846,7 +1834,7 @@ class CategoriaCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CategoriaUncheckedCreateInput implements _i1.JsonSerializable {
   const CategoriaUncheckedCreateInput({
-    required this.codCategoria,
+    this.codCategoria,
     required this.tipo,
     this.animal,
   });
@@ -1854,7 +1842,7 @@ class CategoriaUncheckedCreateInput implements _i1.JsonSerializable {
   factory CategoriaUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$CategoriaUncheckedCreateInputFromJson(json);
 
-  final int codCategoria;
+  final int? codCategoria;
 
   final String tipo;
 
@@ -1867,15 +1855,12 @@ class CategoriaUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CategoriaUpdateInput implements _i1.JsonSerializable {
   const CategoriaUpdateInput({
-    this.codCategoria,
     this.tipo,
     this.animal,
   });
 
   factory CategoriaUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$CategoriaUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codCategoria;
 
   final StringFieldUpdateOperationsInput? tipo;
 
@@ -1909,14 +1894,14 @@ class CategoriaUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CategoriaCreateManyInput implements _i1.JsonSerializable {
   const CategoriaCreateManyInput({
-    required this.codCategoria,
+    this.codCategoria,
     required this.tipo,
   });
 
   factory CategoriaCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$CategoriaCreateManyInputFromJson(json);
 
-  final int codCategoria;
+  final int? codCategoria;
 
   final String tipo;
 
@@ -1926,16 +1911,11 @@ class CategoriaCreateManyInput implements _i1.JsonSerializable {
 
 @_i1.jsonSerializable
 class CategoriaUpdateManyMutationInput implements _i1.JsonSerializable {
-  const CategoriaUpdateManyMutationInput({
-    this.codCategoria,
-    this.tipo,
-  });
+  const CategoriaUpdateManyMutationInput({this.tipo});
 
   factory CategoriaUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$CategoriaUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codCategoria;
 
   final StringFieldUpdateOperationsInput? tipo;
 
@@ -1967,7 +1947,6 @@ class CategoriaUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorCreateInput implements _i1.JsonSerializable {
   const CompradorCreateInput({
-    required this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -1977,8 +1956,6 @@ class CompradorCreateInput implements _i1.JsonSerializable {
 
   factory CompradorCreateInput.fromJson(Map<String, dynamic> json) =>
       _$CompradorCreateInputFromJson(json);
-
-  final int codComprador;
 
   final String nome;
 
@@ -1997,7 +1974,7 @@ class CompradorCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorUncheckedCreateInput implements _i1.JsonSerializable {
   const CompradorUncheckedCreateInput({
-    required this.codComprador,
+    this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -2008,7 +1985,7 @@ class CompradorUncheckedCreateInput implements _i1.JsonSerializable {
   factory CompradorUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$CompradorUncheckedCreateInputFromJson(json);
 
-  final int codComprador;
+  final int? codComprador;
 
   final String nome;
 
@@ -2027,7 +2004,6 @@ class CompradorUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorUpdateInput implements _i1.JsonSerializable {
   const CompradorUpdateInput({
-    this.codComprador,
     this.nome,
     this.telefone,
     this.endereco,
@@ -2037,8 +2013,6 @@ class CompradorUpdateInput implements _i1.JsonSerializable {
 
   factory CompradorUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$CompradorUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codComprador;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -2087,7 +2061,7 @@ class CompradorUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorCreateManyInput implements _i1.JsonSerializable {
   const CompradorCreateManyInput({
-    required this.codComprador,
+    this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -2096,7 +2070,7 @@ class CompradorCreateManyInput implements _i1.JsonSerializable {
   factory CompradorCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$CompradorCreateManyInputFromJson(json);
 
-  final int codComprador;
+  final int? codComprador;
 
   final String nome;
 
@@ -2111,7 +2085,6 @@ class CompradorCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorUpdateManyMutationInput implements _i1.JsonSerializable {
   const CompradorUpdateManyMutationInput({
-    this.codComprador,
     this.nome,
     this.telefone,
     this.endereco,
@@ -2120,8 +2093,6 @@ class CompradorUpdateManyMutationInput implements _i1.JsonSerializable {
   factory CompradorUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$CompradorUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codComprador;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -2163,7 +2134,7 @@ class CompradorUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaCreateInput implements _i1.JsonSerializable {
   const ItensvendaCreateInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
     required this.valorTotalItemAnimal,
@@ -2174,7 +2145,7 @@ class ItensvendaCreateInput implements _i1.JsonSerializable {
   factory ItensvendaCreateInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaCreateInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int quantidade;
 
@@ -2193,7 +2164,7 @@ class ItensvendaCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaUncheckedCreateInput implements _i1.JsonSerializable {
   const ItensvendaUncheckedCreateInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.codVendaAnimal,
     required this.codAnimal,
     required this.quantidade,
@@ -2204,7 +2175,7 @@ class ItensvendaUncheckedCreateInput implements _i1.JsonSerializable {
   factory ItensvendaUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaUncheckedCreateInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int codVendaAnimal;
 
@@ -2283,7 +2254,7 @@ class ItensvendaUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaCreateManyInput implements _i1.JsonSerializable {
   const ItensvendaCreateManyInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.codVendaAnimal,
     required this.codAnimal,
     required this.quantidade,
@@ -2294,7 +2265,7 @@ class ItensvendaCreateManyInput implements _i1.JsonSerializable {
   factory ItensvendaCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaCreateManyInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int codVendaAnimal;
 
@@ -2371,7 +2342,6 @@ class ItensvendaUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ProdleiteCreateInput implements _i1.JsonSerializable {
   const ProdleiteCreateInput({
-    required this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
     this.animal,
@@ -2380,8 +2350,6 @@ class ProdleiteCreateInput implements _i1.JsonSerializable {
 
   factory ProdleiteCreateInput.fromJson(Map<String, dynamic> json) =>
       _$ProdleiteCreateInputFromJson(json);
-
-  final int codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -2398,7 +2366,7 @@ class ProdleiteCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ProdleiteUncheckedCreateInput implements _i1.JsonSerializable {
   const ProdleiteUncheckedCreateInput({
-    required this.codProdLeite,
+    this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
     this.animal,
@@ -2408,7 +2376,7 @@ class ProdleiteUncheckedCreateInput implements _i1.JsonSerializable {
   factory ProdleiteUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$ProdleiteUncheckedCreateInputFromJson(json);
 
-  final int codProdLeite;
+  final int? codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -2426,7 +2394,6 @@ class ProdleiteUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ProdleiteUpdateInput implements _i1.JsonSerializable {
   const ProdleiteUpdateInput({
-    this.codProdLeite,
     this.dataProdLeite,
     this.qtdProdLeite,
     this.animal,
@@ -2435,8 +2402,6 @@ class ProdleiteUpdateInput implements _i1.JsonSerializable {
 
   factory ProdleiteUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$ProdleiteUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codProdLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
@@ -2481,7 +2446,7 @@ class ProdleiteUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ProdleiteCreateManyInput implements _i1.JsonSerializable {
   const ProdleiteCreateManyInput({
-    required this.codProdLeite,
+    this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
   });
@@ -2489,7 +2454,7 @@ class ProdleiteCreateManyInput implements _i1.JsonSerializable {
   factory ProdleiteCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$ProdleiteCreateManyInputFromJson(json);
 
-  final int codProdLeite;
+  final int? codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -2502,7 +2467,6 @@ class ProdleiteCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ProdleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   const ProdleiteUpdateManyMutationInput({
-    this.codProdLeite,
     this.dataProdLeite,
     this.qtdProdLeite,
   });
@@ -2510,8 +2474,6 @@ class ProdleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   factory ProdleiteUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$ProdleiteUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codProdLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
@@ -2548,7 +2510,6 @@ class ProdleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalCreateInput implements _i1.JsonSerializable {
   const VendaanimalCreateInput({
-    required this.codVendaAnimal,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
     this.itensvenda,
@@ -2557,8 +2518,6 @@ class VendaanimalCreateInput implements _i1.JsonSerializable {
 
   factory VendaanimalCreateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaanimalCreateInputFromJson(json);
-
-  final int codVendaAnimal;
 
   final DateTime dataVendaAnimal;
 
@@ -2575,7 +2534,7 @@ class VendaanimalCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalUncheckedCreateInput implements _i1.JsonSerializable {
   const VendaanimalUncheckedCreateInput({
-    required this.codVendaAnimal,
+    this.codVendaAnimal,
     required this.codComprador,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
@@ -2585,7 +2544,7 @@ class VendaanimalUncheckedCreateInput implements _i1.JsonSerializable {
   factory VendaanimalUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaanimalUncheckedCreateInputFromJson(json);
 
-  final int codVendaAnimal;
+  final int? codVendaAnimal;
 
   final int codComprador;
 
@@ -2603,7 +2562,6 @@ class VendaanimalUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalUpdateInput implements _i1.JsonSerializable {
   const VendaanimalUpdateInput({
-    this.codVendaAnimal,
     this.dataVendaAnimal,
     this.valorTotalAnimal,
     this.itensvenda,
@@ -2612,8 +2570,6 @@ class VendaanimalUpdateInput implements _i1.JsonSerializable {
 
   factory VendaanimalUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaanimalUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaAnimal;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaAnimal;
 
@@ -2658,7 +2614,7 @@ class VendaanimalUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalCreateManyInput implements _i1.JsonSerializable {
   const VendaanimalCreateManyInput({
-    required this.codVendaAnimal,
+    this.codVendaAnimal,
     required this.codComprador,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
@@ -2667,7 +2623,7 @@ class VendaanimalCreateManyInput implements _i1.JsonSerializable {
   factory VendaanimalCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$VendaanimalCreateManyInputFromJson(json);
 
-  final int codVendaAnimal;
+  final int? codVendaAnimal;
 
   final int codComprador;
 
@@ -2682,7 +2638,6 @@ class VendaanimalCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalUpdateManyMutationInput implements _i1.JsonSerializable {
   const VendaanimalUpdateManyMutationInput({
-    this.codVendaAnimal,
     this.dataVendaAnimal,
     this.valorTotalAnimal,
   });
@@ -2690,8 +2645,6 @@ class VendaanimalUpdateManyMutationInput implements _i1.JsonSerializable {
   factory VendaanimalUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaanimalUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaAnimal;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaAnimal;
 
@@ -2731,7 +2684,6 @@ class VendaanimalUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaleiteCreateInput implements _i1.JsonSerializable {
   const VendaleiteCreateInput({
-    required this.codVendaLeite,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
     required this.comprador,
@@ -2740,8 +2692,6 @@ class VendaleiteCreateInput implements _i1.JsonSerializable {
 
   factory VendaleiteCreateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaleiteCreateInputFromJson(json);
-
-  final int codVendaLeite;
 
   final DateTime dataVendaLeite;
 
@@ -2758,7 +2708,7 @@ class VendaleiteCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaleiteUncheckedCreateInput implements _i1.JsonSerializable {
   const VendaleiteUncheckedCreateInput({
-    required this.codVendaLeite,
+    this.codVendaLeite,
     required this.codComprador,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
@@ -2768,7 +2718,7 @@ class VendaleiteUncheckedCreateInput implements _i1.JsonSerializable {
   factory VendaleiteUncheckedCreateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaleiteUncheckedCreateInputFromJson(json);
 
-  final int codVendaLeite;
+  final int? codVendaLeite;
 
   final int codComprador;
 
@@ -2786,7 +2736,6 @@ class VendaleiteUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaleiteUpdateInput implements _i1.JsonSerializable {
   const VendaleiteUpdateInput({
-    this.codVendaLeite,
     this.dataVendaLeite,
     this.valorTotalLeite,
     this.comprador,
@@ -2795,8 +2744,6 @@ class VendaleiteUpdateInput implements _i1.JsonSerializable {
 
   factory VendaleiteUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaleiteUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
@@ -2841,7 +2788,7 @@ class VendaleiteUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaleiteCreateManyInput implements _i1.JsonSerializable {
   const VendaleiteCreateManyInput({
-    required this.codVendaLeite,
+    this.codVendaLeite,
     required this.codComprador,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
@@ -2850,7 +2797,7 @@ class VendaleiteCreateManyInput implements _i1.JsonSerializable {
   factory VendaleiteCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$VendaleiteCreateManyInputFromJson(json);
 
-  final int codVendaLeite;
+  final int? codVendaLeite;
 
   final int codComprador;
 
@@ -2865,7 +2812,6 @@ class VendaleiteCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   const VendaleiteUpdateManyMutationInput({
-    this.codVendaLeite,
     this.dataVendaLeite,
     this.valorTotalLeite,
   });
@@ -2873,8 +2819,6 @@ class VendaleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   factory VendaleiteUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaleiteUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
@@ -2914,7 +2858,7 @@ class VendaleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteCreateInput implements _i1.JsonSerializable {
   const VendaprodleiteCreateInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
     required this.valorTotalItemLeite,
@@ -2925,7 +2869,7 @@ class VendaprodleiteCreateInput implements _i1.JsonSerializable {
   factory VendaprodleiteCreateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaprodleiteCreateInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final double qtdLeite;
 
@@ -2944,7 +2888,7 @@ class VendaprodleiteCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteUncheckedCreateInput implements _i1.JsonSerializable {
   const VendaprodleiteUncheckedCreateInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.codVendaLeite,
     required this.codProdLeite,
     required this.qtdLeite,
@@ -2956,7 +2900,7 @@ class VendaprodleiteUncheckedCreateInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$VendaprodleiteUncheckedCreateInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final int codVendaLeite;
 
@@ -3038,7 +2982,7 @@ class VendaprodleiteUncheckedUpdateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteCreateManyInput implements _i1.JsonSerializable {
   const VendaprodleiteCreateManyInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.codVendaLeite,
     required this.codProdLeite,
     required this.qtdLeite,
@@ -3049,7 +2993,7 @@ class VendaprodleiteCreateManyInput implements _i1.JsonSerializable {
   factory VendaprodleiteCreateManyInput.fromJson(Map<String, dynamic> json) =>
       _$VendaprodleiteCreateManyInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final int codVendaLeite;
 
@@ -5129,33 +5073,6 @@ class ItensvendaUncheckedCreateNestedManyWithoutAnimalInput
 }
 
 @_i1.jsonSerializable
-class IntFieldUpdateOperationsInput implements _i1.JsonSerializable {
-  const IntFieldUpdateOperationsInput({
-    this.set,
-    this.increment,
-    this.decrement,
-    this.multiply,
-    this.divide,
-  });
-
-  factory IntFieldUpdateOperationsInput.fromJson(Map<String, dynamic> json) =>
-      _$IntFieldUpdateOperationsInputFromJson(json);
-
-  final int? set;
-
-  final int? increment;
-
-  final int? decrement;
-
-  final int? multiply;
-
-  final int? divide;
-
-  @override
-  Map<String, dynamic> toJson() => _$IntFieldUpdateOperationsInputToJson(this);
-}
-
-@_i1.jsonSerializable
 class StringFieldUpdateOperationsInput implements _i1.JsonSerializable {
   const StringFieldUpdateOperationsInput({this.set});
 
@@ -5183,6 +5100,33 @@ class DateTimeFieldUpdateOperationsInput implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$DateTimeFieldUpdateOperationsInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class IntFieldUpdateOperationsInput implements _i1.JsonSerializable {
+  const IntFieldUpdateOperationsInput({
+    this.set,
+    this.increment,
+    this.decrement,
+    this.multiply,
+    this.divide,
+  });
+
+  factory IntFieldUpdateOperationsInput.fromJson(Map<String, dynamic> json) =>
+      _$IntFieldUpdateOperationsInputFromJson(json);
+
+  final int? set;
+
+  final int? increment;
+
+  final int? decrement;
+
+  final int? multiply;
+
+  final int? divide;
+
+  @override
+  Map<String, dynamic> toJson() => _$IntFieldUpdateOperationsInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -7344,16 +7288,11 @@ class NestedFloatWithAggregatesFilter implements _i1.JsonSerializable {
 
 @_i1.jsonSerializable
 class CategoriaCreateWithoutAnimalInput implements _i1.JsonSerializable {
-  const CategoriaCreateWithoutAnimalInput({
-    required this.codCategoria,
-    required this.tipo,
-  });
+  const CategoriaCreateWithoutAnimalInput({required this.tipo});
 
   factory CategoriaCreateWithoutAnimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$CategoriaCreateWithoutAnimalInputFromJson(json);
-
-  final int codCategoria;
 
   final String tipo;
 
@@ -7366,7 +7305,7 @@ class CategoriaCreateWithoutAnimalInput implements _i1.JsonSerializable {
 class CategoriaUncheckedCreateWithoutAnimalInput
     implements _i1.JsonSerializable {
   const CategoriaUncheckedCreateWithoutAnimalInput({
-    required this.codCategoria,
+    this.codCategoria,
     required this.tipo,
   });
 
@@ -7374,7 +7313,7 @@ class CategoriaUncheckedCreateWithoutAnimalInput
           Map<String, dynamic> json) =>
       _$CategoriaUncheckedCreateWithoutAnimalInputFromJson(json);
 
-  final int codCategoria;
+  final int? codCategoria;
 
   final String tipo;
 
@@ -7407,7 +7346,6 @@ class CategoriaCreateOrConnectWithoutAnimalInput
 @_i1.jsonSerializable
 class ProdleiteCreateWithoutAnimalInput implements _i1.JsonSerializable {
   const ProdleiteCreateWithoutAnimalInput({
-    required this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
     this.vendaprodleite,
@@ -7416,8 +7354,6 @@ class ProdleiteCreateWithoutAnimalInput implements _i1.JsonSerializable {
   factory ProdleiteCreateWithoutAnimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$ProdleiteCreateWithoutAnimalInputFromJson(json);
-
-  final int codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -7434,7 +7370,7 @@ class ProdleiteCreateWithoutAnimalInput implements _i1.JsonSerializable {
 class ProdleiteUncheckedCreateWithoutAnimalInput
     implements _i1.JsonSerializable {
   const ProdleiteUncheckedCreateWithoutAnimalInput({
-    required this.codProdLeite,
+    this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
     this.vendaprodleite,
@@ -7444,7 +7380,7 @@ class ProdleiteUncheckedCreateWithoutAnimalInput
           Map<String, dynamic> json) =>
       _$ProdleiteUncheckedCreateWithoutAnimalInputFromJson(json);
 
-  final int codProdLeite;
+  final int? codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -7482,7 +7418,7 @@ class ProdleiteCreateOrConnectWithoutAnimalInput
 @_i1.jsonSerializable
 class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateWithoutAnimalInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
     required this.valorTotalItemAnimal,
@@ -7493,7 +7429,7 @@ class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$ItensvendaCreateWithoutAnimalInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int quantidade;
 
@@ -7512,7 +7448,7 @@ class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
 class ItensvendaUncheckedCreateWithoutAnimalInput
     implements _i1.JsonSerializable {
   const ItensvendaUncheckedCreateWithoutAnimalInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.codVendaAnimal,
     required this.quantidade,
     required this.valorUnitario,
@@ -7523,7 +7459,7 @@ class ItensvendaUncheckedCreateWithoutAnimalInput
           Map<String, dynamic> json) =>
       _$ItensvendaUncheckedCreateWithoutAnimalInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int codVendaAnimal;
 
@@ -7601,16 +7537,11 @@ class CategoriaUpsertWithoutAnimalInput implements _i1.JsonSerializable {
 
 @_i1.jsonSerializable
 class CategoriaUpdateWithoutAnimalInput implements _i1.JsonSerializable {
-  const CategoriaUpdateWithoutAnimalInput({
-    this.codCategoria,
-    this.tipo,
-  });
+  const CategoriaUpdateWithoutAnimalInput({this.tipo});
 
   factory CategoriaUpdateWithoutAnimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$CategoriaUpdateWithoutAnimalInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codCategoria;
 
   final StringFieldUpdateOperationsInput? tipo;
 
@@ -7663,7 +7594,6 @@ class ProdleiteUpsertWithoutAnimalInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ProdleiteUpdateWithoutAnimalInput implements _i1.JsonSerializable {
   const ProdleiteUpdateWithoutAnimalInput({
-    this.codProdLeite,
     this.dataProdLeite,
     this.qtdProdLeite,
     this.vendaprodleite,
@@ -7672,8 +7602,6 @@ class ProdleiteUpdateWithoutAnimalInput implements _i1.JsonSerializable {
   factory ProdleiteUpdateWithoutAnimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$ProdleiteUpdateWithoutAnimalInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codProdLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
@@ -7822,7 +7750,6 @@ class ItensvendaScalarWhereInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalCreateWithoutCategoriaInput implements _i1.JsonSerializable {
   const AnimalCreateWithoutCategoriaInput({
-    required this.codAnimal,
     required this.nome,
     required this.dataNascimento,
     required this.sexo,
@@ -7837,8 +7764,6 @@ class AnimalCreateWithoutCategoriaInput implements _i1.JsonSerializable {
   factory AnimalCreateWithoutCategoriaInput.fromJson(
           Map<String, dynamic> json) =>
       _$AnimalCreateWithoutCategoriaInputFromJson(json);
-
-  final int codAnimal;
 
   final String nome;
 
@@ -7867,7 +7792,7 @@ class AnimalCreateWithoutCategoriaInput implements _i1.JsonSerializable {
 class AnimalUncheckedCreateWithoutCategoriaInput
     implements _i1.JsonSerializable {
   const AnimalUncheckedCreateWithoutCategoriaInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codProdLeite,
     required this.nome,
     required this.dataNascimento,
@@ -7883,7 +7808,7 @@ class AnimalUncheckedCreateWithoutCategoriaInput
           Map<String, dynamic> json) =>
       _$AnimalUncheckedCreateWithoutCategoriaInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codProdLeite;
 
@@ -8069,7 +7994,6 @@ class AnimalScalarWhereInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalCreateWithoutCompradorInput implements _i1.JsonSerializable {
   const VendaanimalCreateWithoutCompradorInput({
-    required this.codVendaAnimal,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
     this.itensvenda,
@@ -8078,8 +8002,6 @@ class VendaanimalCreateWithoutCompradorInput implements _i1.JsonSerializable {
   factory VendaanimalCreateWithoutCompradorInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaanimalCreateWithoutCompradorInputFromJson(json);
-
-  final int codVendaAnimal;
 
   final DateTime dataVendaAnimal;
 
@@ -8096,7 +8018,7 @@ class VendaanimalCreateWithoutCompradorInput implements _i1.JsonSerializable {
 class VendaanimalUncheckedCreateWithoutCompradorInput
     implements _i1.JsonSerializable {
   const VendaanimalUncheckedCreateWithoutCompradorInput({
-    required this.codVendaAnimal,
+    this.codVendaAnimal,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
     this.itensvenda,
@@ -8106,7 +8028,7 @@ class VendaanimalUncheckedCreateWithoutCompradorInput
           Map<String, dynamic> json) =>
       _$VendaanimalUncheckedCreateWithoutCompradorInputFromJson(json);
 
-  final int codVendaAnimal;
+  final int? codVendaAnimal;
 
   final DateTime dataVendaAnimal;
 
@@ -8164,7 +8086,6 @@ class VendaanimalCreateManyCompradorInputEnvelope
 @_i1.jsonSerializable
 class VendaleiteCreateWithoutCompradorInput implements _i1.JsonSerializable {
   const VendaleiteCreateWithoutCompradorInput({
-    required this.codVendaLeite,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
     this.vendaprodleite,
@@ -8173,8 +8094,6 @@ class VendaleiteCreateWithoutCompradorInput implements _i1.JsonSerializable {
   factory VendaleiteCreateWithoutCompradorInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaleiteCreateWithoutCompradorInputFromJson(json);
-
-  final int codVendaLeite;
 
   final DateTime dataVendaLeite;
 
@@ -8191,7 +8110,7 @@ class VendaleiteCreateWithoutCompradorInput implements _i1.JsonSerializable {
 class VendaleiteUncheckedCreateWithoutCompradorInput
     implements _i1.JsonSerializable {
   const VendaleiteUncheckedCreateWithoutCompradorInput({
-    required this.codVendaLeite,
+    this.codVendaLeite,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
     this.vendaprodleite,
@@ -8201,7 +8120,7 @@ class VendaleiteUncheckedCreateWithoutCompradorInput
           Map<String, dynamic> json) =>
       _$VendaleiteUncheckedCreateWithoutCompradorInputFromJson(json);
 
-  final int codVendaLeite;
+  final int? codVendaLeite;
 
   final DateTime dataVendaLeite;
 
@@ -8458,7 +8377,6 @@ class VendaleiteScalarWhereInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalCreateWithoutItensvendaInput implements _i1.JsonSerializable {
   const AnimalCreateWithoutItensvendaInput({
-    required this.codAnimal,
     required this.nome,
     required this.dataNascimento,
     required this.sexo,
@@ -8473,8 +8391,6 @@ class AnimalCreateWithoutItensvendaInput implements _i1.JsonSerializable {
   factory AnimalCreateWithoutItensvendaInput.fromJson(
           Map<String, dynamic> json) =>
       _$AnimalCreateWithoutItensvendaInputFromJson(json);
-
-  final int codAnimal;
 
   final String nome;
 
@@ -8503,7 +8419,7 @@ class AnimalCreateWithoutItensvendaInput implements _i1.JsonSerializable {
 class AnimalUncheckedCreateWithoutItensvendaInput
     implements _i1.JsonSerializable {
   const AnimalUncheckedCreateWithoutItensvendaInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codProdLeite,
     required this.codCategoria,
     required this.nome,
@@ -8519,7 +8435,7 @@ class AnimalUncheckedCreateWithoutItensvendaInput
           Map<String, dynamic> json) =>
       _$AnimalUncheckedCreateWithoutItensvendaInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codProdLeite;
 
@@ -8568,7 +8484,6 @@ class AnimalCreateOrConnectWithoutItensvendaInput
 @_i1.jsonSerializable
 class VendaanimalCreateWithoutItensvendaInput implements _i1.JsonSerializable {
   const VendaanimalCreateWithoutItensvendaInput({
-    required this.codVendaAnimal,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
     required this.comprador,
@@ -8577,8 +8492,6 @@ class VendaanimalCreateWithoutItensvendaInput implements _i1.JsonSerializable {
   factory VendaanimalCreateWithoutItensvendaInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaanimalCreateWithoutItensvendaInputFromJson(json);
-
-  final int codVendaAnimal;
 
   final DateTime dataVendaAnimal;
 
@@ -8595,7 +8508,7 @@ class VendaanimalCreateWithoutItensvendaInput implements _i1.JsonSerializable {
 class VendaanimalUncheckedCreateWithoutItensvendaInput
     implements _i1.JsonSerializable {
   const VendaanimalUncheckedCreateWithoutItensvendaInput({
-    required this.codVendaAnimal,
+    this.codVendaAnimal,
     required this.codComprador,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
@@ -8605,7 +8518,7 @@ class VendaanimalUncheckedCreateWithoutItensvendaInput
           Map<String, dynamic> json) =>
       _$VendaanimalUncheckedCreateWithoutItensvendaInputFromJson(json);
 
-  final int codVendaAnimal;
+  final int? codVendaAnimal;
 
   final int codComprador;
 
@@ -8662,7 +8575,6 @@ class AnimalUpsertWithoutItensvendaInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalUpdateWithoutItensvendaInput implements _i1.JsonSerializable {
   const AnimalUpdateWithoutItensvendaInput({
-    this.codAnimal,
     this.nome,
     this.dataNascimento,
     this.sexo,
@@ -8677,8 +8589,6 @@ class AnimalUpdateWithoutItensvendaInput implements _i1.JsonSerializable {
   factory AnimalUpdateWithoutItensvendaInput.fromJson(
           Map<String, dynamic> json) =>
       _$AnimalUpdateWithoutItensvendaInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codAnimal;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -8771,7 +8681,6 @@ class VendaanimalUpsertWithoutItensvendaInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalUpdateWithoutItensvendaInput implements _i1.JsonSerializable {
   const VendaanimalUpdateWithoutItensvendaInput({
-    this.codVendaAnimal,
     this.dataVendaAnimal,
     this.valorTotalAnimal,
     this.comprador,
@@ -8780,8 +8689,6 @@ class VendaanimalUpdateWithoutItensvendaInput implements _i1.JsonSerializable {
   factory VendaanimalUpdateWithoutItensvendaInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaanimalUpdateWithoutItensvendaInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaAnimal;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaAnimal;
 
@@ -8824,7 +8731,6 @@ class VendaanimalUncheckedUpdateWithoutItensvendaInput
 @_i1.jsonSerializable
 class AnimalCreateWithoutProdleiteInput implements _i1.JsonSerializable {
   const AnimalCreateWithoutProdleiteInput({
-    required this.codAnimal,
     required this.nome,
     required this.dataNascimento,
     required this.sexo,
@@ -8839,8 +8745,6 @@ class AnimalCreateWithoutProdleiteInput implements _i1.JsonSerializable {
   factory AnimalCreateWithoutProdleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$AnimalCreateWithoutProdleiteInputFromJson(json);
-
-  final int codAnimal;
 
   final String nome;
 
@@ -8869,7 +8773,7 @@ class AnimalCreateWithoutProdleiteInput implements _i1.JsonSerializable {
 class AnimalUncheckedCreateWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const AnimalUncheckedCreateWithoutProdleiteInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codCategoria,
     required this.nome,
     required this.dataNascimento,
@@ -8885,7 +8789,7 @@ class AnimalUncheckedCreateWithoutProdleiteInput
           Map<String, dynamic> json) =>
       _$AnimalUncheckedCreateWithoutProdleiteInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codCategoria;
 
@@ -8955,7 +8859,7 @@ class AnimalCreateManyProdleiteInputEnvelope implements _i1.JsonSerializable {
 class VendaprodleiteCreateWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteCreateWithoutProdleiteInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
     required this.valorTotalItemLeite,
@@ -8966,7 +8870,7 @@ class VendaprodleiteCreateWithoutProdleiteInput
           Map<String, dynamic> json) =>
       _$VendaprodleiteCreateWithoutProdleiteInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final double qtdLeite;
 
@@ -8985,7 +8889,7 @@ class VendaprodleiteCreateWithoutProdleiteInput
 class VendaprodleiteUncheckedCreateWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteUncheckedCreateWithoutProdleiteInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.codVendaLeite,
     required this.qtdLeite,
     required this.valorLitro,
@@ -8996,7 +8900,7 @@ class VendaprodleiteUncheckedCreateWithoutProdleiteInput
           Map<String, dynamic> json) =>
       _$VendaprodleiteUncheckedCreateWithoutProdleiteInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final int codVendaLeite;
 
@@ -9227,7 +9131,7 @@ class VendaprodleiteScalarWhereInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateWithoutVendaanimalInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
     required this.valorTotalItemAnimal,
@@ -9238,7 +9142,7 @@ class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$ItensvendaCreateWithoutVendaanimalInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int quantidade;
 
@@ -9257,7 +9161,7 @@ class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
 class ItensvendaUncheckedCreateWithoutVendaanimalInput
     implements _i1.JsonSerializable {
   const ItensvendaUncheckedCreateWithoutVendaanimalInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
@@ -9268,7 +9172,7 @@ class ItensvendaUncheckedCreateWithoutVendaanimalInput
           Map<String, dynamic> json) =>
       _$ItensvendaUncheckedCreateWithoutVendaanimalInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int codAnimal;
 
@@ -9328,7 +9232,6 @@ class ItensvendaCreateManyVendaanimalInputEnvelope
 @_i1.jsonSerializable
 class CompradorCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   const CompradorCreateWithoutVendaanimalInput({
-    required this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -9338,8 +9241,6 @@ class CompradorCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   factory CompradorCreateWithoutVendaanimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$CompradorCreateWithoutVendaanimalInputFromJson(json);
-
-  final int codComprador;
 
   final String nome;
 
@@ -9358,7 +9259,7 @@ class CompradorCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
 class CompradorUncheckedCreateWithoutVendaanimalInput
     implements _i1.JsonSerializable {
   const CompradorUncheckedCreateWithoutVendaanimalInput({
-    required this.codComprador,
+    this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -9369,7 +9270,7 @@ class CompradorUncheckedCreateWithoutVendaanimalInput
           Map<String, dynamic> json) =>
       _$CompradorUncheckedCreateWithoutVendaanimalInputFromJson(json);
 
-  final int codComprador;
+  final int? codComprador;
 
   final String nome;
 
@@ -9494,7 +9395,6 @@ class CompradorUpsertWithoutVendaanimalInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorUpdateWithoutVendaanimalInput implements _i1.JsonSerializable {
   const CompradorUpdateWithoutVendaanimalInput({
-    this.codComprador,
     this.nome,
     this.telefone,
     this.endereco,
@@ -9504,8 +9404,6 @@ class CompradorUpdateWithoutVendaanimalInput implements _i1.JsonSerializable {
   factory CompradorUpdateWithoutVendaanimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$CompradorUpdateWithoutVendaanimalInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codComprador;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -9553,7 +9451,6 @@ class CompradorUncheckedUpdateWithoutVendaanimalInput
 @_i1.jsonSerializable
 class CompradorCreateWithoutVendaleiteInput implements _i1.JsonSerializable {
   const CompradorCreateWithoutVendaleiteInput({
-    required this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -9563,8 +9460,6 @@ class CompradorCreateWithoutVendaleiteInput implements _i1.JsonSerializable {
   factory CompradorCreateWithoutVendaleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$CompradorCreateWithoutVendaleiteInputFromJson(json);
-
-  final int codComprador;
 
   final String nome;
 
@@ -9583,7 +9478,7 @@ class CompradorCreateWithoutVendaleiteInput implements _i1.JsonSerializable {
 class CompradorUncheckedCreateWithoutVendaleiteInput
     implements _i1.JsonSerializable {
   const CompradorUncheckedCreateWithoutVendaleiteInput({
-    required this.codComprador,
+    this.codComprador,
     required this.nome,
     required this.telefone,
     required this.endereco,
@@ -9594,7 +9489,7 @@ class CompradorUncheckedCreateWithoutVendaleiteInput
           Map<String, dynamic> json) =>
       _$CompradorUncheckedCreateWithoutVendaleiteInputFromJson(json);
 
-  final int codComprador;
+  final int? codComprador;
 
   final String nome;
 
@@ -9634,7 +9529,7 @@ class CompradorCreateOrConnectWithoutVendaleiteInput
 class VendaprodleiteCreateWithoutVendaleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteCreateWithoutVendaleiteInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
     required this.valorTotalItemLeite,
@@ -9645,7 +9540,7 @@ class VendaprodleiteCreateWithoutVendaleiteInput
           Map<String, dynamic> json) =>
       _$VendaprodleiteCreateWithoutVendaleiteInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final double qtdLeite;
 
@@ -9664,7 +9559,7 @@ class VendaprodleiteCreateWithoutVendaleiteInput
 class VendaprodleiteUncheckedCreateWithoutVendaleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteUncheckedCreateWithoutVendaleiteInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.codProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
@@ -9675,7 +9570,7 @@ class VendaprodleiteUncheckedCreateWithoutVendaleiteInput
           Map<String, dynamic> json) =>
       _$VendaprodleiteUncheckedCreateWithoutVendaleiteInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final int codProdLeite;
 
@@ -9755,7 +9650,6 @@ class CompradorUpsertWithoutVendaleiteInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class CompradorUpdateWithoutVendaleiteInput implements _i1.JsonSerializable {
   const CompradorUpdateWithoutVendaleiteInput({
-    this.codComprador,
     this.nome,
     this.telefone,
     this.endereco,
@@ -9765,8 +9659,6 @@ class CompradorUpdateWithoutVendaleiteInput implements _i1.JsonSerializable {
   factory CompradorUpdateWithoutVendaleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$CompradorUpdateWithoutVendaleiteInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codComprador;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -9881,7 +9773,6 @@ class VendaprodleiteUpdateManyWithWhereWithoutVendaleiteInput
 class ProdleiteCreateWithoutVendaprodleiteInput
     implements _i1.JsonSerializable {
   const ProdleiteCreateWithoutVendaprodleiteInput({
-    required this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
     this.animal,
@@ -9890,8 +9781,6 @@ class ProdleiteCreateWithoutVendaprodleiteInput
   factory ProdleiteCreateWithoutVendaprodleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$ProdleiteCreateWithoutVendaprodleiteInputFromJson(json);
-
-  final int codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -9908,7 +9797,7 @@ class ProdleiteCreateWithoutVendaprodleiteInput
 class ProdleiteUncheckedCreateWithoutVendaprodleiteInput
     implements _i1.JsonSerializable {
   const ProdleiteUncheckedCreateWithoutVendaprodleiteInput({
-    required this.codProdLeite,
+    this.codProdLeite,
     required this.dataProdLeite,
     required this.qtdProdLeite,
     this.animal,
@@ -9918,7 +9807,7 @@ class ProdleiteUncheckedCreateWithoutVendaprodleiteInput
           Map<String, dynamic> json) =>
       _$ProdleiteUncheckedCreateWithoutVendaprodleiteInputFromJson(json);
 
-  final int codProdLeite;
+  final int? codProdLeite;
 
   final DateTime dataProdLeite;
 
@@ -9956,7 +9845,6 @@ class ProdleiteCreateOrConnectWithoutVendaprodleiteInput
 class VendaleiteCreateWithoutVendaprodleiteInput
     implements _i1.JsonSerializable {
   const VendaleiteCreateWithoutVendaprodleiteInput({
-    required this.codVendaLeite,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
     required this.comprador,
@@ -9965,8 +9853,6 @@ class VendaleiteCreateWithoutVendaprodleiteInput
   factory VendaleiteCreateWithoutVendaprodleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaleiteCreateWithoutVendaprodleiteInputFromJson(json);
-
-  final int codVendaLeite;
 
   final DateTime dataVendaLeite;
 
@@ -9983,7 +9869,7 @@ class VendaleiteCreateWithoutVendaprodleiteInput
 class VendaleiteUncheckedCreateWithoutVendaprodleiteInput
     implements _i1.JsonSerializable {
   const VendaleiteUncheckedCreateWithoutVendaprodleiteInput({
-    required this.codVendaLeite,
+    this.codVendaLeite,
     required this.codComprador,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
@@ -9993,7 +9879,7 @@ class VendaleiteUncheckedCreateWithoutVendaprodleiteInput
           Map<String, dynamic> json) =>
       _$VendaleiteUncheckedCreateWithoutVendaprodleiteInputFromJson(json);
 
-  final int codVendaLeite;
+  final int? codVendaLeite;
 
   final int codComprador;
 
@@ -10052,7 +9938,6 @@ class ProdleiteUpsertWithoutVendaprodleiteInput
 class ProdleiteUpdateWithoutVendaprodleiteInput
     implements _i1.JsonSerializable {
   const ProdleiteUpdateWithoutVendaprodleiteInput({
-    this.codProdLeite,
     this.dataProdLeite,
     this.qtdProdLeite,
     this.animal,
@@ -10061,8 +9946,6 @@ class ProdleiteUpdateWithoutVendaprodleiteInput
   factory ProdleiteUpdateWithoutVendaprodleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$ProdleiteUpdateWithoutVendaprodleiteInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codProdLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataProdLeite;
 
@@ -10127,7 +10010,6 @@ class VendaleiteUpsertWithoutVendaprodleiteInput
 class VendaleiteUpdateWithoutVendaprodleiteInput
     implements _i1.JsonSerializable {
   const VendaleiteUpdateWithoutVendaprodleiteInput({
-    this.codVendaLeite,
     this.dataVendaLeite,
     this.valorTotalLeite,
     this.comprador,
@@ -10136,8 +10018,6 @@ class VendaleiteUpdateWithoutVendaprodleiteInput
   factory VendaleiteUpdateWithoutVendaprodleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaleiteUpdateWithoutVendaprodleiteInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
@@ -10180,7 +10060,7 @@ class VendaleiteUncheckedUpdateWithoutVendaprodleiteInput
 @_i1.jsonSerializable
 class ItensvendaCreateManyAnimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateManyAnimalInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.codVendaAnimal,
     required this.quantidade,
     required this.valorUnitario,
@@ -10190,7 +10070,7 @@ class ItensvendaCreateManyAnimalInput implements _i1.JsonSerializable {
   factory ItensvendaCreateManyAnimalInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaCreateManyAnimalInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int codVendaAnimal;
 
@@ -10297,7 +10177,7 @@ class ItensvendaUncheckedUpdateManyWithoutItensvendaInput
 @_i1.jsonSerializable
 class AnimalCreateManyCategoriaInput implements _i1.JsonSerializable {
   const AnimalCreateManyCategoriaInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codProdLeite,
     required this.nome,
     required this.dataNascimento,
@@ -10311,7 +10191,7 @@ class AnimalCreateManyCategoriaInput implements _i1.JsonSerializable {
   factory AnimalCreateManyCategoriaInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalCreateManyCategoriaInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codProdLeite;
 
@@ -10336,7 +10216,6 @@ class AnimalCreateManyCategoriaInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalUpdateWithoutCategoriaInput implements _i1.JsonSerializable {
   const AnimalUpdateWithoutCategoriaInput({
-    this.codAnimal,
     this.nome,
     this.dataNascimento,
     this.sexo,
@@ -10351,8 +10230,6 @@ class AnimalUpdateWithoutCategoriaInput implements _i1.JsonSerializable {
   factory AnimalUpdateWithoutCategoriaInput.fromJson(
           Map<String, dynamic> json) =>
       _$AnimalUpdateWithoutCategoriaInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codAnimal;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -10467,7 +10344,7 @@ class AnimalUncheckedUpdateManyWithoutAnimalInput
 @_i1.jsonSerializable
 class VendaanimalCreateManyCompradorInput implements _i1.JsonSerializable {
   const VendaanimalCreateManyCompradorInput({
-    required this.codVendaAnimal,
+    this.codVendaAnimal,
     required this.dataVendaAnimal,
     required this.valorTotalAnimal,
   });
@@ -10476,7 +10353,7 @@ class VendaanimalCreateManyCompradorInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$VendaanimalCreateManyCompradorInputFromJson(json);
 
-  final int codVendaAnimal;
+  final int? codVendaAnimal;
 
   final DateTime dataVendaAnimal;
 
@@ -10490,7 +10367,7 @@ class VendaanimalCreateManyCompradorInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaleiteCreateManyCompradorInput implements _i1.JsonSerializable {
   const VendaleiteCreateManyCompradorInput({
-    required this.codVendaLeite,
+    this.codVendaLeite,
     required this.dataVendaLeite,
     required this.valorTotalLeite,
   });
@@ -10499,7 +10376,7 @@ class VendaleiteCreateManyCompradorInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$VendaleiteCreateManyCompradorInputFromJson(json);
 
-  final int codVendaLeite;
+  final int? codVendaLeite;
 
   final DateTime dataVendaLeite;
 
@@ -10513,7 +10390,6 @@ class VendaleiteCreateManyCompradorInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaanimalUpdateWithoutCompradorInput implements _i1.JsonSerializable {
   const VendaanimalUpdateWithoutCompradorInput({
-    this.codVendaAnimal,
     this.dataVendaAnimal,
     this.valorTotalAnimal,
     this.itensvenda,
@@ -10522,8 +10398,6 @@ class VendaanimalUpdateWithoutCompradorInput implements _i1.JsonSerializable {
   factory VendaanimalUpdateWithoutCompradorInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaanimalUpdateWithoutCompradorInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaAnimal;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaAnimal;
 
@@ -10590,7 +10464,6 @@ class VendaanimalUncheckedUpdateManyWithoutVendaanimalInput
 @_i1.jsonSerializable
 class VendaleiteUpdateWithoutCompradorInput implements _i1.JsonSerializable {
   const VendaleiteUpdateWithoutCompradorInput({
-    this.codVendaLeite,
     this.dataVendaLeite,
     this.valorTotalLeite,
     this.vendaprodleite,
@@ -10599,8 +10472,6 @@ class VendaleiteUpdateWithoutCompradorInput implements _i1.JsonSerializable {
   factory VendaleiteUpdateWithoutCompradorInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaleiteUpdateWithoutCompradorInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaLeite;
 
   final DateTimeFieldUpdateOperationsInput? dataVendaLeite;
 
@@ -10668,7 +10539,7 @@ class VendaleiteUncheckedUpdateManyWithoutVendaleiteInput
 @_i1.jsonSerializable
 class AnimalCreateManyProdleiteInput implements _i1.JsonSerializable {
   const AnimalCreateManyProdleiteInput({
-    required this.codAnimal,
+    this.codAnimal,
     required this.codCategoria,
     required this.nome,
     required this.dataNascimento,
@@ -10682,7 +10553,7 @@ class AnimalCreateManyProdleiteInput implements _i1.JsonSerializable {
   factory AnimalCreateManyProdleiteInput.fromJson(Map<String, dynamic> json) =>
       _$AnimalCreateManyProdleiteInputFromJson(json);
 
-  final int codAnimal;
+  final int? codAnimal;
 
   final int codCategoria;
 
@@ -10707,7 +10578,7 @@ class AnimalCreateManyProdleiteInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteCreateManyProdleiteInput implements _i1.JsonSerializable {
   const VendaprodleiteCreateManyProdleiteInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.codVendaLeite,
     required this.qtdLeite,
     required this.valorLitro,
@@ -10718,7 +10589,7 @@ class VendaprodleiteCreateManyProdleiteInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$VendaprodleiteCreateManyProdleiteInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final int codVendaLeite;
 
@@ -10736,7 +10607,6 @@ class VendaprodleiteCreateManyProdleiteInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class AnimalUpdateWithoutProdleiteInput implements _i1.JsonSerializable {
   const AnimalUpdateWithoutProdleiteInput({
-    this.codAnimal,
     this.nome,
     this.dataNascimento,
     this.sexo,
@@ -10751,8 +10621,6 @@ class AnimalUpdateWithoutProdleiteInput implements _i1.JsonSerializable {
   factory AnimalUpdateWithoutProdleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$AnimalUpdateWithoutProdleiteInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codAnimal;
 
   final StringFieldUpdateOperationsInput? nome;
 
@@ -10916,7 +10784,7 @@ class VendaprodleiteUncheckedUpdateManyWithoutVendaprodleiteInput
 @_i1.jsonSerializable
 class ItensvendaCreateManyVendaanimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateManyVendaanimalInput({
-    required this.codItensVenda,
+    this.codItensVenda,
     required this.codAnimal,
     required this.quantidade,
     required this.valorUnitario,
@@ -10927,7 +10795,7 @@ class ItensvendaCreateManyVendaanimalInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$ItensvendaCreateManyVendaanimalInputFromJson(json);
 
-  final int codItensVenda;
+  final int? codItensVenda;
 
   final int codAnimal;
 
@@ -11004,7 +10872,7 @@ class ItensvendaUncheckedUpdateWithoutVendaanimalInput
 @_i1.jsonSerializable
 class VendaprodleiteCreateManyVendaleiteInput implements _i1.JsonSerializable {
   const VendaprodleiteCreateManyVendaleiteInput({
-    required this.codVendaProdLeite,
+    this.codVendaProdLeite,
     required this.codProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
@@ -11015,7 +10883,7 @@ class VendaprodleiteCreateManyVendaleiteInput implements _i1.JsonSerializable {
           Map<String, dynamic> json) =>
       _$VendaprodleiteCreateManyVendaleiteInputFromJson(json);
 
-  final int codVendaProdLeite;
+  final int? codVendaProdLeite;
 
   final int codProdLeite;
 
@@ -19895,7 +19763,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250cm9sZV9ib3Zpbm9fbGVpdGVpcm8iCn0KCm1vZGVsIGFuaW1hbCB7CiAgY29kQW5pbWFsICAgICAgSW50ICAgICAgICAgIEBpZAogIGNvZFByb2RMZWl0ZSAgIEludAogIGNvZENhdGVnb3JpYSAgIEludAogIG5vbWUgICAgICAgICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICBkYXRhTmFzY2ltZW50byBEYXRlVGltZSAgICAgQGRiLkRhdGUKICBzZXhvICAgICAgICAgICBTdHJpbmcgICAgICAgQGRiLlZhckNoYXIoNDUpCiAgcmFjYSAgICAgICAgICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGlkYWRlICAgICAgICAgIEludAogIGZvcm1hTWFuZWpvICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICBtZWRpYUxlaXRlICAgICBGbG9hdD8KICBjYXRlZ29yaWEgICAgICBjYXRlZ29yaWEgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENhdGVnb3JpYV0sIHJlZmVyZW5jZXM6IFtjb2RDYXRlZ29yaWFdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfQW5pbWFsX0NhdGVnb3JpYTEiKQogIHByb2RsZWl0ZSAgICAgIHByb2RsZWl0ZSAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kUHJvZExlaXRlXSwgcmVmZXJlbmNlczogW2NvZFByb2RMZWl0ZV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19BbmltYWxfUHJvZExlaXRlMSIpCiAgaXRlbnN2ZW5kYSAgICAgaXRlbnN2ZW5kYVtdCgogIEBAaW5kZXgoW2NvZENhdGVnb3JpYV0sIG1hcDogImZrX0FuaW1hbF9DYXRlZ29yaWExX2lkeCIpCiAgQEBpbmRleChbY29kUHJvZExlaXRlXSwgbWFwOiAiZmtfQW5pbWFsX1Byb2RMZWl0ZTFfaWR4IikKfQoKbW9kZWwgY2F0ZWdvcmlhIHsKICBjb2RDYXRlZ29yaWEgSW50ICAgICAgQGlkCiAgdGlwbyAgICAgICAgIFN0cmluZyAgIEBkYi5WYXJDaGFyKDQ1KQogIGFuaW1hbCAgICAgICBhbmltYWxbXQp9Cgptb2RlbCBjb21wcmFkb3IgewogIGNvZENvbXByYWRvciBJbnQgICAgICAgICAgIEBpZAogIG5vbWUgICAgICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIHRlbGVmb25lICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGVuZGVyZWNvICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDIwMCkKICB2ZW5kYWFuaW1hbCAgdmVuZGFhbmltYWxbXQogIHZlbmRhbGVpdGUgICB2ZW5kYWxlaXRlW10KfQoKbW9kZWwgaXRlbnN2ZW5kYSB7CiAgY29kSXRlbnNWZW5kYSAgICAgICAgSW50CiAgY29kVmVuZGFBbmltYWwgICAgICAgSW50CiAgY29kQW5pbWFsICAgICAgICAgICAgSW50CiAgcXVhbnRpZGFkZSAgICAgICAgICAgSW50CiAgdmFsb3JVbml0YXJpbyAgICAgICAgRmxvYXQKICB2YWxvclRvdGFsSXRlbUFuaW1hbCBGbG9hdAogIGFuaW1hbCAgICAgICAgICAgICAgIGFuaW1hbCAgICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RBbmltYWxdLCByZWZlcmVuY2VzOiBbY29kQW5pbWFsXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfQW5pbWFsMSIpCiAgdmVuZGFhbmltYWwgICAgICAgICAgdmVuZGFhbmltYWwgQHJlbGF0aW9uKGZpZWxkczogW2NvZFZlbmRhQW5pbWFsXSwgcmVmZXJlbmNlczogW2NvZFZlbmRhQW5pbWFsXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfVmVuZGFBbmltYWwxIikKCiAgQEBpZChbY29kSXRlbnNWZW5kYSwgY29kVmVuZGFBbmltYWwsIGNvZEFuaW1hbF0pCiAgQEBpbmRleChbY29kQW5pbWFsXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9BbmltYWwxX2lkeCIpCiAgQEBpbmRleChbY29kVmVuZGFBbmltYWxdLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX1ZlbmRhQW5pbWFsMV9pZHgiKQp9Cgptb2RlbCBwcm9kbGVpdGUgewogIGNvZFByb2RMZWl0ZSAgIEludCAgICAgICAgICAgICAgQGlkCiAgZGF0YVByb2RMZWl0ZSAgRGF0ZVRpbWUgICAgICAgICBAZGIuRGF0ZQogIHF0ZFByb2RMZWl0ZSAgIEZsb2F0CiAgYW5pbWFsICAgICAgICAgYW5pbWFsW10KICB2ZW5kYXByb2RsZWl0ZSB2ZW5kYXByb2RsZWl0ZVtdCn0KCm1vZGVsIHZlbmRhYW5pbWFsIHsKICBjb2RWZW5kYUFuaW1hbCAgIEludCAgICAgICAgICBAaWQKICBjb2RDb21wcmFkb3IgICAgIEludAogIGRhdGFWZW5kYUFuaW1hbCAgRGF0ZVRpbWUgICAgIEBkYi5EYXRlCiAgdmFsb3JUb3RhbEFuaW1hbCBGbG9hdAogIGl0ZW5zdmVuZGEgICAgICAgaXRlbnN2ZW5kYVtdCiAgY29tcHJhZG9yICAgICAgICBjb21wcmFkb3IgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENvbXByYWRvcl0sIHJlZmVyZW5jZXM6IFtjb2RDb21wcmFkb3JdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yIikKCiAgQEBpbmRleChbY29kQ29tcHJhZG9yXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yX2lkeCIpCn0KCm1vZGVsIHZlbmRhbGVpdGUgewogIGNvZFZlbmRhTGVpdGUgICBJbnQgICAgICAgICAgICAgIEBpZAogIGNvZENvbXByYWRvciAgICBJbnQKICBkYXRhVmVuZGFMZWl0ZSAgRGF0ZVRpbWUgICAgICAgICBAZGIuRGF0ZQogIHZhbG9yVG90YWxMZWl0ZSBGbG9hdAogIGNvbXByYWRvciAgICAgICBjb21wcmFkb3IgICAgICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RDb21wcmFkb3JdLCByZWZlcmVuY2VzOiBbY29kQ29tcHJhZG9yXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfQ29tcHJhZG9yMSIpCiAgdmVuZGFwcm9kbGVpdGUgIHZlbmRhcHJvZGxlaXRlW10KCiAgQEBpbmRleChbY29kQ29tcHJhZG9yXSwgbWFwOiAiZmtfVmVuZGFMZWl0ZV9Db21wcmFkb3IxX2lkeCIpCn0KCm1vZGVsIHZlbmRhcHJvZGxlaXRlIHsKICBjb2RWZW5kYVByb2RMZWl0ZSAgIEludAogIGNvZFZlbmRhTGVpdGUgICAgICAgSW50CiAgY29kUHJvZExlaXRlICAgICAgICBJbnQKICBxdGRMZWl0ZSAgICAgICAgICAgIEZsb2F0CiAgdmFsb3JMaXRybyAgICAgICAgICBGbG9hdAogIHZhbG9yVG90YWxJdGVtTGVpdGUgRmxvYXQKICBwcm9kbGVpdGUgICAgICAgICAgIHByb2RsZWl0ZSAgQHJlbGF0aW9uKGZpZWxkczogW2NvZFByb2RMZWl0ZV0sIHJlZmVyZW5jZXM6IFtjb2RQcm9kTGVpdGVdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFMZWl0ZV9oYXNfUHJvZExlaXRlX1Byb2RMZWl0ZTEiKQogIHZlbmRhbGVpdGUgICAgICAgICAgdmVuZGFsZWl0ZSBAcmVsYXRpb24oZmllbGRzOiBbY29kVmVuZGFMZWl0ZV0sIHJlZmVyZW5jZXM6IFtjb2RWZW5kYUxlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9WZW5kYUxlaXRlMSIpCgogIEBAaWQoW2NvZFZlbmRhUHJvZExlaXRlLCBjb2RWZW5kYUxlaXRlLCBjb2RQcm9kTGVpdGVdKQogIEBAaW5kZXgoW2NvZFByb2RMZWl0ZV0sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9Qcm9kTGVpdGUxX2lkeCIpCiAgQEBpbmRleChbY29kVmVuZGFMZWl0ZV0sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9WZW5kYUxlaXRlMV9pZHgiKQp9Cg==',
+          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250cm9sZV9ib3Zpbm9fbGVpdGVpcm8iCn0KCm1vZGVsIGFuaW1hbCB7CiAgY29kQW5pbWFsICAgICAgSW50ICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgY29kUHJvZExlaXRlICAgSW50CiAgY29kQ2F0ZWdvcmlhICAgSW50CiAgbm9tZSAgICAgICAgICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGRhdGFOYXNjaW1lbnRvIERhdGVUaW1lICAgICBAZGIuRGF0ZQogIHNleG8gICAgICAgICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICByYWNhICAgICAgICAgICBTdHJpbmcgICAgICAgQGRiLlZhckNoYXIoNDUpCiAgaWRhZGUgICAgICAgICAgSW50CiAgZm9ybWFNYW5lam8gICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIG1lZGlhTGVpdGUgICAgIEZsb2F0PwogIGNhdGVnb3JpYSAgICAgIGNhdGVnb3JpYSAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ2F0ZWdvcmlhXSwgcmVmZXJlbmNlczogW2NvZENhdGVnb3JpYV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19BbmltYWxfQ2F0ZWdvcmlhMSIpCiAgcHJvZGxlaXRlICAgICAgcHJvZGxlaXRlICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RQcm9kTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kUHJvZExlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX0FuaW1hbF9Qcm9kTGVpdGUxIikKICBpdGVuc3ZlbmRhICAgICBpdGVuc3ZlbmRhW10KCiAgQEBpbmRleChbY29kQ2F0ZWdvcmlhXSwgbWFwOiAiZmtfQW5pbWFsX0NhdGVnb3JpYTFfaWR4IikKICBAQGluZGV4KFtjb2RQcm9kTGVpdGVdLCBtYXA6ICJma19BbmltYWxfUHJvZExlaXRlMV9pZHgiKQp9Cgptb2RlbCBjYXRlZ29yaWEgewogIGNvZENhdGVnb3JpYSBJbnQgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIHRpcG8gICAgICAgICBTdHJpbmcgICBAZGIuVmFyQ2hhcig0NSkKICBhbmltYWwgICAgICAgYW5pbWFsW10KfQoKbW9kZWwgY29tcHJhZG9yIHsKICBjb2RDb21wcmFkb3IgSW50ICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIG5vbWUgICAgICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIHRlbGVmb25lICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGVuZGVyZWNvICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDIwMCkKICB2ZW5kYWFuaW1hbCAgdmVuZGFhbmltYWxbXQogIHZlbmRhbGVpdGUgICB2ZW5kYWxlaXRlW10KfQoKbW9kZWwgaXRlbnN2ZW5kYSB7CiAgY29kSXRlbnNWZW5kYSAgICAgICAgSW50ICAgICAgICAgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGNvZFZlbmRhQW5pbWFsICAgICAgIEludAogIGNvZEFuaW1hbCAgICAgICAgICAgIEludAogIHF1YW50aWRhZGUgICAgICAgICAgIEludAogIHZhbG9yVW5pdGFyaW8gICAgICAgIEZsb2F0CiAgdmFsb3JUb3RhbEl0ZW1BbmltYWwgRmxvYXQKICBhbmltYWwgICAgICAgICAgICAgICBhbmltYWwgICAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQW5pbWFsXSwgcmVmZXJlbmNlczogW2NvZEFuaW1hbF0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX0FuaW1hbDEiKQogIHZlbmRhYW5pbWFsICAgICAgICAgIHZlbmRhYW5pbWFsIEByZWxhdGlvbihmaWVsZHM6IFtjb2RWZW5kYUFuaW1hbF0sIHJlZmVyZW5jZXM6IFtjb2RWZW5kYUFuaW1hbF0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX1ZlbmRhQW5pbWFsMSIpCgogIEBAaWQoW2NvZEl0ZW5zVmVuZGEsIGNvZFZlbmRhQW5pbWFsLCBjb2RBbmltYWxdKQogIEBAaW5kZXgoW2NvZEFuaW1hbF0sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfQW5pbWFsMV9pZHgiKQogIEBAaW5kZXgoW2NvZFZlbmRhQW5pbWFsXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9WZW5kYUFuaW1hbDFfaWR4IikKfQoKbW9kZWwgcHJvZGxlaXRlIHsKICBjb2RQcm9kTGVpdGUgICBJbnQgICAgICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgZGF0YVByb2RMZWl0ZSAgRGF0ZVRpbWUgICAgICAgICBAZGIuRGF0ZQogIHF0ZFByb2RMZWl0ZSAgIEZsb2F0CiAgYW5pbWFsICAgICAgICAgYW5pbWFsW10KICB2ZW5kYXByb2RsZWl0ZSB2ZW5kYXByb2RsZWl0ZVtdCn0KCm1vZGVsIHZlbmRhYW5pbWFsIHsKICBjb2RWZW5kYUFuaW1hbCAgIEludCAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGNvZENvbXByYWRvciAgICAgSW50CiAgZGF0YVZlbmRhQW5pbWFsICBEYXRlVGltZSAgICAgQGRiLkRhdGUKICB2YWxvclRvdGFsQW5pbWFsIEZsb2F0CiAgaXRlbnN2ZW5kYSAgICAgICBpdGVuc3ZlbmRhW10KICBjb21wcmFkb3IgICAgICAgIGNvbXByYWRvciAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ29tcHJhZG9yXSwgcmVmZXJlbmNlczogW2NvZENvbXByYWRvcl0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9Db21wcmFkb3IiKQoKICBAQGluZGV4KFtjb2RDb21wcmFkb3JdLCBtYXA6ICJma19WZW5kYUFuaW1hbF9Db21wcmFkb3JfaWR4IikKfQoKbW9kZWwgdmVuZGFsZWl0ZSB7CiAgY29kVmVuZGFMZWl0ZSAgIEludCAgICAgICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjb2RDb21wcmFkb3IgICAgSW50CiAgZGF0YVZlbmRhTGVpdGUgIERhdGVUaW1lICAgICAgICAgQGRiLkRhdGUKICB2YWxvclRvdGFsTGVpdGUgRmxvYXQKICBjb21wcmFkb3IgICAgICAgY29tcHJhZG9yICAgICAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ29tcHJhZG9yXSwgcmVmZXJlbmNlczogW2NvZENvbXByYWRvcl0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUxlaXRlX0NvbXByYWRvcjEiKQogIHZlbmRhcHJvZGxlaXRlICB2ZW5kYXByb2RsZWl0ZVtdCgogIEBAaW5kZXgoW2NvZENvbXByYWRvcl0sIG1hcDogImZrX1ZlbmRhTGVpdGVfQ29tcHJhZG9yMV9pZHgiKQp9Cgptb2RlbCB2ZW5kYXByb2RsZWl0ZSB7CiAgY29kVmVuZGFQcm9kTGVpdGUgICBJbnQgICAgICAgIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjb2RWZW5kYUxlaXRlICAgICAgIEludAogIGNvZFByb2RMZWl0ZSAgICAgICAgSW50CiAgcXRkTGVpdGUgICAgICAgICAgICBGbG9hdAogIHZhbG9yTGl0cm8gICAgICAgICAgRmxvYXQKICB2YWxvclRvdGFsSXRlbUxlaXRlIEZsb2F0CiAgcHJvZGxlaXRlICAgICAgICAgICBwcm9kbGVpdGUgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RQcm9kTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kUHJvZExlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9Qcm9kTGVpdGUxIikKICB2ZW5kYWxlaXRlICAgICAgICAgIHZlbmRhbGVpdGUgQHJlbGF0aW9uKGZpZWxkczogW2NvZFZlbmRhTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kVmVuZGFMZWl0ZV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUxlaXRlX2hhc19Qcm9kTGVpdGVfVmVuZGFMZWl0ZTEiKQoKICBAQGlkKFtjb2RWZW5kYVByb2RMZWl0ZSwgY29kVmVuZGFMZWl0ZSwgY29kUHJvZExlaXRlXSkKICBAQGluZGV4KFtjb2RQcm9kTGVpdGVdLCBtYXA6ICJma19WZW5kYUxlaXRlX2hhc19Qcm9kTGVpdGVfUHJvZExlaXRlMV9pZHgiKQogIEBAaW5kZXgoW2NvZFZlbmRhTGVpdGVdLCBtYXA6ICJma19WZW5kYUxlaXRlX2hhc19Qcm9kTGVpdGVfVmVuZGFMZWl0ZTFfaWR4IikKfQo=',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
           r'C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\node_modules\prisma\query-engine-windows.exe',
