@@ -6,4 +6,7 @@ C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_le
 C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
 C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf
+C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf
+C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf
 C:/Users/Micro/OneDrive/Imagens/ProjetoControleBovinoLeiteiro/controle_bovino_leiteiro/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:controle_bovino_leiteiro/dominio/repositorio/categoria_repositorio.dart';
+import 'package:controle_bovino_leiteiro/dominio/repositorio/CategoriaRepositorio.dart';
 import 'package:controle_bovino_leiteiro/src/generated/prisma/prisma_client.dart';
 import 'package:controle_bovino_leiteiro/ui/CategoriaUI.dart';
 
@@ -54,6 +54,7 @@ class _CategoriaListagemUI extends State<CategoriaListagemUI> {
       ),
       body: _body(),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.green,
           child: const Icon(Icons.add),
           onPressed: () async {
             final resultado =
@@ -91,7 +92,7 @@ class _CategoriaListagemUI extends State<CategoriaListagemUI> {
             Flexible(
                 child: TextField(
               decoration: const InputDecoration(
-                  labelText: "Pesquisar aqui...",
+                  labelText: "Pesquise por tipo...",
                   suffixIcon: Icon(Icons.search)),
               onChanged: (value) => _filtrar(value),
             )),

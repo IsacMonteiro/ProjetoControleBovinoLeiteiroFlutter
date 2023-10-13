@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:controle_bovino_leiteiro/dominio/repositorio/categoria_repositorio.dart';
+import 'package:controle_bovino_leiteiro/dominio/repositorio/CategoriaRepositorio.dart';
 import 'package:controle_bovino_leiteiro/src/generated/prisma/prisma_client.dart';
 import 'package:controle_bovino_leiteiro/ui/HelperUI.dart';
 
@@ -98,6 +98,7 @@ class _CategoriaUIState extends State<CategoriaUI> {
         child: Column(
           children: <Widget>[
             HelperUI.builderTextFormField(_controllerTipo, "Tipo", (value) => _validar(value)),
+            const Spacer(),
             ElevatedButton(
                 onPressed: () {_confirmar(context);},
                 style: ElevatedButton.styleFrom(backgroundColor:Colors.green),

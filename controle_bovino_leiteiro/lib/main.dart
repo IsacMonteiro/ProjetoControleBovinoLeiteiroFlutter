@@ -1,11 +1,15 @@
+import 'package:controle_bovino_leiteiro/src/generated/prisma/prisma_client.dart';
 import 'package:controle_bovino_leiteiro/ui/AnimalListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/AnimalUI.dart';
 import 'package:controle_bovino_leiteiro/ui/CategoriaListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/CategoriaUI.dart';
-import 'package:controle_bovino_leiteiro/ui/ClienteListagemUI.dart';
-import 'package:controle_bovino_leiteiro/ui/ClienteUI.dart';
+import 'package:controle_bovino_leiteiro/ui/CompradorListagemUI.dart';
+import 'package:controle_bovino_leiteiro/ui/CompradorUI.dart';
 import 'package:controle_bovino_leiteiro/ui/HelperUI.dart';
+import 'package:controle_bovino_leiteiro/ui/ProdLeiteListagem.dart';
+import 'package:controle_bovino_leiteiro/ui/ProdLeiteUI.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MainApp());
@@ -21,9 +25,9 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const ContasReceberApp(),
 
-        ClienteUI.ROTA: (context) => const ClienteUI(),
-        ClienteListagemUI.ROTA: (context) => const ClienteListagemUI(),
-        '/contasreceber': (context) => const ClienteUI(),
+        CompradorUI.ROTA: (context) => const CompradorUI(),
+        CompradorListagemUI.ROTA: (context) => const CompradorListagemUI(),
+        '/cadastrocomprador': (context) => const CompradorUI(),
 
         AnimalUI.ROTA: (context) => const AnimalUI(),
         AnimalListagem.ROTA: (context) => const AnimalListagem(),
@@ -32,6 +36,10 @@ class MainApp extends StatelessWidget {
         CategoriaUI.ROTA: (context) => const CategoriaUI(),
         CategoriaListagemUI.ROTA: (context) => const CategoriaListagemUI(),
         '/cadastrocategoria': (context) => const CategoriaUI(),
+
+        ProdLeiteUI.ROTA: (context) => const ProdLeiteUI(),
+        ProdLeiteListagemUI.ROTA: (context) => const ProdLeiteListagemUI(),
+        '/cadastroprodleite': (context) => const ProdLeiteUI(),
       },
     );
   }
@@ -50,9 +58,8 @@ class _ContasReceberApp extends State<ContasReceberApp> {
     return Scaffold(
       drawer: NavigationDrawerApp(),
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text('Controle Bovino e Leiteiro')
-      ),
+          backgroundColor: Colors.green,
+          title: const Text('Controle Bovino e Leiteiro')),
       body: Container(),
     );
   }
@@ -92,23 +99,18 @@ class NavigationDrawerApp extends StatelessWidget {
                 Text('GREEN FARM')
               ],
             )),
-        HelperUI.builderListTile(_selectIndex == 0, Icons.home, "Cliente",
-            context, ClienteListagemUI.ROTA),
 
-        HelperUI.builderListTile(
-            //IMPORT HelperUI
-            _selectIndex == 1,
-            Icons.home,
-            "Produto",
-            context,
-            "/produtos"),
+        HelperUI.builderListTile(_selectIndex == 0, Icons.person, "Comprador",
+            context, CompradorListagemUI.ROTA),
 
+        HelperUI.builderListTile(_selectIndex == 1, Icons.pets, "Animal",
+            context, AnimalListagem.ROTA),
 
-        HelperUI.builderListTile(_selectIndex == 2, Icons.pets,
-            "Animal", context, AnimalListagem.ROTA),
+        HelperUI.builderListTile(_selectIndex == 2, Icons.category, "Categoria",
+            context, CategoriaListagemUI.ROTA),
 
-        HelperUI.builderListTile(_selectIndex == 3, Icons.category,
-            "Categoria", context, CategoriaListagemUI.ROTA),
+         HelperUI.builderListTile(_selectIndex == 3, FontAwesomeIcons.wineBottle, "Produção de Leite",
+            context, ProdLeiteListagemUI.ROTA),
       ],
     );
   }
