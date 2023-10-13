@@ -48,10 +48,8 @@ class _CategoriaListagemUI extends State<CategoriaListagemUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text('Categoria')
-      ),
+      appBar:
+          AppBar(backgroundColor: Colors.green, title: const Text('Categoria')),
       body: _body(),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
@@ -135,6 +133,57 @@ class _CategoriaListagemUI extends State<CategoriaListagemUI> {
   }
 
   Widget _itemListView(int index) {
-    return ListTile(title: Text(_resultadoFiltro.elementAt(index).tipo));
+    final categoria = _resultadoFiltro.elementAt(index);
+    return ListTile(
+      title: Text(categoria.tipo),
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: () => _confirmarExclusao(context, categoria),
+      ),
+    );
+  }
+
+  void _confirmarExclusao(BuildContext context, Categoria categoria) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar Exclusão'),
+          content: Text('Deseja realmente excluir esta categoria?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final categoriaExcluida =
+                    await _categoriaRepositorio.excluir(categoria.codCategoria);
+                if (categoriaExcluida != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Categoria excluída com sucesso!'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  _buscarTodos();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Falha ao excluir a categoria.'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text('Excluir'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

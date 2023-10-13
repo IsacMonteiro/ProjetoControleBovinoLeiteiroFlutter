@@ -48,16 +48,15 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text('Produção de Leite')),
+      appBar:
+          AppBar(backgroundColor: Colors.green, title: const Text('Produção de Leite')),
       body: _body(),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
           child: const Icon(Icons.add),
           onPressed: () async {
             final resultado =
-                await Navigator.pushNamed(context, ProdLeiteUI.ROTA);
+                await Navigator.pushNamed(context,ProdLeiteUI.ROTA);
             _buscarTodos();
           }),
     );
@@ -76,7 +75,8 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
       } else {
         _resultadoFiltro = _resultado
             .where((element) =>
-                element.qtdProdLeite.toString().contains(valor.toLowerCase()))
+                element.qtdProdLeite.toString().contains(valor.toLowerCase())
+                )
             .toList();
       }
     });
@@ -128,13 +128,11 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
         },
       );
     } else {
-      return const Text("Nenhum resultado Encontrado!",
-          style: TextStyle(fontSize: 20));
+      return const Text("Nenhum resultado Encontrado!",style: TextStyle(fontSize: 20));
     }
   }
 
   Widget _itemListView(int index) {
-    return ListTile(
-        title: Text(_resultadoFiltro.elementAt(index).qtdProdLeite.toString()));
+    return ListTile(title: Text(_resultadoFiltro.elementAt(index).qtdProdLeite.toString()));
   }
 }
