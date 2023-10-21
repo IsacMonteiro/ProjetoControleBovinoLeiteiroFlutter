@@ -6,46 +6,50 @@ class CompradorRepositorio {
 
   void conectar() {
     _prismaClient = PrismaClient(
-        datasources:
-          const Datasources(db:"mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
+        datasources: const Datasources(
+            db: "mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
   }
 
-  void inserir(Comprador comprador) async {
+  Future<Comprador> inserir(Comprador comprador) async {
     conectar();
     try {
       comprador = await _prismaClient.comprador.create(
           data: CompradorCreateInput(
-              nome:comprador.nome,
-              telefone:comprador.telefone,
-              endereco:comprador.endereco
-          ));
+              nome: comprador.nome,
+              telefone: comprador.telefone,
+              endereco: comprador.endereco));
     } finally {
       await _prismaClient.$disconnect();
     }
+    return comprador;
   }
 
-  void alterar(Comprador? comprador) async {
+  Future<Comprador?> alterar(Comprador? comprador) async {
     conectar();
     try {
       comprador = await _prismaClient.comprador.update(
           data: CompradorUpdateInput(
               nome: StringFieldUpdateOperationsInput(set: comprador?.nome),
-              telefone: StringFieldUpdateOperationsInput(set: comprador?.telefone),
-              endereco: StringFieldUpdateOperationsInput(set: comprador?.endereco)
-          ),
-          where: CompradorWhereUniqueInput(codComprador: comprador?.codComprador));
+              telefone:
+                  StringFieldUpdateOperationsInput(set: comprador?.telefone),
+              endereco:
+                  StringFieldUpdateOperationsInput(set: comprador?.endereco)),
+          where:
+              CompradorWhereUniqueInput(codComprador: comprador?.codComprador));
     } catch (e) {
       print(e);
     } finally {
       await _prismaClient.$disconnect();
     }
+    return comprador;
   }
 
   Future<Comprador?> excluir(int codigo) async {
     conectar();
     Comprador? comprador;
     try {
-      comprador = await _prismaClient.comprador.delete(where:CompradorWhereUniqueInput(codComprador: codigo));
+      comprador = await _prismaClient.comprador
+          .delete(where: CompradorWhereUniqueInput(codComprador: codigo));
     } finally {
       await _prismaClient.$disconnect();
     }

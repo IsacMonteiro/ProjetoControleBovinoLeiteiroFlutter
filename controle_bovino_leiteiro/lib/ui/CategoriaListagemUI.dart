@@ -143,6 +143,8 @@ class _CategoriaListagemUI extends State<CategoriaListagemUI> {
     );
   }
 
+
+//Botão excluir.
   void _confirmarExclusao(BuildContext context, Categoria categoria) async {
     showDialog(
       context: context,

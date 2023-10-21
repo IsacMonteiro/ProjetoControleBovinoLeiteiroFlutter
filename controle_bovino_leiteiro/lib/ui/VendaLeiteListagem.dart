@@ -133,6 +133,58 @@ class _VendaLeiteListagemUI extends State<VendaLeiteListagemUI> {
   }
 
   Widget _itemListView(int index) {
-    return ListTile(title: Text(_resultadoFiltro.elementAt(index).valorTotalLeite.toString()));
+    final vendaleite = _resultadoFiltro.elementAt(index);
+    return ListTile(
+      title: Text(vendaleite.valorTotalLeite.toString()),
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: () => _confirmarExclusao(context, vendaleite),
+      ),
+    );
+  }
+
+//Botão excluir.
+  void _confirmarExclusao(BuildContext context, Vendaleite vendaleite) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar Exclusão'),
+          content: Text(
+              'Deseja realmente excluir a venda de leite pelo valor total selecionado?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final vendaLeiteExcluida = await _vendaLeiteRepositorio.excluir(vendaleite.codVendaLeite);
+                if (vendaLeiteExcluida != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Venda de leite excluída com sucesso!'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  _buscarTodos();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Falha ao excluir a venda de leite.'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text('Excluir'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

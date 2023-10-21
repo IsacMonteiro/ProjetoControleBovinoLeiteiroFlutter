@@ -48,7 +48,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text('Produção de Leite'),
+        title: const Text('Venda de Leite'),
         actions: [
           IconButton(
             onPressed: () => _confirmar(context),

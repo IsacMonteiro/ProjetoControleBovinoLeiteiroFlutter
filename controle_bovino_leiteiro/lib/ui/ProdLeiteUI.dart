@@ -99,16 +99,15 @@ class _ProdLeiteUIState extends State<ProdLeiteUI> {
   }
 
   // Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
-  void _defineDados() {
+  Future<void> _defineDados() async {
     if (_prodLeite.codProdLeite == 0) {
       // Incluindo os dados
       _prodLeite = Prodleite(
         codProdLeite: 0,
-        dataProdLeite:
-            _selectedDate ?? DateTime.now(), // Usar a data selecionada
+        dataProdLeite: _selectedDate ?? DateTime.now(), // Usar a data selecionada
         qtdProdLeite: double.parse(_controllerQtdProdLeite.text),
       );
-      _prodLeiteRepositorio.inserir(_prodLeite);
+     var resultado = await _prodLeiteRepositorio.inserir(_prodLeite);
     } else {
       // Salvando os dados
       int codigo = _prodLeite.codProdLeite;
@@ -118,20 +117,21 @@ class _ProdLeiteUIState extends State<ProdLeiteUI> {
             _selectedDate ?? DateTime.now(), // Usar a data selecionada
         qtdProdLeite: double.parse(_controllerQtdProdLeite.text),
       );
-      _prodLeiteRepositorio.alterar(_prodLeite);
+      var resultado = await _prodLeiteRepositorio.alterar(_prodLeite);
     }
   }
 
-  void _confirmar(BuildContext context) {
+  void _confirmar(BuildContext context) async {
     // Efetiva o conteúdo da caixa de texto e armazena nos objetos controladores
     setState(() {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        _defineDados();
-
-        Navigator.pop(context, _prodLeite);
       }
     });
+
+    await _defineDados();
+
+    Navigator.pop(context, _prodLeite);
   }
 
   Widget _body(BuildContext context) {

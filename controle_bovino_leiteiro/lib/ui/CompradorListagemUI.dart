@@ -133,6 +133,59 @@ class _CompradorListagemUI extends State<CompradorListagemUI> {
   }
 
   Widget _itemListView(int index) {
-    return ListTile(title: Text(_resultadoFiltro.elementAt(index).nome));
+    final comprador = _resultadoFiltro.elementAt(index);
+    return ListTile(
+      title: Text(comprador.nome),
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: () => _confirmarExclusao(context, comprador),
+      ),
+    );
+  }
+
+
+//Botão excluir.
+  void _confirmarExclusao(BuildContext context, Comprador comprador) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar Exclusão'),
+          content: Text('Deseja realmente excluir este comprador?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final compradorExcluido =
+                    await _compradorRepositorio.excluir(comprador.codComprador);
+                if (compradorExcluido != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Comprador excluído com sucesso!'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  _buscarTodos();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Falha ao excluir o comprador.'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text('Excluir'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

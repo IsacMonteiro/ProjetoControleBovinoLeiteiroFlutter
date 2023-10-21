@@ -48,15 +48,16 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(backgroundColor: Colors.green, title: const Text('Produção de Leite')),
+      appBar: AppBar(
+          backgroundColor: Colors.green,
+          title: const Text('Produção de Leite')),
       body: _body(),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
           child: const Icon(Icons.add),
           onPressed: () async {
             final resultado =
-                await Navigator.pushNamed(context,ProdLeiteUI.ROTA);
+                await Navigator.pushNamed(context, ProdLeiteUI.ROTA);
             _buscarTodos();
           }),
     );
@@ -75,8 +76,7 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
       } else {
         _resultadoFiltro = _resultado
             .where((element) =>
-                element.qtdProdLeite.toString().contains(valor.toLowerCase())
-                )
+                element.qtdProdLeite.toString().contains(valor.toLowerCase()))
             .toList();
       }
     });
@@ -128,11 +128,64 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
         },
       );
     } else {
-      return const Text("Nenhum resultado Encontrado!",style: TextStyle(fontSize: 20));
+      return const Text("Nenhum resultado Encontrado!",
+          style: TextStyle(fontSize: 20));
     }
   }
 
   Widget _itemListView(int index) {
-    return ListTile(title: Text(_resultadoFiltro.elementAt(index).qtdProdLeite.toString()));
+    final prodleite = _resultadoFiltro.elementAt(index);
+    return ListTile(
+      title: Text(prodleite.qtdProdLeite.toString()),
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: () => _confirmarExclusao(context, prodleite),
+      ),
+    );
+  }
+
+//Botão excluir.
+  void _confirmarExclusao(BuildContext context, Prodleite prodleite) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar Exclusão'),
+          content: Text(
+              'Deseja realmente excluir a produção de leite pela quantidade selecionada?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final prodLeiteExcluida = await _prodLeiteRepositorio.excluir(prodleite.codProdLeite);
+                if (prodLeiteExcluida != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Produção de leite excluída com sucesso!'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  _buscarTodos();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Falha ao excluir a produção de leite.'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text('Excluir'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

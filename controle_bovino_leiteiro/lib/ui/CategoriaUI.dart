@@ -62,32 +62,33 @@ class _CategoriaUIState extends State<CategoriaUI> {
   }
 
   //Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
-  void _defineDados() {
+  Future<void> _defineDados() async{
     if (_categoria.codCategoria == 0) {
       //Incluindo os dados
       _categoria = Categoria(
         codCategoria: 0,
         tipo: _controllerTipo.text,
       );
-      _categoriaRepositorio.inserir(_categoria);
+      var resultado = await _categoriaRepositorio.inserir(_categoria);
     } else {
       //Salvando os dados
       int codigo = _categoria.codCategoria;
       _categoria = Categoria(codCategoria: codigo, tipo: _controllerTipo.text);
-      _categoriaRepositorio.alterar(_categoria);
+      var resultado = await _categoriaRepositorio.alterar(_categoria);
     }
   }
 
-  void _confirmar(BuildContext context) {
+  void _confirmar(BuildContext context) async {
     //Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
     setState(() {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        _defineDados();
-
-        Navigator.pop(context, _categoria);
       }
     });
+
+    await _defineDados();
+
+    Navigator.pop(context, _categoria);
   }
 
   Widget _body(BuildContext context) {

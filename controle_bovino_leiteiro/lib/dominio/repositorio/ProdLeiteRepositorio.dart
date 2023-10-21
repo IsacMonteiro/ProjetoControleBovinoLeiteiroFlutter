@@ -6,45 +6,48 @@ class ProdLeiteRepositorio {
 
   void conectar() {
     _prismaClient = PrismaClient(
-        datasources:
-          const Datasources(db:"mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
+        datasources: const Datasources(
+            db: "mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
   }
 
-  void inserir(Prodleite prodleite) async {
+  Future<Prodleite> inserir(Prodleite prodleite) async {
     conectar();
     try {
       prodleite = await _prismaClient.prodleite.create(
-        data: ProdleiteCreateInput(
-                dataProdLeite:prodleite.dataProdLeite,
-                qtdProdLeite: prodleite.qtdProdLeite
-              )
-      );
+          data: ProdleiteCreateInput(
+              dataProdLeite: prodleite.dataProdLeite,
+              qtdProdLeite: prodleite.qtdProdLeite));
     } finally {
       await _prismaClient.$disconnect();
     }
+    return prodleite;
   }
 
-  void alterar(Prodleite? prodleite) async {
+  Future<Prodleite?>alterar(Prodleite? prodleite) async {
     conectar();
     try {
       prodleite = await _prismaClient.prodleite.update(
           data: ProdleiteUpdateInput(
-              dataProdLeite: DateTimeFieldUpdateOperationsInput(set: prodleite?.dataProdLeite),
-              qtdProdLeite: FloatFieldUpdateOperationsInput(set: prodleite?.qtdProdLeite)
-            ),
-          where: ProdleiteWhereUniqueInput(codProdLeite: prodleite?.codProdLeite));
+              dataProdLeite: DateTimeFieldUpdateOperationsInput(
+                  set: prodleite?.dataProdLeite),
+              qtdProdLeite: FloatFieldUpdateOperationsInput(
+                  set: prodleite?.qtdProdLeite)),
+          where:
+              ProdleiteWhereUniqueInput(codProdLeite: prodleite?.codProdLeite));
     } catch (e) {
       print(e);
     } finally {
       await _prismaClient.$disconnect();
     }
+    return prodleite;
   }
 
   Future<Prodleite?> excluir(int codigo) async {
     conectar();
     Prodleite? prodleite;
     try {
-      prodleite = await _prismaClient.prodleite.delete(where:ProdleiteWhereUniqueInput(codProdLeite: codigo));
+      prodleite = await _prismaClient.prodleite
+          .delete(where: ProdleiteWhereUniqueInput(codProdLeite: codigo));
     } finally {
       await _prismaClient.$disconnect();
     }

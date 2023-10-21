@@ -6,39 +6,43 @@ class CategoriaRepositorio {
 
   void conectar() {
     _prismaClient = PrismaClient(
-        datasources:
-          const Datasources(db:"mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
+        datasources: const Datasources(
+            db: "mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
   }
 
-  void inserir(Categoria categoria) async {
+  Future<Categoria> inserir(Categoria categoria) async {
     conectar();
     try {
-      categoria = await _prismaClient.categoria.create(
-          data: CategoriaCreateInput(tipo:categoria.tipo));
+      categoria = await _prismaClient.categoria
+          .create(data: CategoriaCreateInput(tipo: categoria.tipo));
     } finally {
       await _prismaClient.$disconnect();
     }
+    return categoria;
   }
 
-  void alterar(Categoria? categoria) async {
+  Future<Categoria?> alterar(Categoria? categoria) async {
     conectar();
     try {
       categoria = await _prismaClient.categoria.update(
           data: CategoriaUpdateInput(
               tipo: StringFieldUpdateOperationsInput(set: categoria?.tipo)),
-          where: CategoriaWhereUniqueInput(codCategoria: categoria?.codCategoria));
+          where:
+              CategoriaWhereUniqueInput(codCategoria: categoria?.codCategoria));
     } catch (e) {
       print(e);
     } finally {
       await _prismaClient.$disconnect();
     }
+    return categoria;
   }
 
   Future<Categoria?> excluir(int codigo) async {
     conectar();
     Categoria? categoria;
     try {
-      categoria = await _prismaClient.categoria.delete(where:CategoriaWhereUniqueInput(codCategoria: codigo));
+      categoria = await _prismaClient.categoria
+          .delete(where: CategoriaWhereUniqueInput(codCategoria: codigo));
     } finally {
       await _prismaClient.$disconnect();
     }

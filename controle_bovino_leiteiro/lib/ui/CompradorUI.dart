@@ -81,7 +81,7 @@ class _CompradorUIState extends State<CompradorUI> {
   }
 
   //Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
-  void _defineDados() {
+  Future<void> _defineDados() async{
     if (_comprador.codComprador == 0) {
       //Incluindo os dados
       _comprador = Comprador(
@@ -89,7 +89,7 @@ class _CompradorUIState extends State<CompradorUI> {
           nome: _controllerNome.text,
           telefone: _controllerTelefone.text,
           endereco: _controllerEndereco.text);
-      _compradorRepositorio.inserir(_comprador);
+      var resultado = await _compradorRepositorio.inserir(_comprador);
     } else {
       //Salvando os dados
       int codigo = _comprador.codComprador;
@@ -98,20 +98,20 @@ class _CompradorUIState extends State<CompradorUI> {
           nome: _controllerNome.text,
           telefone: _controllerTelefone.text,
           endereco: _controllerEndereco.text);
-      _compradorRepositorio.alterar(_comprador);
+      var resultado = await _compradorRepositorio.alterar(_comprador);
     }
   }
 
-  void _confirmar(BuildContext context) {
+  void _confirmar(BuildContext context) async {
     //Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
     setState(() {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        _defineDados();
-
-        Navigator.pop(context, _comprador);
       }
     });
+    await _defineDados();
+
+    Navigator.pop(context, _comprador);
   }
 
   Widget _body(BuildContext context) {
