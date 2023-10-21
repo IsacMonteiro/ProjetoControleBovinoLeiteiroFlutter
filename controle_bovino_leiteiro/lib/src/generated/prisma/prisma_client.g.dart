@@ -1879,10 +1879,10 @@ AnimalCreateInput _$AnimalCreateInputFromJson(Map<String, dynamic> json) =>
       idade: json['idade'] as int,
       formaManejo: json['formaManejo'] as String,
       mediaLeite: (json['mediaLeite'] as num?)?.toDouble(),
-      //categoria: CategoriaCreateNestedOneWithoutAnimalInput.fromJson(
-         // json['categoria'] as Map<String, dynamic>),
-      //prodleite: ProdleiteCreateNestedOneWithoutAnimalInput.fromJson(
-          //json['prodleite'] as Map<String, dynamic>),
+      categoria: CategoriaCreateNestedOneWithoutAnimalInput.fromJson(
+          json['categoria'] as Map<String, dynamic>),
+      prodleite: ProdleiteCreateNestedOneWithoutAnimalInput.fromJson(
+          json['prodleite'] as Map<String, dynamic>),
       itensvenda: json['itensvenda'] == null
           ? null
           : ItensvendaCreateNestedManyWithoutAnimalInput.fromJson(

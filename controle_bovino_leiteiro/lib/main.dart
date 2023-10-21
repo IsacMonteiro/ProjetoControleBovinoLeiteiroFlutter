@@ -32,7 +32,7 @@ class MainApp extends StatelessWidget {
         '/cadastrocomprador': (context) => const CompradorUI(),
 
         AnimalUI.ROTA: (context) => const AnimalUI(),
-        AnimalListagem.ROTA: (context) => const AnimalListagem(),
+        AnimalListagemUI.ROTA: (context) => const AnimalListagemUI(),
         '/cadastroanimal': (context) => const AnimalUI(), //cria o botão de adicionar
 
         CategoriaUI.ROTA: (context) => const CategoriaUI(),
@@ -110,7 +110,7 @@ class NavigationDrawerApp extends StatelessWidget {
             context, CompradorListagemUI.ROTA),
 
         HelperUI.builderListTile(_selectIndex == 1, Icons.pets, "Animal",
-            context, AnimalListagem.ROTA),
+            context, AnimalListagemUI.ROTA),
 
         HelperUI.builderListTile(_selectIndex == 2, Icons.category, "Categoria",
             context, CategoriaListagemUI.ROTA),

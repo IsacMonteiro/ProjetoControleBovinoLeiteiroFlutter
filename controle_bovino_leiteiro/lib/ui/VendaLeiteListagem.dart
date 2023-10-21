@@ -117,10 +117,10 @@ class _VendaLeiteListagemUI extends State<VendaLeiteListagemUI> {
           return GestureDetector(
             onTap: () async {
               //Recuperando o elemento selecionado
-              Vendaleite c = _resultadoFiltro.elementAt(index);
+              Vendaleite v = _resultadoFiltro.elementAt(index);
               final resultado = await Navigator.pushNamed(
                   context, VendaLeiteUI.ROTA,
-                  arguments: c);
+                  arguments: v);
               _buscarTodos();
             },
             child: _itemListView(index),

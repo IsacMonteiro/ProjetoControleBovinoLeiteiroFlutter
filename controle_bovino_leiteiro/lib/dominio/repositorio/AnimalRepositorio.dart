@@ -6,18 +6,24 @@ class AnimalRepositorio {
 
   void conectar() {
     _prismaClient = PrismaClient(
-        datasources:
-            Datasources(db:"mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
+        datasources: Datasources(
+            db: "mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
   }
 
-  void inserir(Animal animal) async {
+  Future<Animal> inserir(Animal animal) async {
     conectar();
     try {
       animal = await _prismaClient.animal.create(
           data: AnimalCreateInput(
-              //categoria: animal.codCategoria,
-              //prodleite:animal.codProdLeite,
-              nome: animal.nome, 
+              categoria: CategoriaCreateNestedOneWithoutAnimalInput(
+                connect: CategoriaWhereUniqueInput(
+                    codCategoria: animal.codCategoria),
+              ),
+              prodleite: ProdleiteCreateNestedOneWithoutAnimalInput(
+                connect: ProdleiteWhereUniqueInput(
+                    codProdLeite: animal.codProdLeite),
+              ),
+              nome: animal.nome,
               dataNascimento: animal.dataNascimento,
               sexo: animal.sexo,
               raca: animal.raca,
@@ -26,28 +32,29 @@ class AnimalRepositorio {
     } finally {
       await _prismaClient.$disconnect();
     }
+    return animal;
   }
 
-  void alterar(Animal? animal) async {
+  Future<Animal?> alterar(Animal? animal) async {
     conectar();
     try {
       animal = await _prismaClient.animal.update(
           data: AnimalUpdateInput(
-              nome: StringFieldUpdateOperationsInput(set:animal?.nome),
-              dataNascimento: DateTimeFieldUpdateOperationsInput(
-                  set: animal?.dataNascimento),
-              sexo: StringFieldUpdateOperationsInput(set: animal?.sexo),
-              raca: StringFieldUpdateOperationsInput(set: animal?.raca),
-              idade: IntFieldUpdateOperationsInput(set: animal?.idade),
-              formaManejo: StringFieldUpdateOperationsInput(set: animal?.formaManejo),
-              //mediaLeite: IntFieldUpdateOperationsInput(set: animal?.mediaLeite)
-              ),
+            nome: StringFieldUpdateOperationsInput(set: animal?.nome),
+            dataNascimento: DateTimeFieldUpdateOperationsInput(set: animal?.dataNascimento),
+            sexo: StringFieldUpdateOperationsInput(set: animal?.sexo),
+            raca: StringFieldUpdateOperationsInput(set: animal?.raca),
+            idade: IntFieldUpdateOperationsInput(set: animal?.idade),
+            formaManejo:StringFieldUpdateOperationsInput(set: animal?.formaManejo),
+            //mediaLeite: FloatFieldUpdateOperationsInput(set: animal?.mediaLeite)
+          ),
           where: AnimalWhereUniqueInput(codAnimal: animal?.codAnimal));
     } catch (e) {
       print(e);
     } finally {
       await _prismaClient.$disconnect();
     }
+    return animal;
   }
 
   Future<Animal?> excluir(int codigo) async {
@@ -55,7 +62,7 @@ class AnimalRepositorio {
     Animal? animal;
     try {
       animal = await _prismaClient.animal
-          .delete(where: AnimalWhereUniqueInput(codAnimal:codigo));
+          .delete(where: AnimalWhereUniqueInput(codAnimal: codigo));
     } finally {
       await _prismaClient.$disconnect();
     }
@@ -67,7 +74,7 @@ class AnimalRepositorio {
     Animal? animal;
     try {
       animal = await _prismaClient.animal
-          .findUnique(where: AnimalWhereUniqueInput(codAnimal:codigo));
+          .findUnique(where: AnimalWhereUniqueInput(codAnimal: codigo));
     } finally {
       await _prismaClient.$disconnect();
     }
@@ -75,7 +82,7 @@ class AnimalRepositorio {
     return animal;
   }
 
-  Future<Iterable<Animal>>consultarTodos() async {
+  Future<Iterable<Animal>> consultarTodos() async {
     conectar();
     Iterable<Animal> clientes;
     try {

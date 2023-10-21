@@ -103,7 +103,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
   }
 
   // Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
-  void _defineDados() {
+  Future<void> _defineDados() async{
     if (_vendaLeite.codVendaLeite == 0) {
       // Incluindo os dados
       _vendaLeite = Vendaleite(
@@ -113,7 +113,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
             _selectedDate ?? DateTime.now(), // Usar a data selecionada
         valorTotalLeite: double.parse(_controllerValorTotalLeite.text),
       );
-      _vendaLeiteRepositorio.inserir(_vendaLeite);
+    var resultado = await _vendaLeiteRepositorio.inserir(_vendaLeite);
     } else {
       // Salvando os dados
       int codigo = _vendaLeite.codVendaLeite;
@@ -124,7 +124,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
         dataVendaLeite:_selectedDate ?? DateTime.now(), // Usar a data selecionada
         valorTotalLeite: double.parse(_controllerValorTotalLeite.text),
       );
-      _vendaLeiteRepositorio.alterar(_vendaLeite);
+    var resultado = await _vendaLeiteRepositorio.alterar(_vendaLeite);
     }
   }
 
@@ -133,11 +133,12 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     setState(() {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        _defineDados();
-
-        Navigator.pop(context, _vendaLeite);
       }
     });
+
+    _defineDados();
+
+    Navigator.pop(context, _vendaLeite);
   }
 
   Widget _body(BuildContext context) {

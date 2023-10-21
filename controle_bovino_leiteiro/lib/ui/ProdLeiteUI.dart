@@ -32,8 +32,7 @@ class _ProdLeiteUIState extends State<ProdLeiteUI> {
       _prodLeite = args as Prodleite;
       // Atribuindo os dados do objeto aos controladores da caixa de texto.
       setState(() {
-        _controllerDataProdLeite.text =
-            DateFormat('dd/MM/yyyy').format(_prodLeite.dataProdLeite);
+        _controllerDataProdLeite.text = DateFormat('dd/MM/yyyy').format(_prodLeite.dataProdLeite);
         _controllerQtdProdLeite.text = _prodLeite.qtdProdLeite.toString();
       });
     } else {
@@ -113,8 +112,7 @@ class _ProdLeiteUIState extends State<ProdLeiteUI> {
       int codigo = _prodLeite.codProdLeite;
       _prodLeite = Prodleite(
         codProdLeite: codigo,
-        dataProdLeite:
-            _selectedDate ?? DateTime.now(), // Usar a data selecionada
+        dataProdLeite: _selectedDate ?? DateTime.now(), // Usar a data selecionada
         qtdProdLeite: double.parse(_controllerQtdProdLeite.text),
       );
       var resultado = await _prodLeiteRepositorio.alterar(_prodLeite);

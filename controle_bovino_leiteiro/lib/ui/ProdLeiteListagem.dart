@@ -117,10 +117,10 @@ class _ProdLeiteListagemUI extends State<ProdLeiteListagemUI> {
           return GestureDetector(
             onTap: () async {
               //Recuperando o elemento selecionado
-              Prodleite c = _resultadoFiltro.elementAt(index);
+              Prodleite p = _resultadoFiltro.elementAt(index);
               final resultado = await Navigator.pushNamed(
                   context, ProdLeiteUI.ROTA,
-                  arguments: c);
+                  arguments: p);
               _buscarTodos();
             },
             child: _itemListView(index),

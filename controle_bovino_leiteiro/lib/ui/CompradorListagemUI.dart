@@ -90,7 +90,7 @@ class _CompradorListagemUI extends State<CompradorListagemUI> {
             Flexible(
                 child: TextField(
               decoration: const InputDecoration(
-                  labelText: "Pesquise por nome...",
+                  labelText: "Pesquise pelo nome...",
                   suffixIcon: Icon(Icons.search)),
               onChanged: (value) => _filtrar(value),
             )),

@@ -10,9 +10,8 @@ class VendaLeiteRepositorio {
             db: "mysql://root:root@localhost:3306/controle_bovino_leiteiro"));
   }
 
-  void inserir(Vendaleite vendaleite) async {
+  Future<Vendaleite> inserir(Vendaleite vendaleite) async {
     conectar();
-
     try {
       vendaleite = await _prismaClient.vendaleite.create(
         data: VendaleiteCreateInput(
@@ -28,18 +27,16 @@ class VendaLeiteRepositorio {
     } finally {
       await _prismaClient.$disconnect();
     }
-
+    return vendaleite;
   }
 
-  void alterar(Vendaleite? vendaleite) async {
+  Future<Vendaleite?> alterar(Vendaleite? vendaleite) async {
     conectar();
     try {
       vendaleite = await _prismaClient.vendaleite.update(
           data: VendaleiteUpdateInput(
-              dataVendaLeite: DateTimeFieldUpdateOperationsInput(
-                  set: vendaleite?.dataVendaLeite),
-              valorTotalLeite: FloatFieldUpdateOperationsInput(
-                  set: vendaleite?.valorTotalLeite)),
+              dataVendaLeite: DateTimeFieldUpdateOperationsInput(set: vendaleite?.dataVendaLeite),
+              valorTotalLeite: FloatFieldUpdateOperationsInput(set: vendaleite?.valorTotalLeite)),
           where: VendaleiteWhereUniqueInput(
               codVendaLeite: vendaleite?.codVendaLeite));
     } catch (e) {
@@ -47,6 +44,7 @@ class VendaLeiteRepositorio {
     } finally {
       await _prismaClient.$disconnect();
     }
+    return vendaleite;
   }
 
   Future<Vendaleite?> excluir(int codigo) async {
