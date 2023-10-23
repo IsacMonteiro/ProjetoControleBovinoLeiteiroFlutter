@@ -8,8 +8,10 @@ import 'package:controle_bovino_leiteiro/ui/CompradorUI.dart';
 import 'package:controle_bovino_leiteiro/ui/HelperUI.dart';
 import 'package:controle_bovino_leiteiro/ui/ProdLeiteListagem.dart';
 import 'package:controle_bovino_leiteiro/ui/ProdLeiteUI.dart';
+import 'package:controle_bovino_leiteiro/ui/VendaAnimalListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/VendaLeiteListagem.dart';
 import 'package:controle_bovino_leiteiro/ui/VendaLeiteUI.dart';
+import 'package:controle_bovino_leiteiro/ui/VendaAnimalUI.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -46,6 +48,10 @@ class MainApp extends StatelessWidget {
         VendaLeiteUI.ROTA: (context) => const VendaLeiteUI(),
         VendaLeiteListagemUI.ROTA: (context) => const VendaLeiteListagemUI(),
         '/cadastrovendaleite': (context) => const VendaLeiteUI(),
+
+        VendaAnimalUI.ROTA: (context) => const VendaAnimalUI(),
+        VendaAnimalListagemUI.ROTA: (context) => const VendaAnimalListagemUI(),
+        '/cadastrovendaanimal': (context) => const VendaAnimalUI(),
       },
     );
   }
@@ -118,8 +124,11 @@ class NavigationDrawerApp extends StatelessWidget {
         HelperUI.builderListTile(_selectIndex == 3, FontAwesomeIcons.wineBottle, "Produção de Leite",
             context, ProdLeiteListagemUI.ROTA),
 
-        HelperUI.builderListTile(_selectIndex == 4, FontAwesomeIcons.moneyBill, "Venda de Leite",
+        HelperUI.builderListTile(_selectIndex == 4, FontAwesomeIcons.moneyBillAlt, "Venda de Leite",
             context, VendaLeiteListagemUI.ROTA),
+        
+        HelperUI.builderListTile(_selectIndex == 5, FontAwesomeIcons.moneyBill, "Venda de Animal",
+            context, VendaAnimalListagemUI.ROTA),
       ],
     );
   }

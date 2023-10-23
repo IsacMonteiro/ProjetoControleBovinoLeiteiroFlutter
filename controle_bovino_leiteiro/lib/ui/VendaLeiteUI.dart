@@ -14,6 +14,7 @@ class VendaLeiteUI extends StatefulWidget {
 }
 
 class _VendaLeiteUIState extends State<VendaLeiteUI> {
+  
   TextEditingController _controllerDataVendaLeite = TextEditingController();
   DateTime? _selectedDate; //Variável onde será armazenada a data.
   TextEditingController _controllerValorTotalLeite = TextEditingController();
@@ -109,8 +110,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
       _vendaLeite = Vendaleite(
         codVendaLeite: 0,
         codComprador: 0,
-        dataVendaLeite:
-            _selectedDate ?? DateTime.now(), // Usar a data selecionada
+        dataVendaLeite:_selectedDate ?? DateTime.now(), // Usar a data selecionada
         valorTotalLeite: double.parse(_controllerValorTotalLeite.text),
       );
     var resultado = await _vendaLeiteRepositorio.inserir(_vendaLeite);
@@ -128,18 +128,19 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     }
   }
 
-  void _confirmar(BuildContext context) {
-    // Efetiva o conteúdo da caixa de texto e armazena nos objetos controladores
+void _confirmar(BuildContext context) async {
+  // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
+  if (_formKey.currentState!.validate()) {
     setState(() {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save();
-      }
+      _formKey.currentState!.save();
     });
 
-    _defineDados();
+    await _defineDados();
 
     Navigator.pop(context, _vendaLeite);
   }
+}
+
 
   Widget _body(BuildContext context) {
     return Padding(

@@ -6,7 +6,7 @@ import 'package:controle_bovino_leiteiro/ui/VendaLeiteUI.dart';
 class VendaLeiteListagemUI extends StatefulWidget {
   const VendaLeiteListagemUI({super.key});
 
-  static const String ROTA = "/vedaleitelistagem";
+  static const String ROTA = "/vendaleitelistagem";
 
   @override
   State<StatefulWidget> createState() => _VendaLeiteListagemUI();

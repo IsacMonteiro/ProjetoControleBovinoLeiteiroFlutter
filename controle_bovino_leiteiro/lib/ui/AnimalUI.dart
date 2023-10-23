@@ -132,15 +132,18 @@ class _AnimalUIState extends State<AnimalUI> {
   }
 
   void _confirmar(BuildContext context) async {
+  // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
+  if (_formKey.currentState!.validate()) {
     setState(() {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save();
-      }
+      _formKey.currentState!.save();
     });
+
     await _defineDados();
 
     Navigator.pop(context, _animal);
   }
+}
+
 
   Widget _body(BuildContext context) {
     return Padding(
