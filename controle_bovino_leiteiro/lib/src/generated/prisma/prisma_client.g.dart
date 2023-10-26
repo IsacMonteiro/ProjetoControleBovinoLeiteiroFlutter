@@ -1907,8 +1907,8 @@ Map<String, dynamic> _$AnimalCreateInputToJson(AnimalCreateInput instance) {
   }
 
   writeNotNull('mediaLeite', instance.mediaLeite);
-  //val['categoria'] = instance.categoria.toJson();
-  //val['prodleite'] = instance.prodleite.toJson();
+  val['categoria'] = instance.categoria.toJson();
+  val['prodleite'] = instance.prodleite.toJson();
   writeNotNull('itensvenda', instance.itensvenda?.toJson());
   return val;
 }
