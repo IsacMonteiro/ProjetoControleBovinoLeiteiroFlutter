@@ -49,7 +49,8 @@ class VendaProdLeiteRepositorio {
               set: vendaprodleite?.valorTotalItemLeite),
         ),
         where: VendaprodleiteWhereUniqueInput(
-            codVendaProdLeite: vendaprodleite?.codVendaProdLeite),
+            //codVendaProdLeite: vendaprodleite?.codVendaProdLeite
+        ),
       );
     } catch (e) {
       print(e);
@@ -64,7 +65,9 @@ class VendaProdLeiteRepositorio {
     Vendaprodleite? vendaprodleite;
     try {
       vendaprodleite = await _prismaClient.vendaprodleite.delete(
-          where: VendaprodleiteWhereUniqueInput(codVendaProdLeite: codigo));
+          where: VendaprodleiteWhereUniqueInput(
+            //codVendaProdLeite: codigo
+          ));
     } finally {
       await _prismaClient.$disconnect();
     }
@@ -76,7 +79,9 @@ class VendaProdLeiteRepositorio {
     Vendaprodleite? vendaprodleite;
     try {
       vendaprodleite = await _prismaClient.vendaprodleite.findUnique(
-          where: VendaprodleiteWhereUniqueInput(codVendaProdLeite: codigo));
+          where: VendaprodleiteWhereUniqueInput(
+            //codVendaProdLeite: codigo
+          ));
     } finally {
       await _prismaClient.$disconnect();
     }

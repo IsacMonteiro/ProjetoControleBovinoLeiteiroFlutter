@@ -6,12 +6,16 @@ import 'package:controle_bovino_leiteiro/ui/CategoriaUI.dart';
 import 'package:controle_bovino_leiteiro/ui/CompradorListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/CompradorUI.dart';
 import 'package:controle_bovino_leiteiro/ui/HelperUI.dart';
-import 'package:controle_bovino_leiteiro/ui/ProdLeiteListagem.dart';
+import 'package:controle_bovino_leiteiro/ui/ItensVendaListagemUI.dart';
+import 'package:controle_bovino_leiteiro/ui/ItensVendaUI.dart';
+import 'package:controle_bovino_leiteiro/ui/ProdLeiteListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/ProdLeiteUI.dart';
 import 'package:controle_bovino_leiteiro/ui/VendaAnimalListagemUI.dart';
-import 'package:controle_bovino_leiteiro/ui/VendaLeiteListagem.dart';
+import 'package:controle_bovino_leiteiro/ui/VendaLeiteListagemUI.dart';
 import 'package:controle_bovino_leiteiro/ui/VendaLeiteUI.dart';
 import 'package:controle_bovino_leiteiro/ui/VendaAnimalUI.dart';
+import 'package:controle_bovino_leiteiro/ui/VendaProdLeiteListagemUI.dart';
+import 'package:controle_bovino_leiteiro/ui/VendaProdLeiteUI.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -35,7 +39,8 @@ class MainApp extends StatelessWidget {
 
         AnimalUI.ROTA: (context) => const AnimalUI(),
         AnimalListagemUI.ROTA: (context) => const AnimalListagemUI(),
-        '/cadastroanimal': (context) => const AnimalUI(), //cria o botão de adicionar
+        '/cadastroanimal': (context) =>
+            const AnimalUI(), //Cria o botão de adicionar.
 
         CategoriaUI.ROTA: (context) => const CategoriaUI(),
         CategoriaListagemUI.ROTA: (context) => const CategoriaListagemUI(),
@@ -52,6 +57,15 @@ class MainApp extends StatelessWidget {
         VendaAnimalUI.ROTA: (context) => const VendaAnimalUI(),
         VendaAnimalListagemUI.ROTA: (context) => const VendaAnimalListagemUI(),
         '/cadastrovendaanimal': (context) => const VendaAnimalUI(),
+
+        VendaProdLeiteUI.ROTA: (context) => const VendaProdLeiteUI(),
+        VendaProdLeiteListagemUI.ROTA: (context) =>
+            const VendaProdLeiteListagemUI(),
+        '/cadastrovendaprodleite': (context) => const VendaLeiteUI(),
+
+        ItensVendaUI.ROTA: (context) => const ItensVendaUI(),
+        ItensVendaListagemUI.ROTA: (context) => const ItensVendaListagemUI(),
+        '/cadastroitensvenda': (context) => const ItensVendaUI()
       },
     );
   }
@@ -121,14 +135,32 @@ class NavigationDrawerApp extends StatelessWidget {
         HelperUI.builderListTile(_selectIndex == 2, Icons.category, "Categoria",
             context, CategoriaListagemUI.ROTA),
 
-        HelperUI.builderListTile(_selectIndex == 3, FontAwesomeIcons.wineBottle, "Produção de Leite",
-            context, ProdLeiteListagemUI.ROTA),
+        HelperUI.builderListTile(_selectIndex == 3, FontAwesomeIcons.wineBottle,
+            "Produção de Leite", context, ProdLeiteListagemUI.ROTA),
 
-        HelperUI.builderListTile(_selectIndex == 4, FontAwesomeIcons.moneyBillAlt, "Venda de Leite",
-            context, VendaLeiteListagemUI.ROTA),
-        
-        HelperUI.builderListTile(_selectIndex == 5, FontAwesomeIcons.moneyBill, "Venda de Animal",
-            context, VendaAnimalListagemUI.ROTA),
+        HelperUI.builderListTile(
+            _selectIndex == 4,
+            FontAwesomeIcons.moneyBillAlt,
+            "Venda de Leite",
+            context,
+            VendaLeiteListagemUI.ROTA),
+
+        HelperUI.builderListTile(_selectIndex == 5, FontAwesomeIcons.moneyBill,
+            "Venda de Animal", context, VendaAnimalListagemUI.ROTA),
+
+        HelperUI.builderListTile(
+            _selectIndex == 6,
+            FontAwesomeIcons.stickyNote,
+            "Dados da Venda de Leite Produzido",
+            context,
+            VendaProdLeiteListagemUI.ROTA),
+
+        HelperUI.builderListTile(
+            _selectIndex == 7,
+            FontAwesomeIcons.solidStickyNote,
+            "Dados da Venda de Animais Criados",
+            context,
+            ItensVendaListagemUI.ROTA),
       ],
     );
   }
