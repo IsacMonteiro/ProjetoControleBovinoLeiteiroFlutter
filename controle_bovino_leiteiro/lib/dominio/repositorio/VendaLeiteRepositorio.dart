@@ -82,4 +82,16 @@ class VendaLeiteRepositorio {
     }
     return vendaleites;
   }
+
+
+  Future<Iterable<Comprador>> consultarCompradores() async {
+    conectar();
+    Iterable<Comprador> compradores;
+    try {
+      compradores = await _prismaClient.comprador.findMany();
+    } finally {
+      await _prismaClient.$disconnect();
+    }
+    return compradores;
+  }
 }

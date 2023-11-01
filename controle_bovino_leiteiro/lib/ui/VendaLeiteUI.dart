@@ -14,12 +14,31 @@ class VendaLeiteUI extends StatefulWidget {
 }
 
 class _VendaLeiteUIState extends State<VendaLeiteUI> {
-  
-  TextEditingController _controllerDataVendaLeite = TextEditingController();
-  DateTime? _selectedDate; //Variável onde será armazenada a data.
-  TextEditingController _controllerValorTotalLeite = TextEditingController();
 
-  VendaLeiteRepositorio _vendaLeiteRepositorio = VendaLeiteRepositorio();
+  Iterable<Comprador> _compradores = [];
+  String? _selectedComprador;
+  VendaLeiteRepositorio _vendaLeiteRepositorio = VendaLeiteRepositorio(); // Inicialize o repositório aqui
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarCompradores();
+  }
+
+  void _carregarCompradores() {
+    _vendaLeiteRepositorio.consultarCompradores().then((value) {
+      setState(() {
+        _compradores = value;
+        if (_compradores.isNotEmpty) {
+          _selectedComprador = _compradores.first.codComprador.toString();
+        }
+      });
+    });
+  }
+
+  TextEditingController _controllerDataVendaLeite = TextEditingController();
+  DateTime? _selectedDate;
+  TextEditingController _controllerValorTotalLeite = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -31,12 +50,12 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
 
     if (args != null) {
       _vendaLeite = args as Vendaleite;
-      // Atribuindo os dados do objeto aos controladores da caixa de texto.
       setState(() {
         _controllerDataVendaLeite.text =
             DateFormat('dd/MM/yyyy').format(_vendaLeite.dataVendaLeite);
         _controllerValorTotalLeite.text =
             _vendaLeite.valorTotalLeite.toString();
+        _selectedComprador = _vendaLeite.codComprador.toString();
       });
     } else {
       _vendaLeite = Vendaleite(
@@ -61,7 +80,6 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     );
   }
 
-  // Função utilizada para validar os campos do Formulário, verificando se o campo foi preenchido.
   String? _validar(String? valor) {
     if ((valor == null) || (valor.isEmpty)) {
       return "Campo obrigatório!";
@@ -69,7 +87,6 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     return null;
   }
 
-// Função para validar o campo qtdVendaLeite.
   String? _validarQtdVendaLeite(String? value) {
     if (value == null || value.isEmpty) {
       return "Campo obrigatório!";
@@ -84,7 +101,6 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     return null;
   }
 
-  // Função para selecionar a data
   Future<void> _selectDate(BuildContext context) async {
     DateTime currentDate = _selectedDate ?? DateTime.now();
     DateTime? picked = await showDatePicker(
@@ -103,44 +119,39 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     }
   }
 
-  // Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
-  Future<void> _defineDados() async{
+  Future<void> _defineDados() async {
     if (_vendaLeite.codVendaLeite == 0) {
-      // Incluindo os dados
       _vendaLeite = Vendaleite(
         codVendaLeite: 0,
-        codComprador: 0,
-        dataVendaLeite:_selectedDate ?? DateTime.now(), // Usar a data selecionada
+        codComprador: int.parse(_selectedComprador!),
+        dataVendaLeite: _selectedDate ?? DateTime.now(),
         valorTotalLeite: double.parse(_controllerValorTotalLeite.text),
       );
-    var resultado = await _vendaLeiteRepositorio.inserir(_vendaLeite);
+      var resultado = await _vendaLeiteRepositorio.inserir(_vendaLeite);
     } else {
-      // Salvando os dados
       int codigo = _vendaLeite.codVendaLeite;
-      int codigoComprador = _vendaLeite.codComprador;
+      int codigoComprador = int.parse(_selectedComprador!);
       _vendaLeite = Vendaleite(
         codVendaLeite: codigo,
         codComprador: codigoComprador,
-        dataVendaLeite:_selectedDate ?? DateTime.now(), // Usar a data selecionada
+        dataVendaLeite: _selectedDate ?? DateTime.now(),
         valorTotalLeite: double.parse(_controllerValorTotalLeite.text),
       );
-    var resultado = await _vendaLeiteRepositorio.alterar(_vendaLeite);
+      var resultado = await _vendaLeiteRepositorio.alterar(_vendaLeite);
     }
   }
 
-void _confirmar(BuildContext context) async {
-  // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
-  if (_formKey.currentState!.validate()) {
-    setState(() {
-      _formKey.currentState!.save();
-    });
+  void _confirmar(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _formKey.currentState!.save();
+      });
 
-    await _defineDados();
+      await _defineDados();
 
-    Navigator.pop(context, _vendaLeite);
+      Navigator.pop(context, _vendaLeite);
+    }
   }
-}
-
 
   Widget _body(BuildContext context) {
     return Padding(
@@ -149,7 +160,32 @@ void _confirmar(BuildContext context) async {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            //Campo Data.
+            // ComboBox
+            DropdownButtonFormField<String>(
+              value: _selectedComprador,
+              onChanged: (value) {
+                setState(() {
+                  _selectedComprador = value;
+                });
+              },
+              items: _compradores.map((comprador) {
+                return DropdownMenuItem<String>(
+                  value: comprador.codComprador.toString(),
+                  child: Text(comprador.nome),
+                );
+              }).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Comprador',
+              ),
+            ),
+
+            // Campo Data.
             TextFormField(
               controller: _controllerDataVendaLeite,
               readOnly: true,
@@ -166,7 +202,8 @@ void _confirmar(BuildContext context) async {
             ),
 
             HelperUI.builderTextFormField(
-                _controllerValorTotalLeite,"Quantidade Vendida",(value) => _validarQtdVendaLeite(value)),
+                _controllerValorTotalLeite, "Quantidade Vendida",
+                (value) => _validarQtdVendaLeite(value)),
 
             const Spacer(),
 
