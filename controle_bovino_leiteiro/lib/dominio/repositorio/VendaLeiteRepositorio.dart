@@ -35,8 +35,10 @@ class VendaLeiteRepositorio {
     try {
       vendaleite = await _prismaClient.vendaleite.update(
           data: VendaleiteUpdateInput(
-              dataVendaLeite: DateTimeFieldUpdateOperationsInput(set: vendaleite?.dataVendaLeite),
-              valorTotalLeite: FloatFieldUpdateOperationsInput(set: vendaleite?.valorTotalLeite)),
+              dataVendaLeite: DateTimeFieldUpdateOperationsInput(
+                  set: vendaleite?.dataVendaLeite),
+              valorTotalLeite: FloatFieldUpdateOperationsInput(
+                  set: vendaleite?.valorTotalLeite)),
           where: VendaleiteWhereUniqueInput(
               codVendaLeite: vendaleite?.codVendaLeite));
     } catch (e) {
@@ -83,6 +85,9 @@ class VendaLeiteRepositorio {
     return vendaleites;
   }
 
+
+//Busca a lista de compradores - Não foi utilizada a presente no repositório do mesmo
+//por conta do nome padrão "consultarTodos" que poderia entrar em conflito.
 
   Future<Iterable<Comprador>> consultarCompradores() async {
     conectar();

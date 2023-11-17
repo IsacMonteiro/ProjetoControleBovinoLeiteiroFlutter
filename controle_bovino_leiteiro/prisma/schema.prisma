@@ -42,7 +42,7 @@ model comprador {
 }
 
 model itensvenda {
-  codItensVenda        Int         @default(autoincrement())
+  codItensVenda        Int         @id @default(autoincrement())
   codVendaAnimal       Int
   codAnimal            Int
   quantidade           Int
@@ -51,7 +51,6 @@ model itensvenda {
   animal               animal      @relation(fields: [codAnimal], references: [codAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_Animal1")
   vendaanimal          vendaanimal @relation(fields: [codVendaAnimal], references: [codVendaAnimal], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaAnimal_has_Animal_VendaAnimal1")
 
-  @@id([codItensVenda, codVendaAnimal, codAnimal])
   @@index([codAnimal], map: "fk_VendaAnimal_has_Animal_Animal1_idx")
   @@index([codVendaAnimal], map: "fk_VendaAnimal_has_Animal_VendaAnimal1_idx")
 }
@@ -87,7 +86,7 @@ model vendaleite {
 }
 
 model vendaprodleite {
-  codVendaProdLeite   Int        @default(autoincrement())
+  codVendaProdLeite   Int        @id @default(autoincrement())
   codVendaLeite       Int
   codProdLeite        Int
   qtdLeite            Float
@@ -96,7 +95,6 @@ model vendaprodleite {
   prodleite           prodleite  @relation(fields: [codProdLeite], references: [codProdLeite], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_has_ProdLeite_ProdLeite1")
   vendaleite          vendaleite @relation(fields: [codVendaLeite], references: [codVendaLeite], onDelete: NoAction, onUpdate: NoAction, map: "fk_VendaLeite_has_ProdLeite_VendaLeite1")
 
-  @@id([codVendaProdLeite, codVendaLeite, codProdLeite])
   @@index([codProdLeite], map: "fk_VendaLeite_has_ProdLeite_ProdLeite1_idx")
   @@index([codVendaLeite], map: "fk_VendaLeite_has_ProdLeite_VendaLeite1_idx")
 }

@@ -49,7 +49,7 @@ class ItensVendaRepositorio {
               set: itensvenda?.valorTotalItemAnimal),
         ),
         where: ItensvendaWhereUniqueInput(
-            //codVendaProdLeite: vendaprodleite?.codVendaProdLeite
+            codItensVenda: itensvenda?.codItensVenda
             ),
       );
     } catch (e) {
@@ -66,7 +66,7 @@ class ItensVendaRepositorio {
     try {
       itensvenda = await _prismaClient.itensvenda.delete(
           where: ItensvendaWhereUniqueInput(
-              //codItensVenda: codigo
+              codItensVenda: codigo
               ));
     } finally {
       await _prismaClient.$disconnect();
@@ -80,7 +80,7 @@ class ItensVendaRepositorio {
     try {
       itensvenda = await _prismaClient.itensvenda.findUnique(
           where: ItensvendaWhereUniqueInput(
-              //codVendaItensVenda: codigo
+              codItensVenda: codigo
               ));
     } finally {
       await _prismaClient.$disconnect();

@@ -811,13 +811,7 @@ Map<String, dynamic> _$ItensvendaOrderByWithRelationInputToJson(
 ItensvendaWhereUniqueInput _$ItensvendaWhereUniqueInputFromJson(
         Map<String, dynamic> json) =>
     ItensvendaWhereUniqueInput(
-      codItensVendaCodVendaAnimalCodAnimal: json[
-                  'codItensVenda_codVendaAnimal_codAnimal'] ==
-              null
-          ? null
-          : ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput
-              .fromJson(json['codItensVenda_codVendaAnimal_codAnimal']
-                  as Map<String, dynamic>),
+      codItensVenda: json['codItensVenda'] as int?,
     );
 
 Map<String, dynamic> _$ItensvendaWhereUniqueInputToJson(
@@ -830,8 +824,7 @@ Map<String, dynamic> _$ItensvendaWhereUniqueInputToJson(
     }
   }
 
-  writeNotNull('codItensVenda_codVendaAnimal_codAnimal',
-      instance.codItensVendaCodVendaAnimalCodAnimal?.toJson());
+  writeNotNull('codItensVenda', instance.codItensVenda);
   return val;
 }
 
@@ -1721,13 +1714,7 @@ Map<String, dynamic> _$VendaprodleiteOrderByWithRelationInputToJson(
 VendaprodleiteWhereUniqueInput _$VendaprodleiteWhereUniqueInputFromJson(
         Map<String, dynamic> json) =>
     VendaprodleiteWhereUniqueInput(
-      codVendaProdLeiteCodVendaLeiteCodProdLeite: json[
-                  'codVendaProdLeite_codVendaLeite_codProdLeite'] ==
-              null
-          ? null
-          : VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput
-              .fromJson(json['codVendaProdLeite_codVendaLeite_codProdLeite']
-                  as Map<String, dynamic>),
+      codVendaProdLeite: json['codVendaProdLeite'] as int?,
     );
 
 Map<String, dynamic> _$VendaprodleiteWhereUniqueInputToJson(
@@ -1740,8 +1727,7 @@ Map<String, dynamic> _$VendaprodleiteWhereUniqueInputToJson(
     }
   }
 
-  writeNotNull('codVendaProdLeite_codVendaLeite_codProdLeite',
-      instance.codVendaProdLeiteCodVendaLeiteCodProdLeite?.toJson());
+  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite);
   return val;
 }
 
@@ -2707,7 +2693,6 @@ Map<String, dynamic> _$CompradorUncheckedUpdateManyInputToJson(
 ItensvendaCreateInput _$ItensvendaCreateInputFromJson(
         Map<String, dynamic> json) =>
     ItensvendaCreateInput(
-      codItensVenda: json['codItensVenda'] as int?,
       quantidade: json['quantidade'] as int,
       valorUnitario: (json['valorUnitario'] as num).toDouble(),
       valorTotalItemAnimal: (json['valorTotalItemAnimal'] as num).toDouble(),
@@ -2718,23 +2703,14 @@ ItensvendaCreateInput _$ItensvendaCreateInputFromJson(
     );
 
 Map<String, dynamic> _$ItensvendaCreateInputToJson(
-    ItensvendaCreateInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('codItensVenda', instance.codItensVenda);
-  val['quantidade'] = instance.quantidade;
-  val['valorUnitario'] = instance.valorUnitario;
-  val['valorTotalItemAnimal'] = instance.valorTotalItemAnimal;
-  val['animal'] = instance.animal.toJson();
-  val['vendaanimal'] = instance.vendaanimal.toJson();
-  return val;
-}
+        ItensvendaCreateInput instance) =>
+    <String, dynamic>{
+      'quantidade': instance.quantidade,
+      'valorUnitario': instance.valorUnitario,
+      'valorTotalItemAnimal': instance.valorTotalItemAnimal,
+      'animal': instance.animal.toJson(),
+      'vendaanimal': instance.vendaanimal.toJson(),
+    };
 
 ItensvendaUncheckedCreateInput _$ItensvendaUncheckedCreateInputFromJson(
         Map<String, dynamic> json) =>
@@ -2769,10 +2745,6 @@ Map<String, dynamic> _$ItensvendaUncheckedCreateInputToJson(
 ItensvendaUpdateInput _$ItensvendaUpdateInputFromJson(
         Map<String, dynamic> json) =>
     ItensvendaUpdateInput(
-      codItensVenda: json['codItensVenda'] == null
-          ? null
-          : IntFieldUpdateOperationsInput.fromJson(
-              json['codItensVenda'] as Map<String, dynamic>),
       quantidade: json['quantidade'] == null
           ? null
           : IntFieldUpdateOperationsInput.fromJson(
@@ -2805,7 +2777,6 @@ Map<String, dynamic> _$ItensvendaUpdateInputToJson(
     }
   }
 
-  writeNotNull('codItensVenda', instance.codItensVenda?.toJson());
   writeNotNull('quantidade', instance.quantidade?.toJson());
   writeNotNull('valorUnitario', instance.valorUnitario?.toJson());
   writeNotNull('valorTotalItemAnimal', instance.valorTotalItemAnimal?.toJson());
@@ -2895,10 +2866,6 @@ Map<String, dynamic> _$ItensvendaCreateManyInputToJson(
 ItensvendaUpdateManyMutationInput _$ItensvendaUpdateManyMutationInputFromJson(
         Map<String, dynamic> json) =>
     ItensvendaUpdateManyMutationInput(
-      codItensVenda: json['codItensVenda'] == null
-          ? null
-          : IntFieldUpdateOperationsInput.fromJson(
-              json['codItensVenda'] as Map<String, dynamic>),
       quantidade: json['quantidade'] == null
           ? null
           : IntFieldUpdateOperationsInput.fromJson(
@@ -2923,7 +2890,6 @@ Map<String, dynamic> _$ItensvendaUpdateManyMutationInputToJson(
     }
   }
 
-  writeNotNull('codItensVenda', instance.codItensVenda?.toJson());
   writeNotNull('quantidade', instance.quantidade?.toJson());
   writeNotNull('valorUnitario', instance.valorUnitario?.toJson());
   writeNotNull('valorTotalItemAnimal', instance.valorTotalItemAnimal?.toJson());
@@ -3702,7 +3668,6 @@ Map<String, dynamic> _$VendaleiteUncheckedUpdateManyInputToJson(
 VendaprodleiteCreateInput _$VendaprodleiteCreateInputFromJson(
         Map<String, dynamic> json) =>
     VendaprodleiteCreateInput(
-      codVendaProdLeite: json['codVendaProdLeite'] as int?,
       qtdLeite: (json['qtdLeite'] as num).toDouble(),
       valorLitro: (json['valorLitro'] as num).toDouble(),
       valorTotalItemLeite: (json['valorTotalItemLeite'] as num).toDouble(),
@@ -3713,23 +3678,14 @@ VendaprodleiteCreateInput _$VendaprodleiteCreateInputFromJson(
     );
 
 Map<String, dynamic> _$VendaprodleiteCreateInputToJson(
-    VendaprodleiteCreateInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite);
-  val['qtdLeite'] = instance.qtdLeite;
-  val['valorLitro'] = instance.valorLitro;
-  val['valorTotalItemLeite'] = instance.valorTotalItemLeite;
-  val['prodleite'] = instance.prodleite.toJson();
-  val['vendaleite'] = instance.vendaleite.toJson();
-  return val;
-}
+        VendaprodleiteCreateInput instance) =>
+    <String, dynamic>{
+      'qtdLeite': instance.qtdLeite,
+      'valorLitro': instance.valorLitro,
+      'valorTotalItemLeite': instance.valorTotalItemLeite,
+      'prodleite': instance.prodleite.toJson(),
+      'vendaleite': instance.vendaleite.toJson(),
+    };
 
 VendaprodleiteUncheckedCreateInput _$VendaprodleiteUncheckedCreateInputFromJson(
         Map<String, dynamic> json) =>
@@ -3764,10 +3720,6 @@ Map<String, dynamic> _$VendaprodleiteUncheckedCreateInputToJson(
 VendaprodleiteUpdateInput _$VendaprodleiteUpdateInputFromJson(
         Map<String, dynamic> json) =>
     VendaprodleiteUpdateInput(
-      codVendaProdLeite: json['codVendaProdLeite'] == null
-          ? null
-          : IntFieldUpdateOperationsInput.fromJson(
-              json['codVendaProdLeite'] as Map<String, dynamic>),
       qtdLeite: json['qtdLeite'] == null
           ? null
           : FloatFieldUpdateOperationsInput.fromJson(
@@ -3800,7 +3752,6 @@ Map<String, dynamic> _$VendaprodleiteUpdateInputToJson(
     }
   }
 
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite?.toJson());
   writeNotNull('qtdLeite', instance.qtdLeite?.toJson());
   writeNotNull('valorLitro', instance.valorLitro?.toJson());
   writeNotNull('valorTotalItemLeite', instance.valorTotalItemLeite?.toJson());
@@ -3891,10 +3842,6 @@ VendaprodleiteUpdateManyMutationInput
     _$VendaprodleiteUpdateManyMutationInputFromJson(
             Map<String, dynamic> json) =>
         VendaprodleiteUpdateManyMutationInput(
-          codVendaProdLeite: json['codVendaProdLeite'] == null
-              ? null
-              : IntFieldUpdateOperationsInput.fromJson(
-                  json['codVendaProdLeite'] as Map<String, dynamic>),
           qtdLeite: json['qtdLeite'] == null
               ? null
               : FloatFieldUpdateOperationsInput.fromJson(
@@ -3919,7 +3866,6 @@ Map<String, dynamic> _$VendaprodleiteUpdateManyMutationInputToJson(
     }
   }
 
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite?.toJson());
   writeNotNull('qtdLeite', instance.qtdLeite?.toJson());
   writeNotNull('valorLitro', instance.valorLitro?.toJson());
   writeNotNull('valorTotalItemLeite', instance.valorTotalItemLeite?.toJson());
@@ -5191,25 +5137,6 @@ Map<String, dynamic> _$VendaanimalRelationFilterToJson(
   return val;
 }
 
-ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput
-    _$ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInputFromJson(
-            Map<String, dynamic> json) =>
-        ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput(
-          codItensVenda: json['codItensVenda'] as int,
-          codVendaAnimal: json['codVendaAnimal'] as int,
-          codAnimal: json['codAnimal'] as int,
-        );
-
-Map<String, dynamic>
-    _$ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInputToJson(
-            ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput
-                instance) =>
-        <String, dynamic>{
-          'codItensVenda': instance.codItensVenda,
-          'codVendaAnimal': instance.codVendaAnimal,
-          'codAnimal': instance.codAnimal,
-        };
-
 ItensvendaCountOrderByAggregateInput
     _$ItensvendaCountOrderByAggregateInputFromJson(Map<String, dynamic> json) =>
         ItensvendaCountOrderByAggregateInput(
@@ -5973,25 +5900,6 @@ Map<String, dynamic> _$VendaleiteRelationFilterToJson(
   writeNotNull('isNot', instance.isNot?.toJson());
   return val;
 }
-
-VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput
-    _$VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInputFromJson(
-            Map<String, dynamic> json) =>
-        VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput(
-          codVendaProdLeite: json['codVendaProdLeite'] as int,
-          codVendaLeite: json['codVendaLeite'] as int,
-          codProdLeite: json['codProdLeite'] as int,
-        );
-
-Map<String, dynamic>
-    _$VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInputToJson(
-            VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput
-                instance) =>
-        <String, dynamic>{
-          'codVendaProdLeite': instance.codVendaProdLeite,
-          'codVendaLeite': instance.codVendaLeite,
-          'codProdLeite': instance.codProdLeite,
-        };
 
 VendaprodleiteCountOrderByAggregateInput
     _$VendaprodleiteCountOrderByAggregateInputFromJson(
@@ -9267,7 +9175,6 @@ Map<String, dynamic> _$ProdleiteCreateOrConnectWithoutAnimalInputToJson(
 ItensvendaCreateWithoutAnimalInput _$ItensvendaCreateWithoutAnimalInputFromJson(
         Map<String, dynamic> json) =>
     ItensvendaCreateWithoutAnimalInput(
-      codItensVenda: json['codItensVenda'] as int?,
       quantidade: json['quantidade'] as int,
       valorUnitario: (json['valorUnitario'] as num).toDouble(),
       valorTotalItemAnimal: (json['valorTotalItemAnimal'] as num).toDouble(),
@@ -9276,22 +9183,13 @@ ItensvendaCreateWithoutAnimalInput _$ItensvendaCreateWithoutAnimalInputFromJson(
     );
 
 Map<String, dynamic> _$ItensvendaCreateWithoutAnimalInputToJson(
-    ItensvendaCreateWithoutAnimalInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('codItensVenda', instance.codItensVenda);
-  val['quantidade'] = instance.quantidade;
-  val['valorUnitario'] = instance.valorUnitario;
-  val['valorTotalItemAnimal'] = instance.valorTotalItemAnimal;
-  val['vendaanimal'] = instance.vendaanimal.toJson();
-  return val;
-}
+        ItensvendaCreateWithoutAnimalInput instance) =>
+    <String, dynamic>{
+      'quantidade': instance.quantidade,
+      'valorUnitario': instance.valorUnitario,
+      'valorTotalItemAnimal': instance.valorTotalItemAnimal,
+      'vendaanimal': instance.vendaanimal.toJson(),
+    };
 
 ItensvendaUncheckedCreateWithoutAnimalInput
     _$ItensvendaUncheckedCreateWithoutAnimalInputFromJson(
@@ -10833,7 +10731,6 @@ VendaprodleiteCreateWithoutProdleiteInput
     _$VendaprodleiteCreateWithoutProdleiteInputFromJson(
             Map<String, dynamic> json) =>
         VendaprodleiteCreateWithoutProdleiteInput(
-          codVendaProdLeite: json['codVendaProdLeite'] as int?,
           qtdLeite: (json['qtdLeite'] as num).toDouble(),
           valorLitro: (json['valorLitro'] as num).toDouble(),
           valorTotalItemLeite: (json['valorTotalItemLeite'] as num).toDouble(),
@@ -10843,22 +10740,13 @@ VendaprodleiteCreateWithoutProdleiteInput
         );
 
 Map<String, dynamic> _$VendaprodleiteCreateWithoutProdleiteInputToJson(
-    VendaprodleiteCreateWithoutProdleiteInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite);
-  val['qtdLeite'] = instance.qtdLeite;
-  val['valorLitro'] = instance.valorLitro;
-  val['valorTotalItemLeite'] = instance.valorTotalItemLeite;
-  val['vendaleite'] = instance.vendaleite.toJson();
-  return val;
-}
+        VendaprodleiteCreateWithoutProdleiteInput instance) =>
+    <String, dynamic>{
+      'qtdLeite': instance.qtdLeite,
+      'valorLitro': instance.valorLitro,
+      'valorTotalItemLeite': instance.valorTotalItemLeite,
+      'vendaleite': instance.vendaleite.toJson(),
+    };
 
 VendaprodleiteUncheckedCreateWithoutProdleiteInput
     _$VendaprodleiteUncheckedCreateWithoutProdleiteInputFromJson(
@@ -11100,7 +10988,6 @@ ItensvendaCreateWithoutVendaanimalInput
     _$ItensvendaCreateWithoutVendaanimalInputFromJson(
             Map<String, dynamic> json) =>
         ItensvendaCreateWithoutVendaanimalInput(
-          codItensVenda: json['codItensVenda'] as int?,
           quantidade: json['quantidade'] as int,
           valorUnitario: (json['valorUnitario'] as num).toDouble(),
           valorTotalItemAnimal:
@@ -11110,22 +10997,13 @@ ItensvendaCreateWithoutVendaanimalInput
         );
 
 Map<String, dynamic> _$ItensvendaCreateWithoutVendaanimalInputToJson(
-    ItensvendaCreateWithoutVendaanimalInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('codItensVenda', instance.codItensVenda);
-  val['quantidade'] = instance.quantidade;
-  val['valorUnitario'] = instance.valorUnitario;
-  val['valorTotalItemAnimal'] = instance.valorTotalItemAnimal;
-  val['animal'] = instance.animal.toJson();
-  return val;
-}
+        ItensvendaCreateWithoutVendaanimalInput instance) =>
+    <String, dynamic>{
+      'quantidade': instance.quantidade,
+      'valorUnitario': instance.valorUnitario,
+      'valorTotalItemAnimal': instance.valorTotalItemAnimal,
+      'animal': instance.animal.toJson(),
+    };
 
 ItensvendaUncheckedCreateWithoutVendaanimalInput
     _$ItensvendaUncheckedCreateWithoutVendaanimalInputFromJson(
@@ -11521,7 +11399,6 @@ VendaprodleiteCreateWithoutVendaleiteInput
     _$VendaprodleiteCreateWithoutVendaleiteInputFromJson(
             Map<String, dynamic> json) =>
         VendaprodleiteCreateWithoutVendaleiteInput(
-          codVendaProdLeite: json['codVendaProdLeite'] as int?,
           qtdLeite: (json['qtdLeite'] as num).toDouble(),
           valorLitro: (json['valorLitro'] as num).toDouble(),
           valorTotalItemLeite: (json['valorTotalItemLeite'] as num).toDouble(),
@@ -11531,22 +11408,13 @@ VendaprodleiteCreateWithoutVendaleiteInput
         );
 
 Map<String, dynamic> _$VendaprodleiteCreateWithoutVendaleiteInputToJson(
-    VendaprodleiteCreateWithoutVendaleiteInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite);
-  val['qtdLeite'] = instance.qtdLeite;
-  val['valorLitro'] = instance.valorLitro;
-  val['valorTotalItemLeite'] = instance.valorTotalItemLeite;
-  val['prodleite'] = instance.prodleite.toJson();
-  return val;
-}
+        VendaprodleiteCreateWithoutVendaleiteInput instance) =>
+    <String, dynamic>{
+      'qtdLeite': instance.qtdLeite,
+      'valorLitro': instance.valorLitro,
+      'valorTotalItemLeite': instance.valorTotalItemLeite,
+      'prodleite': instance.prodleite.toJson(),
+    };
 
 VendaprodleiteUncheckedCreateWithoutVendaleiteInput
     _$VendaprodleiteUncheckedCreateWithoutVendaleiteInputFromJson(
@@ -12139,10 +12007,6 @@ Map<String, dynamic> _$ItensvendaCreateManyAnimalInputToJson(
 ItensvendaUpdateWithoutAnimalInput _$ItensvendaUpdateWithoutAnimalInputFromJson(
         Map<String, dynamic> json) =>
     ItensvendaUpdateWithoutAnimalInput(
-      codItensVenda: json['codItensVenda'] == null
-          ? null
-          : IntFieldUpdateOperationsInput.fromJson(
-              json['codItensVenda'] as Map<String, dynamic>),
       quantidade: json['quantidade'] == null
           ? null
           : IntFieldUpdateOperationsInput.fromJson(
@@ -12171,7 +12035,6 @@ Map<String, dynamic> _$ItensvendaUpdateWithoutAnimalInputToJson(
     }
   }
 
-  writeNotNull('codItensVenda', instance.codItensVenda?.toJson());
   writeNotNull('quantidade', instance.quantidade?.toJson());
   writeNotNull('valorUnitario', instance.valorUnitario?.toJson());
   writeNotNull('valorTotalItemAnimal', instance.valorTotalItemAnimal?.toJson());
@@ -12973,10 +12836,6 @@ VendaprodleiteUpdateWithoutProdleiteInput
     _$VendaprodleiteUpdateWithoutProdleiteInputFromJson(
             Map<String, dynamic> json) =>
         VendaprodleiteUpdateWithoutProdleiteInput(
-          codVendaProdLeite: json['codVendaProdLeite'] == null
-              ? null
-              : IntFieldUpdateOperationsInput.fromJson(
-                  json['codVendaProdLeite'] as Map<String, dynamic>),
           qtdLeite: json['qtdLeite'] == null
               ? null
               : FloatFieldUpdateOperationsInput.fromJson(
@@ -13005,7 +12864,6 @@ Map<String, dynamic> _$VendaprodleiteUpdateWithoutProdleiteInputToJson(
     }
   }
 
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite?.toJson());
   writeNotNull('qtdLeite', instance.qtdLeite?.toJson());
   writeNotNull('valorLitro', instance.valorLitro?.toJson());
   writeNotNull('valorTotalItemLeite', instance.valorTotalItemLeite?.toJson());
@@ -13135,10 +12993,6 @@ ItensvendaUpdateWithoutVendaanimalInput
     _$ItensvendaUpdateWithoutVendaanimalInputFromJson(
             Map<String, dynamic> json) =>
         ItensvendaUpdateWithoutVendaanimalInput(
-          codItensVenda: json['codItensVenda'] == null
-              ? null
-              : IntFieldUpdateOperationsInput.fromJson(
-                  json['codItensVenda'] as Map<String, dynamic>),
           quantidade: json['quantidade'] == null
               ? null
               : IntFieldUpdateOperationsInput.fromJson(
@@ -13167,7 +13021,6 @@ Map<String, dynamic> _$ItensvendaUpdateWithoutVendaanimalInputToJson(
     }
   }
 
-  writeNotNull('codItensVenda', instance.codItensVenda?.toJson());
   writeNotNull('quantidade', instance.quantidade?.toJson());
   writeNotNull('valorUnitario', instance.valorUnitario?.toJson());
   writeNotNull('valorTotalItemAnimal', instance.valorTotalItemAnimal?.toJson());
@@ -13252,10 +13105,6 @@ VendaprodleiteUpdateWithoutVendaleiteInput
     _$VendaprodleiteUpdateWithoutVendaleiteInputFromJson(
             Map<String, dynamic> json) =>
         VendaprodleiteUpdateWithoutVendaleiteInput(
-          codVendaProdLeite: json['codVendaProdLeite'] == null
-              ? null
-              : IntFieldUpdateOperationsInput.fromJson(
-                  json['codVendaProdLeite'] as Map<String, dynamic>),
           qtdLeite: json['qtdLeite'] == null
               ? null
               : FloatFieldUpdateOperationsInput.fromJson(
@@ -13284,7 +13133,6 @@ Map<String, dynamic> _$VendaprodleiteUpdateWithoutVendaleiteInputToJson(
     }
   }
 
-  writeNotNull('codVendaProdLeite', instance.codVendaProdLeite?.toJson());
   writeNotNull('qtdLeite', instance.qtdLeite?.toJson());
   writeNotNull('valorLitro', instance.valorLitro?.toJson());
   writeNotNull('valorTotalItemLeite', instance.valorTotalItemLeite?.toJson());

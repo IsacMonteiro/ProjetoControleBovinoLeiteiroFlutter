@@ -738,14 +738,12 @@ class ItensvendaOrderByWithRelationInput implements _i1.JsonSerializable {
 
 @_i1.jsonSerializable
 class ItensvendaWhereUniqueInput implements _i1.JsonSerializable {
-  const ItensvendaWhereUniqueInput({this.codItensVendaCodVendaAnimalCodAnimal});
+  const ItensvendaWhereUniqueInput({this.codItensVenda});
 
   factory ItensvendaWhereUniqueInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaWhereUniqueInputFromJson(json);
 
-  @JsonKey(name: r'codItensVenda_codVendaAnimal_codAnimal')
-  final ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput?
-      codItensVendaCodVendaAnimalCodAnimal;
+  final int? codItensVenda;
 
   @override
   Map<String, dynamic> toJson() => _$ItensvendaWhereUniqueInputToJson(this);
@@ -1413,15 +1411,12 @@ class VendaprodleiteOrderByWithRelationInput implements _i1.JsonSerializable {
 
 @_i1.jsonSerializable
 class VendaprodleiteWhereUniqueInput implements _i1.JsonSerializable {
-  const VendaprodleiteWhereUniqueInput(
-      {this.codVendaProdLeiteCodVendaLeiteCodProdLeite});
+  const VendaprodleiteWhereUniqueInput({this.codVendaProdLeite});
 
   factory VendaprodleiteWhereUniqueInput.fromJson(Map<String, dynamic> json) =>
       _$VendaprodleiteWhereUniqueInputFromJson(json);
 
-  @JsonKey(name: r'codVendaProdLeite_codVendaLeite_codProdLeite')
-  final VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput?
-      codVendaProdLeiteCodVendaLeiteCodProdLeite;
+  final int? codVendaProdLeite;
 
   @override
   Map<String, dynamic> toJson() => _$VendaprodleiteWhereUniqueInputToJson(this);
@@ -2134,7 +2129,6 @@ class CompradorUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaCreateInput implements _i1.JsonSerializable {
   const ItensvendaCreateInput({
-    this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
     required this.valorTotalItemAnimal,
@@ -2144,8 +2138,6 @@ class ItensvendaCreateInput implements _i1.JsonSerializable {
 
   factory ItensvendaCreateInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaCreateInputFromJson(json);
-
-  final int? codItensVenda;
 
   final int quantidade;
 
@@ -2194,7 +2186,6 @@ class ItensvendaUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaUpdateInput implements _i1.JsonSerializable {
   const ItensvendaUpdateInput({
-    this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
     this.valorTotalItemAnimal,
@@ -2204,8 +2195,6 @@ class ItensvendaUpdateInput implements _i1.JsonSerializable {
 
   factory ItensvendaUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$ItensvendaUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codItensVenda;
 
   final IntFieldUpdateOperationsInput? quantidade;
 
@@ -2284,7 +2273,6 @@ class ItensvendaCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaUpdateManyMutationInput implements _i1.JsonSerializable {
   const ItensvendaUpdateManyMutationInput({
-    this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
     this.valorTotalItemAnimal,
@@ -2293,8 +2281,6 @@ class ItensvendaUpdateManyMutationInput implements _i1.JsonSerializable {
   factory ItensvendaUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$ItensvendaUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codItensVenda;
 
   final IntFieldUpdateOperationsInput? quantidade;
 
@@ -2858,7 +2844,6 @@ class VendaleiteUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteCreateInput implements _i1.JsonSerializable {
   const VendaprodleiteCreateInput({
-    this.codVendaProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
     required this.valorTotalItemLeite,
@@ -2868,8 +2853,6 @@ class VendaprodleiteCreateInput implements _i1.JsonSerializable {
 
   factory VendaprodleiteCreateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaprodleiteCreateInputFromJson(json);
-
-  final int? codVendaProdLeite;
 
   final double qtdLeite;
 
@@ -2920,7 +2903,6 @@ class VendaprodleiteUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteUpdateInput implements _i1.JsonSerializable {
   const VendaprodleiteUpdateInput({
-    this.codVendaProdLeite,
     this.qtdLeite,
     this.valorLitro,
     this.valorTotalItemLeite,
@@ -2930,8 +2912,6 @@ class VendaprodleiteUpdateInput implements _i1.JsonSerializable {
 
   factory VendaprodleiteUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$VendaprodleiteUpdateInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaProdLeite;
 
   final FloatFieldUpdateOperationsInput? qtdLeite;
 
@@ -3012,7 +2992,6 @@ class VendaprodleiteCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class VendaprodleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   const VendaprodleiteUpdateManyMutationInput({
-    this.codVendaProdLeite,
     this.qtdLeite,
     this.valorLitro,
     this.valorTotalItemLeite,
@@ -3021,8 +3000,6 @@ class VendaprodleiteUpdateManyMutationInput implements _i1.JsonSerializable {
   factory VendaprodleiteUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaprodleiteUpdateManyMutationInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaProdLeite;
 
   final FloatFieldUpdateOperationsInput? qtdLeite;
 
@@ -4107,32 +4084,6 @@ class VendaanimalRelationFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput
-    implements _i1.JsonSerializable {
-  const ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput({
-    required this.codItensVenda,
-    required this.codVendaAnimal,
-    required this.codAnimal,
-  });
-
-  factory ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInput.fromJson(
-          Map<String, dynamic> json) =>
-      _$ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInputFromJson(
-          json);
-
-  final int codItensVenda;
-
-  final int codVendaAnimal;
-
-  final int codAnimal;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$ItensvendaCodItensVendaCodVendaAnimalCodAnimalCompoundUniqueInputToJson(
-          this);
-}
-
-@_i1.jsonSerializable
 class ItensvendaCountOrderByAggregateInput implements _i1.JsonSerializable {
   const ItensvendaCountOrderByAggregateInput({
     this.codItensVenda,
@@ -4782,32 +4733,6 @@ class VendaleiteRelationFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$VendaleiteRelationFilterToJson(this);
-}
-
-@_i1.jsonSerializable
-class VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput
-    implements _i1.JsonSerializable {
-  const VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput({
-    required this.codVendaProdLeite,
-    required this.codVendaLeite,
-    required this.codProdLeite,
-  });
-
-  factory VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInput.fromJson(
-          Map<String, dynamic> json) =>
-      _$VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInputFromJson(
-          json);
-
-  final int codVendaProdLeite;
-
-  final int codVendaLeite;
-
-  final int codProdLeite;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$VendaprodleiteCodVendaProdLeiteCodVendaLeiteCodProdLeiteCompoundUniqueInputToJson(
-          this);
 }
 
 @_i1.jsonSerializable
@@ -7418,7 +7343,6 @@ class ProdleiteCreateOrConnectWithoutAnimalInput
 @_i1.jsonSerializable
 class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateWithoutAnimalInput({
-    this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
     required this.valorTotalItemAnimal,
@@ -7428,8 +7352,6 @@ class ItensvendaCreateWithoutAnimalInput implements _i1.JsonSerializable {
   factory ItensvendaCreateWithoutAnimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$ItensvendaCreateWithoutAnimalInputFromJson(json);
-
-  final int? codItensVenda;
 
   final int quantidade;
 
@@ -8859,7 +8781,6 @@ class AnimalCreateManyProdleiteInputEnvelope implements _i1.JsonSerializable {
 class VendaprodleiteCreateWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteCreateWithoutProdleiteInput({
-    this.codVendaProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
     required this.valorTotalItemLeite,
@@ -8869,8 +8790,6 @@ class VendaprodleiteCreateWithoutProdleiteInput
   factory VendaprodleiteCreateWithoutProdleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaprodleiteCreateWithoutProdleiteInputFromJson(json);
-
-  final int? codVendaProdLeite;
 
   final double qtdLeite;
 
@@ -9131,7 +9050,6 @@ class VendaprodleiteScalarWhereInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   const ItensvendaCreateWithoutVendaanimalInput({
-    this.codItensVenda,
     required this.quantidade,
     required this.valorUnitario,
     required this.valorTotalItemAnimal,
@@ -9141,8 +9059,6 @@ class ItensvendaCreateWithoutVendaanimalInput implements _i1.JsonSerializable {
   factory ItensvendaCreateWithoutVendaanimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$ItensvendaCreateWithoutVendaanimalInputFromJson(json);
-
-  final int? codItensVenda;
 
   final int quantidade;
 
@@ -9529,7 +9445,6 @@ class CompradorCreateOrConnectWithoutVendaleiteInput
 class VendaprodleiteCreateWithoutVendaleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteCreateWithoutVendaleiteInput({
-    this.codVendaProdLeite,
     required this.qtdLeite,
     required this.valorLitro,
     required this.valorTotalItemLeite,
@@ -9539,8 +9454,6 @@ class VendaprodleiteCreateWithoutVendaleiteInput
   factory VendaprodleiteCreateWithoutVendaleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaprodleiteCreateWithoutVendaleiteInputFromJson(json);
-
-  final int? codVendaProdLeite;
 
   final double qtdLeite;
 
@@ -10088,7 +10001,6 @@ class ItensvendaCreateManyAnimalInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaUpdateWithoutAnimalInput implements _i1.JsonSerializable {
   const ItensvendaUpdateWithoutAnimalInput({
-    this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
     this.valorTotalItemAnimal,
@@ -10098,8 +10010,6 @@ class ItensvendaUpdateWithoutAnimalInput implements _i1.JsonSerializable {
   factory ItensvendaUpdateWithoutAnimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$ItensvendaUpdateWithoutAnimalInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codItensVenda;
 
   final IntFieldUpdateOperationsInput? quantidade;
 
@@ -10694,7 +10604,6 @@ class AnimalUncheckedUpdateWithoutProdleiteInput
 class VendaprodleiteUpdateWithoutProdleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteUpdateWithoutProdleiteInput({
-    this.codVendaProdLeite,
     this.qtdLeite,
     this.valorLitro,
     this.valorTotalItemLeite,
@@ -10704,8 +10613,6 @@ class VendaprodleiteUpdateWithoutProdleiteInput
   factory VendaprodleiteUpdateWithoutProdleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaprodleiteUpdateWithoutProdleiteInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaProdLeite;
 
   final FloatFieldUpdateOperationsInput? qtdLeite;
 
@@ -10813,7 +10720,6 @@ class ItensvendaCreateManyVendaanimalInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class ItensvendaUpdateWithoutVendaanimalInput implements _i1.JsonSerializable {
   const ItensvendaUpdateWithoutVendaanimalInput({
-    this.codItensVenda,
     this.quantidade,
     this.valorUnitario,
     this.valorTotalItemAnimal,
@@ -10823,8 +10729,6 @@ class ItensvendaUpdateWithoutVendaanimalInput implements _i1.JsonSerializable {
   factory ItensvendaUpdateWithoutVendaanimalInput.fromJson(
           Map<String, dynamic> json) =>
       _$ItensvendaUpdateWithoutVendaanimalInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codItensVenda;
 
   final IntFieldUpdateOperationsInput? quantidade;
 
@@ -10902,7 +10806,6 @@ class VendaprodleiteCreateManyVendaleiteInput implements _i1.JsonSerializable {
 class VendaprodleiteUpdateWithoutVendaleiteInput
     implements _i1.JsonSerializable {
   const VendaprodleiteUpdateWithoutVendaleiteInput({
-    this.codVendaProdLeite,
     this.qtdLeite,
     this.valorLitro,
     this.valorTotalItemLeite,
@@ -10912,8 +10815,6 @@ class VendaprodleiteUpdateWithoutVendaleiteInput
   factory VendaprodleiteUpdateWithoutVendaleiteInput.fromJson(
           Map<String, dynamic> json) =>
       _$VendaprodleiteUpdateWithoutVendaleiteInputFromJson(json);
-
-  final IntFieldUpdateOperationsInput? codVendaProdLeite;
 
   final FloatFieldUpdateOperationsInput? qtdLeite;
 
@@ -19763,7 +19664,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250cm9sZV9ib3Zpbm9fbGVpdGVpcm8iCn0KCm1vZGVsIGFuaW1hbCB7CiAgY29kQW5pbWFsICAgICAgSW50ICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgY29kUHJvZExlaXRlICAgSW50CiAgY29kQ2F0ZWdvcmlhICAgSW50CiAgbm9tZSAgICAgICAgICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGRhdGFOYXNjaW1lbnRvIERhdGVUaW1lICAgICBAZGIuRGF0ZQogIHNleG8gICAgICAgICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICByYWNhICAgICAgICAgICBTdHJpbmcgICAgICAgQGRiLlZhckNoYXIoNDUpCiAgaWRhZGUgICAgICAgICAgSW50CiAgZm9ybWFNYW5lam8gICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIG1lZGlhTGVpdGUgICAgIEZsb2F0PwogIGNhdGVnb3JpYSAgICAgIGNhdGVnb3JpYSAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ2F0ZWdvcmlhXSwgcmVmZXJlbmNlczogW2NvZENhdGVnb3JpYV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19BbmltYWxfQ2F0ZWdvcmlhMSIpCiAgcHJvZGxlaXRlICAgICAgcHJvZGxlaXRlICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RQcm9kTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kUHJvZExlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX0FuaW1hbF9Qcm9kTGVpdGUxIikKICBpdGVuc3ZlbmRhICAgICBpdGVuc3ZlbmRhW10KCiAgQEBpbmRleChbY29kQ2F0ZWdvcmlhXSwgbWFwOiAiZmtfQW5pbWFsX0NhdGVnb3JpYTFfaWR4IikKICBAQGluZGV4KFtjb2RQcm9kTGVpdGVdLCBtYXA6ICJma19BbmltYWxfUHJvZExlaXRlMV9pZHgiKQp9Cgptb2RlbCBjYXRlZ29yaWEgewogIGNvZENhdGVnb3JpYSBJbnQgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIHRpcG8gICAgICAgICBTdHJpbmcgICBAZGIuVmFyQ2hhcig0NSkKICBhbmltYWwgICAgICAgYW5pbWFsW10KfQoKbW9kZWwgY29tcHJhZG9yIHsKICBjb2RDb21wcmFkb3IgSW50ICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIG5vbWUgICAgICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIHRlbGVmb25lICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGVuZGVyZWNvICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDIwMCkKICB2ZW5kYWFuaW1hbCAgdmVuZGFhbmltYWxbXQogIHZlbmRhbGVpdGUgICB2ZW5kYWxlaXRlW10KfQoKbW9kZWwgaXRlbnN2ZW5kYSB7CiAgY29kSXRlbnNWZW5kYSAgICAgICAgSW50ICAgICAgICAgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGNvZFZlbmRhQW5pbWFsICAgICAgIEludAogIGNvZEFuaW1hbCAgICAgICAgICAgIEludAogIHF1YW50aWRhZGUgICAgICAgICAgIEludAogIHZhbG9yVW5pdGFyaW8gICAgICAgIEZsb2F0CiAgdmFsb3JUb3RhbEl0ZW1BbmltYWwgRmxvYXQKICBhbmltYWwgICAgICAgICAgICAgICBhbmltYWwgICAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQW5pbWFsXSwgcmVmZXJlbmNlczogW2NvZEFuaW1hbF0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX0FuaW1hbDEiKQogIHZlbmRhYW5pbWFsICAgICAgICAgIHZlbmRhYW5pbWFsIEByZWxhdGlvbihmaWVsZHM6IFtjb2RWZW5kYUFuaW1hbF0sIHJlZmVyZW5jZXM6IFtjb2RWZW5kYUFuaW1hbF0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX1ZlbmRhQW5pbWFsMSIpCgogIEBAaWQoW2NvZEl0ZW5zVmVuZGEsIGNvZFZlbmRhQW5pbWFsLCBjb2RBbmltYWxdKQogIEBAaW5kZXgoW2NvZEFuaW1hbF0sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfQW5pbWFsMV9pZHgiKQogIEBAaW5kZXgoW2NvZFZlbmRhQW5pbWFsXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9WZW5kYUFuaW1hbDFfaWR4IikKfQoKbW9kZWwgcHJvZGxlaXRlIHsKICBjb2RQcm9kTGVpdGUgICBJbnQgICAgICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgZGF0YVByb2RMZWl0ZSAgRGF0ZVRpbWUgICAgICAgICBAZGIuRGF0ZQogIHF0ZFByb2RMZWl0ZSAgIEZsb2F0CiAgYW5pbWFsICAgICAgICAgYW5pbWFsW10KICB2ZW5kYXByb2RsZWl0ZSB2ZW5kYXByb2RsZWl0ZVtdCn0KCm1vZGVsIHZlbmRhYW5pbWFsIHsKICBjb2RWZW5kYUFuaW1hbCAgIEludCAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGNvZENvbXByYWRvciAgICAgSW50CiAgZGF0YVZlbmRhQW5pbWFsICBEYXRlVGltZSAgICAgQGRiLkRhdGUKICB2YWxvclRvdGFsQW5pbWFsIEZsb2F0CiAgaXRlbnN2ZW5kYSAgICAgICBpdGVuc3ZlbmRhW10KICBjb21wcmFkb3IgICAgICAgIGNvbXByYWRvciAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ29tcHJhZG9yXSwgcmVmZXJlbmNlczogW2NvZENvbXByYWRvcl0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUFuaW1hbF9Db21wcmFkb3IiKQoKICBAQGluZGV4KFtjb2RDb21wcmFkb3JdLCBtYXA6ICJma19WZW5kYUFuaW1hbF9Db21wcmFkb3JfaWR4IikKfQoKbW9kZWwgdmVuZGFsZWl0ZSB7CiAgY29kVmVuZGFMZWl0ZSAgIEludCAgICAgICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjb2RDb21wcmFkb3IgICAgSW50CiAgZGF0YVZlbmRhTGVpdGUgIERhdGVUaW1lICAgICAgICAgQGRiLkRhdGUKICB2YWxvclRvdGFsTGVpdGUgRmxvYXQKICBjb21wcmFkb3IgICAgICAgY29tcHJhZG9yICAgICAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ29tcHJhZG9yXSwgcmVmZXJlbmNlczogW2NvZENvbXByYWRvcl0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUxlaXRlX0NvbXByYWRvcjEiKQogIHZlbmRhcHJvZGxlaXRlICB2ZW5kYXByb2RsZWl0ZVtdCgogIEBAaW5kZXgoW2NvZENvbXByYWRvcl0sIG1hcDogImZrX1ZlbmRhTGVpdGVfQ29tcHJhZG9yMV9pZHgiKQp9Cgptb2RlbCB2ZW5kYXByb2RsZWl0ZSB7CiAgY29kVmVuZGFQcm9kTGVpdGUgICBJbnQgICAgICAgIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjb2RWZW5kYUxlaXRlICAgICAgIEludAogIGNvZFByb2RMZWl0ZSAgICAgICAgSW50CiAgcXRkTGVpdGUgICAgICAgICAgICBGbG9hdAogIHZhbG9yTGl0cm8gICAgICAgICAgRmxvYXQKICB2YWxvclRvdGFsSXRlbUxlaXRlIEZsb2F0CiAgcHJvZGxlaXRlICAgICAgICAgICBwcm9kbGVpdGUgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RQcm9kTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kUHJvZExlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9Qcm9kTGVpdGUxIikKICB2ZW5kYWxlaXRlICAgICAgICAgIHZlbmRhbGVpdGUgQHJlbGF0aW9uKGZpZWxkczogW2NvZFZlbmRhTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kVmVuZGFMZWl0ZV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19WZW5kYUxlaXRlX2hhc19Qcm9kTGVpdGVfVmVuZGFMZWl0ZTEiKQoKICBAQGlkKFtjb2RWZW5kYVByb2RMZWl0ZSwgY29kVmVuZGFMZWl0ZSwgY29kUHJvZExlaXRlXSkKICBAQGluZGV4KFtjb2RQcm9kTGVpdGVdLCBtYXA6ICJma19WZW5kYUxlaXRlX2hhc19Qcm9kTGVpdGVfUHJvZExlaXRlMV9pZHgiKQogIEBAaW5kZXgoW2NvZFZlbmRhTGVpdGVdLCBtYXA6ICJma19WZW5kYUxlaXRlX2hhc19Qcm9kTGVpdGVfVmVuZGFMZWl0ZTFfaWR4IikKfQo=',
+          r'Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9ICJteXNxbDovL3Jvb3Q6cm9vdEBsb2NhbGhvc3Q6MzMwNi9jb250cm9sZV9ib3Zpbm9fbGVpdGVpcm8iCn0KCm1vZGVsIGFuaW1hbCB7CiAgY29kQW5pbWFsICAgICAgSW50ICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgY29kUHJvZExlaXRlICAgSW50CiAgY29kQ2F0ZWdvcmlhICAgSW50CiAgbm9tZSAgICAgICAgICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGRhdGFOYXNjaW1lbnRvIERhdGVUaW1lICAgICBAZGIuRGF0ZQogIHNleG8gICAgICAgICAgIFN0cmluZyAgICAgICBAZGIuVmFyQ2hhcig0NSkKICByYWNhICAgICAgICAgICBTdHJpbmcgICAgICAgQGRiLlZhckNoYXIoNDUpCiAgaWRhZGUgICAgICAgICAgSW50CiAgZm9ybWFNYW5lam8gICAgU3RyaW5nICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIG1lZGlhTGVpdGUgICAgIEZsb2F0PwogIGNhdGVnb3JpYSAgICAgIGNhdGVnb3JpYSAgICBAcmVsYXRpb24oZmllbGRzOiBbY29kQ2F0ZWdvcmlhXSwgcmVmZXJlbmNlczogW2NvZENhdGVnb3JpYV0sIG9uRGVsZXRlOiBOb0FjdGlvbiwgb25VcGRhdGU6IE5vQWN0aW9uLCBtYXA6ICJma19BbmltYWxfQ2F0ZWdvcmlhMSIpCiAgcHJvZGxlaXRlICAgICAgcHJvZGxlaXRlICAgIEByZWxhdGlvbihmaWVsZHM6IFtjb2RQcm9kTGVpdGVdLCByZWZlcmVuY2VzOiBbY29kUHJvZExlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX0FuaW1hbF9Qcm9kTGVpdGUxIikKICBpdGVuc3ZlbmRhICAgICBpdGVuc3ZlbmRhW10KCiAgQEBpbmRleChbY29kQ2F0ZWdvcmlhXSwgbWFwOiAiZmtfQW5pbWFsX0NhdGVnb3JpYTFfaWR4IikKICBAQGluZGV4KFtjb2RQcm9kTGVpdGVdLCBtYXA6ICJma19BbmltYWxfUHJvZExlaXRlMV9pZHgiKQp9Cgptb2RlbCBjYXRlZ29yaWEgewogIGNvZENhdGVnb3JpYSBJbnQgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIHRpcG8gICAgICAgICBTdHJpbmcgICBAZGIuVmFyQ2hhcig0NSkKICBhbmltYWwgICAgICAgYW5pbWFsW10KfQoKbW9kZWwgY29tcHJhZG9yIHsKICBjb2RDb21wcmFkb3IgSW50ICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIG5vbWUgICAgICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIHRlbGVmb25lICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDQ1KQogIGVuZGVyZWNvICAgICBTdHJpbmcgICAgICAgIEBkYi5WYXJDaGFyKDIwMCkKICB2ZW5kYWFuaW1hbCAgdmVuZGFhbmltYWxbXQogIHZlbmRhbGVpdGUgICB2ZW5kYWxlaXRlW10KfQoKbW9kZWwgaXRlbnN2ZW5kYSB7CiAgY29kSXRlbnNWZW5kYSAgICAgICAgSW50ICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjb2RWZW5kYUFuaW1hbCAgICAgICBJbnQKICBjb2RBbmltYWwgICAgICAgICAgICBJbnQKICBxdWFudGlkYWRlICAgICAgICAgICBJbnQKICB2YWxvclVuaXRhcmlvICAgICAgICBGbG9hdAogIHZhbG9yVG90YWxJdGVtQW5pbWFsIEZsb2F0CiAgYW5pbWFsICAgICAgICAgICAgICAgYW5pbWFsICAgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZEFuaW1hbF0sIHJlZmVyZW5jZXM6IFtjb2RBbmltYWxdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9BbmltYWwxIikKICB2ZW5kYWFuaW1hbCAgICAgICAgICB2ZW5kYWFuaW1hbCBAcmVsYXRpb24oZmllbGRzOiBbY29kVmVuZGFBbmltYWxdLCByZWZlcmVuY2VzOiBbY29kVmVuZGFBbmltYWxdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFBbmltYWxfaGFzX0FuaW1hbF9WZW5kYUFuaW1hbDEiKQoKICBAQGluZGV4KFtjb2RBbmltYWxdLCBtYXA6ICJma19WZW5kYUFuaW1hbF9oYXNfQW5pbWFsX0FuaW1hbDFfaWR4IikKICBAQGluZGV4KFtjb2RWZW5kYUFuaW1hbF0sIG1hcDogImZrX1ZlbmRhQW5pbWFsX2hhc19BbmltYWxfVmVuZGFBbmltYWwxX2lkeCIpCn0KCm1vZGVsIHByb2RsZWl0ZSB7CiAgY29kUHJvZExlaXRlICAgSW50ICAgICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGRhdGFQcm9kTGVpdGUgIERhdGVUaW1lICAgICAgICAgQGRiLkRhdGUKICBxdGRQcm9kTGVpdGUgICBGbG9hdAogIGFuaW1hbCAgICAgICAgIGFuaW1hbFtdCiAgdmVuZGFwcm9kbGVpdGUgdmVuZGFwcm9kbGVpdGVbXQp9Cgptb2RlbCB2ZW5kYWFuaW1hbCB7CiAgY29kVmVuZGFBbmltYWwgICBJbnQgICAgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjb2RDb21wcmFkb3IgICAgIEludAogIGRhdGFWZW5kYUFuaW1hbCAgRGF0ZVRpbWUgICAgIEBkYi5EYXRlCiAgdmFsb3JUb3RhbEFuaW1hbCBGbG9hdAogIGl0ZW5zdmVuZGEgICAgICAgaXRlbnN2ZW5kYVtdCiAgY29tcHJhZG9yICAgICAgICBjb21wcmFkb3IgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENvbXByYWRvcl0sIHJlZmVyZW5jZXM6IFtjb2RDb21wcmFkb3JdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yIikKCiAgQEBpbmRleChbY29kQ29tcHJhZG9yXSwgbWFwOiAiZmtfVmVuZGFBbmltYWxfQ29tcHJhZG9yX2lkeCIpCn0KCm1vZGVsIHZlbmRhbGVpdGUgewogIGNvZFZlbmRhTGVpdGUgICBJbnQgICAgICAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgY29kQ29tcHJhZG9yICAgIEludAogIGRhdGFWZW5kYUxlaXRlICBEYXRlVGltZSAgICAgICAgIEBkYi5EYXRlCiAgdmFsb3JUb3RhbExlaXRlIEZsb2F0CiAgY29tcHJhZG9yICAgICAgIGNvbXByYWRvciAgICAgICAgQHJlbGF0aW9uKGZpZWxkczogW2NvZENvbXByYWRvcl0sIHJlZmVyZW5jZXM6IFtjb2RDb21wcmFkb3JdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFMZWl0ZV9Db21wcmFkb3IxIikKICB2ZW5kYXByb2RsZWl0ZSAgdmVuZGFwcm9kbGVpdGVbXQoKICBAQGluZGV4KFtjb2RDb21wcmFkb3JdLCBtYXA6ICJma19WZW5kYUxlaXRlX0NvbXByYWRvcjFfaWR4IikKfQoKbW9kZWwgdmVuZGFwcm9kbGVpdGUgewogIGNvZFZlbmRhUHJvZExlaXRlICAgSW50ICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGNvZFZlbmRhTGVpdGUgICAgICAgSW50CiAgY29kUHJvZExlaXRlICAgICAgICBJbnQKICBxdGRMZWl0ZSAgICAgICAgICAgIEZsb2F0CiAgdmFsb3JMaXRybyAgICAgICAgICBGbG9hdAogIHZhbG9yVG90YWxJdGVtTGVpdGUgRmxvYXQKICBwcm9kbGVpdGUgICAgICAgICAgIHByb2RsZWl0ZSAgQHJlbGF0aW9uKGZpZWxkczogW2NvZFByb2RMZWl0ZV0sIHJlZmVyZW5jZXM6IFtjb2RQcm9kTGVpdGVdLCBvbkRlbGV0ZTogTm9BY3Rpb24sIG9uVXBkYXRlOiBOb0FjdGlvbiwgbWFwOiAiZmtfVmVuZGFMZWl0ZV9oYXNfUHJvZExlaXRlX1Byb2RMZWl0ZTEiKQogIHZlbmRhbGVpdGUgICAgICAgICAgdmVuZGFsZWl0ZSBAcmVsYXRpb24oZmllbGRzOiBbY29kVmVuZGFMZWl0ZV0sIHJlZmVyZW5jZXM6IFtjb2RWZW5kYUxlaXRlXSwgb25EZWxldGU6IE5vQWN0aW9uLCBvblVwZGF0ZTogTm9BY3Rpb24sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9WZW5kYUxlaXRlMSIpCgogIEBAaW5kZXgoW2NvZFByb2RMZWl0ZV0sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9Qcm9kTGVpdGUxX2lkeCIpCiAgQEBpbmRleChbY29kVmVuZGFMZWl0ZV0sIG1hcDogImZrX1ZlbmRhTGVpdGVfaGFzX1Byb2RMZWl0ZV9WZW5kYUxlaXRlMV9pZHgiKQp9Cg==',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
           r'C:\Users\Micro\OneDrive\Imagens\ProjetoControleBovinoLeiteiro\controle_bovino_leiteiro\node_modules\prisma\query-engine-windows.exe',

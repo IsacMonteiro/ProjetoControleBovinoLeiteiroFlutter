@@ -13,6 +13,7 @@ class VendaLeiteUI extends StatefulWidget {
   _VendaLeiteUIState createState() => _VendaLeiteUIState();
 }
 
+//----------------------------------------------------------------------------------------------
 class _VendaLeiteUIState extends State<VendaLeiteUI> {
 
   Iterable<Comprador> _compradores = [];
@@ -35,6 +36,8 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
       });
     });
   }
+//----------------------------------------------------------------------------------------------
+
 
   TextEditingController _controllerDataVendaLeite = TextEditingController();
   DateTime? _selectedDate;
@@ -160,6 +163,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+
             // ComboBox
             DropdownButtonFormField<String>(
               value: _selectedComprador,

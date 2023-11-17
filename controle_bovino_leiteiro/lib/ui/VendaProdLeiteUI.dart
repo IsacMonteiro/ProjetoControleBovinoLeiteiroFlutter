@@ -13,11 +13,52 @@ class VendaProdLeiteUI extends StatefulWidget {
 }
 
 class _VendaProdLeiteUIState extends State<VendaProdLeiteUI> {
+
+//----------------------------------------------------------------------------------------------
+  VendaProdLeiteRepositorio _vendaProdLeiteRepositorio = VendaProdLeiteRepositorio();
+
+  Iterable<Vendaleite> _vendaleites = [];
+  String? _selectedVendaLeite;
+ 
+
+  Iterable<Prodleite> _prodleites = [];
+  String? _selectedProdLeite;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarVendaLeites();
+    _carregarProdLeites();
+  }
+
+  void _carregarVendaLeites() {
+    _vendaProdLeiteRepositorio.consultarVendaLeites().then((value) {
+      setState(() {
+        _vendaleites = value;
+        if (_vendaleites.isNotEmpty) {
+          _selectedVendaLeite = _vendaleites.first.codVendaLeite.toString();
+        }
+      });
+    });
+  }
+
+  void _carregarProdLeites() {
+    _vendaProdLeiteRepositorio.consultarProdLeites().then((value) {
+      setState(() {
+        _prodleites = value;
+        if (_prodleites.isNotEmpty) {
+          _selectedProdLeite = _prodleites.first.codProdLeite.toString();
+        }
+      });
+    });
+  }
+
+//----------------------------------------------------------------------------------------------
+
   TextEditingController _controllerQtdLeite = TextEditingController();
   TextEditingController _controllerValorLitro = TextEditingController();
   TextEditingController _controllerValorTotalItemLeite = TextEditingController();
-
-  VendaProdLeiteRepositorio _vendaProdLeiteRepositorio = VendaProdLeiteRepositorio();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -84,8 +125,8 @@ class _VendaProdLeiteUIState extends State<VendaProdLeiteUI> {
       // Incluindo os dados
       _vendaProdLeite = Vendaprodleite(
         codVendaProdLeite: 0,
-        codVendaLeite: 0,
-        codProdLeite: 0,
+        codVendaLeite: int.parse(_selectedVendaLeite!),
+        codProdLeite: int.parse(_selectedProdLeite!),
         qtdLeite: double.parse(_controllerQtdLeite.text),
         valorLitro: double.parse(_controllerValorLitro.text),
         valorTotalItemLeite: double.parse(_controllerValorTotalItemLeite.text),
@@ -134,6 +175,50 @@ class _VendaProdLeiteUIState extends State<VendaProdLeiteUI> {
             HelperUI.builderTextFormField(_controllerValorLitro,"Valor do Litro", (value) => _validar(value)),
 
             HelperUI.builderTextFormField(_controllerValorTotalItemLeite,"Valor Total da Compra", (value) => _validar(value)),
+
+            // ComboBox Data de Venda
+            DropdownButtonFormField<String>(
+              value: _selectedVendaLeite,
+              onChanged: (value) {
+                setState(() {_selectedVendaLeite = value;});
+              },
+              items: _vendaleites.map((vendaleite) {
+                  return DropdownMenuItem<String>(
+                    value: vendaleite.codVendaLeite.toString(),
+                    child: Text(vendaleite.dataVendaLeite.toString()),
+                  );}).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Data da Venda',
+              ),
+            ),
+
+            // ComboBox Data da Produção do Leite Vendido
+            DropdownButtonFormField<String>(
+              value: _selectedProdLeite,
+              onChanged: (value) {
+                setState(() {_selectedProdLeite = value;});
+              },
+              items: _prodleites.map((prodleite) {
+                  return DropdownMenuItem<String>(
+                    value: prodleite.codProdLeite.toString(),
+                    child: Text(prodleite.dataProdLeite.toString()),
+                  );}).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Data da Produção do Leite Vendido',
+              ),
+            ),
 
             const Spacer(),
 

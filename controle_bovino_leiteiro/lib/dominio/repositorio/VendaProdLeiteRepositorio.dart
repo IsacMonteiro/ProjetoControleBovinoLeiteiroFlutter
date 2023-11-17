@@ -49,7 +49,7 @@ class VendaProdLeiteRepositorio {
               set: vendaprodleite?.valorTotalItemLeite),
         ),
         where: VendaprodleiteWhereUniqueInput(
-            //codVendaProdLeite: vendaprodleite?.codVendaProdLeite
+          codVendaProdLeite: vendaprodleite?.codVendaProdLeite
         ),
       );
     } catch (e) {
@@ -66,7 +66,7 @@ class VendaProdLeiteRepositorio {
     try {
       vendaprodleite = await _prismaClient.vendaprodleite.delete(
           where: VendaprodleiteWhereUniqueInput(
-            //codVendaProdLeite: codigo
+            codVendaProdLeite: codigo
           ));
     } finally {
       await _prismaClient.$disconnect();
@@ -80,7 +80,7 @@ class VendaProdLeiteRepositorio {
     try {
       vendaprodleite = await _prismaClient.vendaprodleite.findUnique(
           where: VendaprodleiteWhereUniqueInput(
-            //codVendaProdLeite: codigo
+            codVendaProdLeite: codigo
           ));
     } finally {
       await _prismaClient.$disconnect();
@@ -98,5 +98,32 @@ class VendaProdLeiteRepositorio {
       await _prismaClient.$disconnect();
     }
     return vendaprodleites;
+  }
+
+
+
+  //-----------------------------------------------------------------------------------------
+
+  Future<Iterable<Vendaleite>> consultarVendaLeites() async {
+    conectar();
+    Iterable<Vendaleite> vendaleites;
+    try {
+      vendaleites = await _prismaClient.vendaleite.findMany();
+    } finally {
+      await _prismaClient.$disconnect();
+    }
+    return vendaleites;
+  }
+
+
+    Future<Iterable<Prodleite>> consultarProdLeites() async {
+    conectar();
+    Iterable<Prodleite> prodleites;
+    try {
+      prodleites = await _prismaClient.prodleite.findMany();
+    } finally {
+      await _prismaClient.$disconnect();
+    }
+    return prodleites;
   }
 }
