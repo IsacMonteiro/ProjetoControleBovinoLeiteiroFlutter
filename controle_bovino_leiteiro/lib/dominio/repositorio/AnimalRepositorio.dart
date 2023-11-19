@@ -46,7 +46,7 @@ class AnimalRepositorio {
             raca: StringFieldUpdateOperationsInput(set: animal?.raca),
             idade: IntFieldUpdateOperationsInput(set: animal?.idade),
             formaManejo:StringFieldUpdateOperationsInput(set: animal?.formaManejo),
-            //mediaLeite: FloatFieldUpdateOperationsInput(set: animal?.mediaLeite)
+            mediaLeite: NullableFloatFieldUpdateOperationsInput(set: animal?.mediaLeite)
           ),
           where: AnimalWhereUniqueInput(codAnimal: animal?.codAnimal));
     } catch (e) {
@@ -91,5 +91,32 @@ class AnimalRepositorio {
       await _prismaClient.$disconnect();
     }
     return clientes;
+  }
+
+
+//Busca a lista de produção de leite e categoria - Não foi utilizada a presente no repositório dos mesmos
+//por conta do nome padrão "consultarTodos" que poderia entrar em conflito.
+
+  Future<Iterable<Categoria>> consultarCategoria() async {
+    conectar();
+    Iterable<Categoria> categorias;
+    try {
+      categorias = await _prismaClient.categoria.findMany();
+    } finally {
+      await _prismaClient.$disconnect();
+    }
+    return categorias;
+  }
+
+
+    Future<Iterable<Prodleite>> consultarProdLeites() async {
+    conectar();
+    Iterable<Prodleite> prodleites;
+    try {
+      prodleites = await _prismaClient.prodleite.findMany();
+    } finally {
+      await _prismaClient.$disconnect();
+    }
+    return prodleites;
   }
 }

@@ -102,7 +102,8 @@ class VendaProdLeiteRepositorio {
 
 
 
-  //-----------------------------------------------------------------------------------------
+//Busca a lista de vendas de leite e produção de leite - Não foi utilizada a presente no repositório dos mesmos
+//por conta do nome padrão "consultarTodos" que poderia entrar em conflito.
 
   Future<Iterable<Vendaleite>> consultarVendaLeites() async {
     conectar();

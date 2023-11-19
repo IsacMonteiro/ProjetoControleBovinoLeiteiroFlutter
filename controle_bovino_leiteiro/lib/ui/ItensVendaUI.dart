@@ -13,12 +13,50 @@ class ItensVendaUI extends StatefulWidget {
 }
 
 class _ItensVendaUIState extends State<ItensVendaUI> {
+  //----------------------------------------------------------------------------------------------
+  ItensVendaRepositorio _itensVendaRepositorio = ItensVendaRepositorio();
+
+  Iterable<Animal> _animais = [];
+  String? _selectedAnimal;
+
+  Iterable<Vendaanimal> _vendaanimais = [];
+  String? _selectedVendaAnimal;
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarAnimais();
+    _carregarVendaAnimais();
+  }
+
+  void _carregarAnimais() {
+    _itensVendaRepositorio.consultarAnimal().then((value) {
+      setState(() {
+        _animais = value;
+        if (_animais.isNotEmpty) {
+          _selectedAnimal = _animais.first.codAnimal.toString();
+        }
+      });
+    });
+  }
+
+  void _carregarVendaAnimais() {
+    _itensVendaRepositorio.consultarVendasAnimais().then((value) {
+      setState(() {
+        _vendaanimais = value;
+        if (_vendaanimais.isNotEmpty) {
+          _selectedVendaAnimal = _vendaanimais.first.codVendaAnimal.toString();
+        }
+      });
+    });
+  }
+
+//----------------------------------------------------------------------------------------------
+
   TextEditingController _controllerQuantidade = TextEditingController();
   TextEditingController _controllerValorUnitario = TextEditingController();
   TextEditingController _controllerValorTotalItemAnimal =
       TextEditingController();
-
-  ItensVendaRepositorio _itensVendaRepositorio = ItensVendaRepositorio();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -83,8 +121,8 @@ class _ItensVendaUIState extends State<ItensVendaUI> {
       // Incluindo os dados
       _itensVenda = Itensvenda(
         codItensVenda: 0,
-        codVendaAnimal: 0,
-        codAnimal: 0,
+        codVendaAnimal: int.parse(_selectedVendaAnimal!),
+        codAnimal: int.parse(_selectedAnimal!),
         quantidade: int.parse(_controllerQuantidade.text),
         valorUnitario: double.parse(_controllerValorUnitario.text),
         valorTotalItemAnimal:
@@ -131,11 +169,65 @@ class _ItensVendaUIState extends State<ItensVendaUI> {
           children: <Widget>[
             HelperUI.builderTextFormField(_controllerQuantidade,
                 "Quantidade de Animais", (value) => _validar(value)),
+
             HelperUI.builderTextFormField(_controllerValorUnitario,
                 "Valor por Cabeça", (value) => _validar(value)),
+
             HelperUI.builderTextFormField(_controllerValorTotalItemAnimal,
                 "Valor Total da Compra", (value) => _validar(value)),
+
+            // ComboBox Animal Raça
+            DropdownButtonFormField<String>(
+              value: _selectedAnimal,
+              onChanged: (value) {
+                setState(() {
+                  _selectedAnimal = value;
+                });
+              },
+              items: _animais.map((animal) {
+                return DropdownMenuItem<String>(
+                  value: animal.codAnimal.toString(),
+                  child: Text(animal.raca.toString()),
+                );
+              }).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Raça',
+              ),
+            ),
+
+            // ComboBox Data da Venda do Animal
+            DropdownButtonFormField<String>(
+              value: _selectedVendaAnimal,
+              onChanged: (value) {
+                setState(() {
+                  _selectedVendaAnimal = value;
+                });
+              },
+              items: _vendaanimais.map((vendaanimal) {
+                return DropdownMenuItem<String>(
+                  value: vendaanimal.codVendaAnimal.toString(),
+                  child: Text(vendaanimal.dataVendaAnimal.toString()),
+                );
+              }).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Data da Venda do Animal',
+              ),
+            ),
+
             const Spacer(),
+
             ElevatedButton(
               onPressed: () {
                 _confirmar(context);

@@ -13,13 +13,36 @@ class VendaAnimalUI extends StatefulWidget {
   _VendaAnimalUIState createState() => _VendaAnimalUIState();
 }
 
+
+//----------------------------------------------------------------------------------------------
 class _VendaAnimalUIState extends State<VendaAnimalUI> {
+
+  Iterable<Comprador> _compradores = [];
+  String? _selectedComprador;
+  VendaAnimalRepositorio _vendaAnimalRepositorio = VendaAnimalRepositorio(); // Inicialize o repositório aqui
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarCompradores();
+  }
+
+  void _carregarCompradores() {
+    _vendaAnimalRepositorio.consultarCompradores().then((value) {
+      setState(() {
+        _compradores = value;
+        if (_compradores.isNotEmpty) {
+          _selectedComprador = _compradores.first.codComprador.toString();
+        }
+      });
+    });
+  }
+//----------------------------------------------------------------------------------------------
+
   
   TextEditingController _controllerDataVendaAnimal = TextEditingController();
   DateTime? _selectedDate; //Variável onde será armazenada a data.
   TextEditingController _controllerValorTotalAnimal = TextEditingController();
-
-  VendaAnimalRepositorio _vendaAnimalRepositorio = VendaAnimalRepositorio();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -109,7 +132,7 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
       // Incluindo os dados
       _vendaAnimal = Vendaanimal(
         codVendaAnimal: 0,
-        codComprador: 0,
+        codComprador: int.parse(_selectedComprador!),
         dataVendaAnimal:
             _selectedDate ?? DateTime.now(), // Usar a data selecionada
         valorTotalAnimal: double.parse(_controllerValorTotalAnimal.text),
@@ -150,6 +173,33 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+
+            // ComboBox
+            DropdownButtonFormField<String>(
+              value: _selectedComprador,
+              onChanged: (value) {
+                setState(() {
+                  _selectedComprador = value;
+                });
+              },
+              items: _compradores.map((comprador) {
+                return DropdownMenuItem<String>(
+                  value: comprador.codComprador.toString(),
+                  child: Text(comprador.nome),
+                );
+              }).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Comprador',
+              ),
+            ),
+
+
             //Campo Data.
             TextFormField(
               controller: _controllerDataVendaAnimal,

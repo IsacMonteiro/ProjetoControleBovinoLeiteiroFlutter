@@ -14,6 +14,50 @@ class AnimalUI extends StatefulWidget {
 }
 
 class _AnimalUIState extends State<AnimalUI> {
+
+//----------------------------------------------------------------------------------------------
+  AnimalRepositorio _animalRepositorio = AnimalRepositorio();
+
+  Iterable<Categoria> _categorias = [];
+  String? _selectedCategoria;
+ 
+
+  Iterable<Prodleite> _prodleites = [];
+  String? _selectedProdLeite;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarCategorias();
+    _carregarProdLeites();
+  }
+
+  void _carregarCategorias() {
+    _animalRepositorio.consultarCategoria().then((value) {
+      setState(() {
+        _categorias = value;
+        if (_categorias.isNotEmpty) {
+          _selectedCategoria = _categorias.first.codCategoria.toString();
+        }
+      });
+    });
+  }
+
+  void _carregarProdLeites() {
+    _animalRepositorio.consultarProdLeites().then((value) {
+      setState(() {
+        _prodleites = value;
+        if (_prodleites.isNotEmpty) {
+          _selectedProdLeite = _prodleites.first.codProdLeite.toString();
+        }
+      });
+    });
+  }
+
+//----------------------------------------------------------------------------------------------
+
+
   TextEditingController _controllerNome = TextEditingController();
   TextEditingController _controllerDataNascimento = TextEditingController();
   DateTime? _selectedDate;
@@ -23,7 +67,6 @@ class _AnimalUIState extends State<AnimalUI> {
   TextEditingController _controllerFormaManejo = TextEditingController();
   TextEditingController _controllerMediaLeite = TextEditingController();
 
-  AnimalRepositorio _animalRepositorio = AnimalRepositorio();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -102,8 +145,8 @@ class _AnimalUIState extends State<AnimalUI> {
     if (_animal.codAnimal == 0) {
       _animal = Animal(
           codAnimal: 0,
-          codProdLeite: 0,
-          codCategoria: 0,
+          codProdLeite: int.parse(_selectedProdLeite!),
+          codCategoria: int.parse(_selectedCategoria!),
           nome: _controllerNome.text,
           dataNascimento: _selectedDate ?? DateTime.now(),
           sexo: _controllerSexo.text,
@@ -180,6 +223,51 @@ class _AnimalUIState extends State<AnimalUI> {
             HelperUI.builderTextFormField(_controllerFormaManejo, "Forma de Manejo", (value) => _validar(value)),
 
             HelperUI.builderTextFormField(_controllerMediaLeite, "Média de Leite", (value) => _validar(value)),
+
+
+            // ComboBox Categoria
+            DropdownButtonFormField<String>(
+              value: _selectedCategoria,
+              onChanged: (value) {
+                setState(() {_selectedCategoria = value;});
+              },
+              items: _categorias.map((categoria) {
+                  return DropdownMenuItem<String>(
+                    value: categoria.codCategoria.toString(),
+                    child: Text(categoria.tipo.toString()),
+                  );}).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Categoria',
+              ),
+            ),
+
+            // ComboBox Data da Produção do Leite Vendido
+            DropdownButtonFormField<String>(
+              value: _selectedProdLeite,
+              onChanged: (value) {
+                setState(() {_selectedProdLeite = value;});
+              },
+              items: _prodleites.map((prodleite) {
+                  return DropdownMenuItem<String>(
+                    value: prodleite.codProdLeite.toString(),
+                    child: Text(prodleite.dataProdLeite.toString()),
+                  );}).toList(),
+              validator: (value) {
+                if (value == null) {
+                  return "Campo obrigatório!";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'Data da Produção do Leite Vendido',
+              ),
+            ),
 
             const Spacer(),
 

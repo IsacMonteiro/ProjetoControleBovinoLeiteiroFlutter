@@ -82,4 +82,19 @@ class VendaAnimalRepositorio {
     }
     return vendaanimais;
   }
+
+
+//Busca a lista de compradores - Não foi utilizada a presente no repositório do mesmo
+//por conta do nome padrão "consultarTodos" que poderia entrar em conflito.
+
+  Future<Iterable<Comprador>> consultarCompradores() async {
+    conectar();
+    Iterable<Comprador> compradores;
+    try {
+      compradores = await _prismaClient.comprador.findMany();
+    } finally {
+      await _prismaClient.$disconnect();
+    }
+    return compradores;
+  }
 }
