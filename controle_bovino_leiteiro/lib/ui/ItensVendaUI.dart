@@ -14,19 +14,20 @@ class ItensVendaUI extends StatefulWidget {
 
 class _ItensVendaUIState extends State<ItensVendaUI> {
   //----------------------------------------------------------------------------------------------
-  ItensVendaRepositorio _itensVendaRepositorio = ItensVendaRepositorio();
+  ItensVendaRepositorio _itensVendaRepositorio = ItensVendaRepositorio();// Inicializa o repositório
 
-  Iterable<Animal> _animais = [];
-  String? _selectedAnimal;
+  Iterable<Animal> _animais = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedAnimal;//Variável que armazenará o código(chave primária) da tabela selecionada.
 
-  Iterable<Vendaanimal> _vendaanimais = [];
-  String? _selectedVendaAnimal;
+  Iterable<Vendaanimal> _vendaanimais = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedVendaAnimal;//Variável que armazenará o código(chave primária) da tabela selecionada.
 
+  //Método chamado automaticamente quando o widget é inserido na árvore de widgets.
   @override
   void initState() {
     super.initState();
-    _carregarAnimais();
-    _carregarVendaAnimais();
+    _carregarAnimais();//Inicia o carregamento da lista quando o widget é inicializado.
+    _carregarVendaAnimais();//Inicia o carregamento da lista quando o widget é inicializado.
   }
 
   void _carregarAnimais() {

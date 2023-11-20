@@ -103,7 +103,7 @@ class _CompradorUIState extends State<CompradorUI> {
   }
 
   void _confirmar(BuildContext context) async {
-  // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
+  // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers.
   if (_formKey.currentState!.validate()) {
     setState(() {
       _formKey.currentState!.save();
@@ -123,8 +123,9 @@ class _CompradorUIState extends State<CompradorUI> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            HelperUI.builderTextFormField(
-                _controllerNome, "Nome", (value) => _validar(value)),
+
+            HelperUI.builderTextFormField(_controllerNome, "Nome", (value) => _validar(value)),
+            
             //Campo telefone
             TextFormField(
               controller: _controllerTelefone,
@@ -133,9 +134,11 @@ class _CompradorUIState extends State<CompradorUI> {
               keyboardType: TextInputType.phone,
               decoration: const InputDecoration(labelText: 'Telefone'),
             ),
-            HelperUI.builderTextFormField(
-                _controllerEndereco, "Endereço", (value) => _validar(value)),
+
+            HelperUI.builderTextFormField(_controllerEndereco, "Endereço", (value) => _validar(value)),
+
             const Spacer(),
+
             ElevatedButton(
               onPressed: () {
                 _confirmar(context);

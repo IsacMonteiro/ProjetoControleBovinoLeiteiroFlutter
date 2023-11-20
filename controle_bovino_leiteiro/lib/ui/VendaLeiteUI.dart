@@ -13,17 +13,19 @@ class VendaLeiteUI extends StatefulWidget {
   _VendaLeiteUIState createState() => _VendaLeiteUIState();
 }
 
-//----------------------------------------------------------------------------------------------
+
 class _VendaLeiteUIState extends State<VendaLeiteUI> {
 
-  Iterable<Comprador> _compradores = [];
-  String? _selectedComprador;
-  VendaLeiteRepositorio _vendaLeiteRepositorio = VendaLeiteRepositorio(); // Inicialize o repositório aqui
+//----------------------------------------------------------------------------------------------
+  Iterable<Comprador> _compradores = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedComprador;//Variável que armazenará o código(chave primária) da tabela selecionada.
+  VendaLeiteRepositorio _vendaLeiteRepositorio = VendaLeiteRepositorio(); // Inicializa o repositório
 
+  //Método chamado automaticamente quando o widget é inserido na árvore de widgets.
   @override
   void initState() {
     super.initState();
-    _carregarCompradores();
+    _carregarCompradores();//Inicia o carregamento da lista quando o widget é inicializado.
   }
 
   void _carregarCompradores() {
@@ -38,9 +40,9 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
   }
 //----------------------------------------------------------------------------------------------
 
-
+//Declarando os objetos controller para capturar os dados digitados pelos campos de caixa de texto.
   TextEditingController _controllerDataVendaLeite = TextEditingController();
-  DateTime? _selectedDate;
+  DateTime? _selectedDate;//Variável onde será armazenada a data.
   TextEditingController _controllerValorTotalLeite = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -104,6 +106,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
     return null;
   }
 
+  // Função para selecionar a data
   Future<void> _selectDate(BuildContext context) async {
     DateTime currentDate = _selectedDate ?? DateTime.now();
     DateTime? picked = await showDatePicker(
@@ -145,6 +148,7 @@ class _VendaLeiteUIState extends State<VendaLeiteUI> {
   }
 
   void _confirmar(BuildContext context) async {
+    // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers.
     if (_formKey.currentState!.validate()) {
       setState(() {
         _formKey.currentState!.save();

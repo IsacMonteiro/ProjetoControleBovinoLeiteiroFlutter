@@ -16,21 +16,21 @@ class AnimalUI extends StatefulWidget {
 class _AnimalUIState extends State<AnimalUI> {
 
 //----------------------------------------------------------------------------------------------
-  AnimalRepositorio _animalRepositorio = AnimalRepositorio();
+  AnimalRepositorio _animalRepositorio = AnimalRepositorio();// Inicializa o repositório
 
-  Iterable<Categoria> _categorias = [];
-  String? _selectedCategoria;
+  Iterable<Categoria> _categorias = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedCategoria;//Variável que armazenará o código(chave primária) da tabela selecionada.
  
 
-  Iterable<Prodleite> _prodleites = [];
-  String? _selectedProdLeite;
+  Iterable<Prodleite> _prodleites = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedProdLeite;//Variável que armazenará o código(chave primária) da tabela selecionada.
 
-
+  //Método chamado automaticamente quando o widget é inserido na árvore de widgets.
   @override
   void initState() {
     super.initState();
-    _carregarCategorias();
-    _carregarProdLeites();
+    _carregarCategorias();//Inicia o carregamento da lista quando o widget é inicializado.
+    _carregarProdLeites();//Inicia o carregamento da lista quando o widget é inicializado.
   }
 
   void _carregarCategorias() {

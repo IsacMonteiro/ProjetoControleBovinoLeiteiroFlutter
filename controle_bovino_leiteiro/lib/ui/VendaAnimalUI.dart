@@ -14,17 +14,18 @@ class VendaAnimalUI extends StatefulWidget {
 }
 
 
-//----------------------------------------------------------------------------------------------
 class _VendaAnimalUIState extends State<VendaAnimalUI> {
 
-  Iterable<Comprador> _compradores = [];
-  String? _selectedComprador;
-  VendaAnimalRepositorio _vendaAnimalRepositorio = VendaAnimalRepositorio(); // Inicialize o repositório aqui
+//----------------------------------------------------------------------------------------------
+  Iterable<Comprador> _compradores = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedComprador;//Variável que armazenará o código(chave primária) da tabela selecionada.
+  VendaAnimalRepositorio _vendaAnimalRepositorio = VendaAnimalRepositorio(); // Inicializa o repositório
 
+  //Método chamado automaticamente quando o widget é inserido na árvore de widgets.
   @override
   void initState() {
     super.initState();
-    _carregarCompradores();
+    _carregarCompradores();//Inicia o carregamento da lista quando o widget é inicializado.
   }
 
   void _carregarCompradores() {
@@ -39,7 +40,6 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
   }
 //----------------------------------------------------------------------------------------------
 
-  
   TextEditingController _controllerDataVendaAnimal = TextEditingController();
   DateTime? _selectedDate; //Variável onde será armazenada a data.
   TextEditingController _controllerValorTotalAnimal = TextEditingController();
@@ -127,7 +127,7 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
   }
 
   // Método utilizado para atribuir os dados do formulário no objeto e salvar ou atualizar os dados.
-  Future<void> _defineDados() async{
+  Future<void> _defineDados() async {
     if (_vendaAnimal.codVendaAnimal == 0) {
       // Incluindo os dados
       _vendaAnimal = Vendaanimal(
@@ -137,7 +137,7 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
             _selectedDate ?? DateTime.now(), // Usar a data selecionada
         valorTotalAnimal: double.parse(_controllerValorTotalAnimal.text),
       );
-    var resultado = await _vendaAnimalRepositorio.inserir(_vendaAnimal);
+      var resultado = await _vendaAnimalRepositorio.inserir(_vendaAnimal);
     } else {
       // Salvando os dados
       int codigo = _vendaAnimal.codVendaAnimal;
@@ -145,26 +145,26 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
       _vendaAnimal = Vendaanimal(
         codVendaAnimal: codigo,
         codComprador: codigoComprador,
-        dataVendaAnimal:_selectedDate ?? DateTime.now(), // Usar a data selecionada
+        dataVendaAnimal:
+            _selectedDate ?? DateTime.now(), // Usar a data selecionada
         valorTotalAnimal: double.parse(_controllerValorTotalAnimal.text),
       );
-    var resultado = await _vendaAnimalRepositorio.alterar(_vendaAnimal);
+      var resultado = await _vendaAnimalRepositorio.alterar(_vendaAnimal);
     }
   }
 
   void _confirmar(BuildContext context) async {
-  // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
-  if (_formKey.currentState!.validate()) {
-    setState(() {
-      _formKey.currentState!.save();
-    });
+    // Efetiva o conteúdo da caixa de texto e armazena nos objetos controllers
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _formKey.currentState!.save();
+      });
 
-    await _defineDados();
+      await _defineDados();
 
-    Navigator.pop(context, _vendaAnimal);
+      Navigator.pop(context, _vendaAnimal);
+    }
   }
-}
-
 
   Widget _body(BuildContext context) {
     return Padding(
@@ -173,7 +173,7 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-
+            
             // ComboBox
             DropdownButtonFormField<String>(
               value: _selectedComprador,
@@ -199,7 +199,6 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
               ),
             ),
 
-
             //Campo Data.
             TextFormField(
               controller: _controllerDataVendaAnimal,
@@ -216,8 +215,8 @@ class _VendaAnimalUIState extends State<VendaAnimalUI> {
               ),
             ),
 
-            HelperUI.builderTextFormField(
-                _controllerValorTotalAnimal,"Quantidade Vendida",(value) => _validarQtdVendaLeite(value)),
+            HelperUI.builderTextFormField(_controllerValorTotalAnimal,
+                "Quantidade Vendida", (value) => _validarQtdVendaLeite(value)),
 
             const Spacer(),
 

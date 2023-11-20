@@ -17,19 +17,19 @@ class _VendaProdLeiteUIState extends State<VendaProdLeiteUI> {
 //----------------------------------------------------------------------------------------------
   VendaProdLeiteRepositorio _vendaProdLeiteRepositorio = VendaProdLeiteRepositorio();
 
-  Iterable<Vendaleite> _vendaleites = [];
-  String? _selectedVendaLeite;
+  Iterable<Vendaleite> _vendaleites = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedVendaLeite;//Variável que armazenará o código(chave primária) da tabela selecionada.
  
 
-  Iterable<Prodleite> _prodleites = [];
-  String? _selectedProdLeite;
+  Iterable<Prodleite> _prodleites = [];//Variável que armazenará uma lista de objetos da classe de origem da chave estrangeira.
+  String? _selectedProdLeite;//Variável que armazenará o código(chave primária) da tabela selecionada.
 
-
+  //Método chamado automaticamente quando o widget é inserido na árvore de widgets.
   @override
   void initState() {
     super.initState();
-    _carregarVendaLeites();
-    _carregarProdLeites();
+    _carregarVendaLeites();//Inicia o carregamento da lista quando o widget é inicializado.
+    _carregarProdLeites();//Inicia o carregamento da lista quando o widget é inicializado.
   }
 
   void _carregarVendaLeites() {
